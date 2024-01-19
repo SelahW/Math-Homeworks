@@ -1,0 +1,89 @@
+\documentclass[hidelinks,12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[table,xcdraw]{xcolor}
+\usepackage{mathtools}
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{centernot}
+\usepackage{marvosym}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\setcounter{tocdepth}{1}
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}
+\let\marvosymLightning\Lightning
+\renewcommand{\skip}{\par\null\par}
+\newcommand{\T}{\mathcal T}
+\renewcommand{\O}{\mathcal{O}}
+\renewcommand{\Lightning}{\scalebox{1.5}{\marvosymLightning}}
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}{Corollary}[theorem]
+\newtheorem*{remark}{Remark}
+\renewcommand\qedsymbol{QED}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\divby}{%
+  \mathrel{\text{\vbox{\baselineskip.65ex\lineskiplimit0pt\hbox{.}\hbox{.}\hbox{.}}}}%
+  }
+\newcommand{\notdivby}{\centernot\divby}
+\title{\scalebox{2}{Math 551 Homework 5}}
+\author{\scalebox{1.5}{Theo Koss}}
+\date{November 2021}
+\begin{document}
+\maketitle
+\section{Section 4.5}
+\begin{itemize}
+    \item Problem 10: Let $X$ be a Hausdorff space, $A$ a subset of $X$, and $x$ a limit point of $A$. Prove that every open set containing $x$ contains infinitely many members of $A$.\begin{proof} By way of contradiction, suppose $M$ is an open set which contains $x$ and is finite. Then we can index the points $a_1,a_2,\dots,a_n\in M$. By definition, since $X$ is a Hausdorff space, for each $a_k\in M,$ where $(1\leq k\leq n)$, $$\exists U_k,V_k\subset M\quad\text{Such that }a_k\in U_k,x\in V_k\quad\text{and}\quad U_k\cap V_k=\emptyset$$Let $$V=\bigcap_{k=1}^nV_k$$ Clearly $V$ is an open set since it is the intersection of finitely many open sets. And for each $k$ between 1 and $n$, $U_k\cap V=U_k\cap V_k$. Then $U_k\cap V=\emptyset$, equivalently, $a_k\notin V$.\skip Thus we have found an open subset of $M$ which contains $x$ but no other points of $A$. Which means $x$ is not a limit point of $A$. Contradiction.
+    \end{proof}
+\end{itemize}
+\section{Section 5.1}
+\begin{itemize}
+    \item Problem 4: Let $(\R,\T')$ be the space of real numbers with the finite complement topology. Is $(\R,\T')$ connected or disconnected? Prove your answer.\begin{proof}The space is connected.\skip By way of contradiction, assume it is disconnected. Then there exists two sets $U$ and $V$ which are non-empty, open and disjoint sets such that $\R=U\cup V$. However: $$U\cap V=\emptyset\implies U\subset\R\backslash V,\quad\text{and}\quad V\subset\R\backslash U.$$ Since $U$ and $V$ are both nonempty and we are using the finite complement topology, $\R\backslash V$ and $\R\backslash U$ are both finite. By the equation above, $U$ and $V$ must be finite themselves.\skip Thus $\R=U\cup V$ is finite, which is a contradiction because of course $\R$ is infinite.
+    \end{proof}
+\end{itemize}
+\section{Section 5.2}
+\begin{itemize}
+    \item Problem 4: Let $\{A_n\}_{n=1}^\infty$ be a sequence of connected subsets of a space $X$ such that for each integer $n\geq1$, $A_n$ has at least one point in common with one of the preceding sets $A_1,\dots,A_{n-1}$. Then $\bigcup_{n=1}^{\infty}A_n$ is connected.\begin{proof}By way of contradiction, assume $\bigcup_{n=1}^{\infty}A_n$ is not connected. Then there must exist a separation of it, $U,V$ where $U,V$ are nonempty, open disjoint sets.\skip Consider some arbitrary $A_i\in\{A_n\}$. Then $A_i$ lies entirely within $U$ or $V$. There are 2 cases:\begin{enumerate}
+        \item All of the $A_i$ are entirely in $U$ or $V$.
+        \item Some of the $A_i$ are in $U$ and some are in $V$.
+    \end{enumerate}
+    In case 1, if they are all in $U$, then $U,V$ are not a separation of $\bigcup_{n=1}^{\infty}A_n$. Same argument if they are all in $V$. Contradiction.\skip In case 2, if they are split then the $A_i\in U$ are disjoint from the $A_i\in V$. This contradicts the hypothesis that for each integer $n\geq1$, $A_n$ has at least one point in common with one of the preceding sets $A_1,\dots,A_{n-1}$. Thus this is a contradiction. $$\therefore\bigcup_{n=1}^{\infty}A_n\quad\text{is connected.}$$
+    \end{proof}
+    \item Problem 5: Determine whether each of the following subspaces of $\R^2$ is connected or disconnected. Give a reason for each answer.\begin{enumerate}[label=(\alph*)]
+        \item Asymptotic curves: Disconnected, since even though they will get infinitely close to each other, they will never touch so you can find 2 nonempty disjoint open sets.
+        \item Asymptotic curves and the asymptote: connected, since the Topologist's sine curve is connected and it's kind of the same deal.
+        \item Intersecting lines: Connected, since it is clearly path-connected, which is stronger than simply being connected.
+        \item Figure 5.2: Connected, as you can not find 2 nonempty disjoint open sets such that the union is the set.
+    \end{enumerate}
+    \item Problem 6: Prove that every countable subset of $\R$ is totally disconnected.\begin{proof}We must show for every countable subset of $\R$ each component is a single point. Also recall that any interval in $\R$ is uncountable. (Since there is a bijection from arbitrary $(a,b)\to(0,1)$ and $(0,1)$ uncountable.)\skip Consider an arbitrary countable subset of $\R$, call it $X$. Then consider some component $A$ of $X$ which contains 2 points. Call these points $a_1,a_2$. Then $(a_1,a_2)\subset A$, which is uncountable, thus $A$ itself is uncountable, and since $A\subset X$, $X$ is also uncountable. Contradiction.\skip This reasoning can be extended if $A$ contains more than 2 points. Thus each component must contain only 1 point. Therefore $X$ is totally disconnected
+    \end{proof}
+\end{itemize}
+\section{Section 5.3}
+\begin{itemize}
+    \item Problem 3: Let $f:[a,b]\to[c,d]$ be a homeomorphism on the indicated intervals. Prove that $f$ maps endpoints to endpoints.
+    \begin{proof}
+    Note that a homeomorphism between two topological spaces $X,Y$ is a function $f:X\to Y$ which has the following properties:\begin{enumerate}[label=\roman*.]
+        \item $f$ is a bijection.
+        \item $f$ is continuous.
+        \item $f^{-1}$ is continuous.
+    \end{enumerate}\skip Suppose, by way of contradiction, that $f(a)$ maps to neither $c$ nor $d$. Then $f(a)=x\in(c,d)$, then the image of the interval $(a,b]$ must be $[c,x)\cup(x,d]$. However, we just showed that $f$ must map an interval to $[c,x)\cup(x,d]$, which is \emph{not} an interval, and since it is not an interval, it is not connected. This contradicts ii. above, that $f$ is continuous.\skip The same argument shows that $b$ must also go to one of the endpoints. Thus homeomorphism $f:[a,b]\to[c,d]$ must map endpoints to endpoints.
+    \end{proof}
+    (Similarly I believe you could consider the non-cut points of the preimage and the image and notice that $(a,b]$ has 1 non-cut point and $[c,x)\cup(x,d]$ has 2, thus they are topologically different spaces so $f$ not a homeomorphism.)
+\end{itemize}
+\section{Section 5.4}
+\begin{itemize}
+    \item Problem 1: Prove that every polynomial having real coefficients and odd degree has a real root.\begin{proof}
+    Recall every polynomial on the real line is continuous. Since a polynomial is a sum of powers of x, powers of x are continuous thus every polynomial is continuous.\skip We want to show that if $P(x)=a_nx^n+\dots+a_1x^1+a_0$ is a polynomial such that $n$ odd and $a_n\neq0$, then there exists a real $c$ such that $P(c)=0$. If $a_n>0$: $$\lim_{x\to\infty}P(x)=\infty\quad\text{and}\quad\lim_{x\to-\infty}P(x)=-\infty$$ Thus there are real numbers $x_0<x_1$ such that $P(x_0)<0$ and $P(x_1)>0$. (If $a_n<0$, the argument is similar but $P(x_0)>0$ and $P(x_1)<0$.) Then, by the IVT, there is a real number $c\in[x_0,x_1]$ such that $P(c)=0$.
+    \end{proof}
+\end{itemize}
+\section{Section 5.5}
+\begin{itemize}
+    \item Problem 7: Prove that a space $X$ is path connected iff there is a point $a$ in $X$ such that each point of $X$ can be joined to $a$ by a path in $X$.\begin{proof}
+$(\Longrightarrow):$ Assume $X$ is a space where there is a point $a\in X$ such that each point of $X$ can be joined to $a$ by a path in $X$. We must show that $\forall x,y\in X$, the path starting at $x$ and ending at $y$ is in $X$. By the assumption, each point has a path to $a$. Also, for all $x\in X$, the path from $x\to a$ exists, as does the path from $a\to x$. Now notice that that the \emph{path product} $p_1*p_2=\begin{cases} p_1(2t) &\mbox{if } 0\leq t\leq\frac{1}{2} \\
+p_2(2t-1) & \mbox{if } \frac{1}{2}\leq t\leq1\end{cases}$, where $p_1(1)=p_2(0)$, is also in $X$.\skip Thus, $\forall x,y\in X$, there are two paths, $p_1\in X$ from $x\to a$ and $p_2\in X$ from $y\to a$. Then the reverse path $\bar{p_2}$ is in $X$. This is the path from $a\to y$. Since $p_1(1)=a$ and $\bar{p_2}(0)=a$, the path product $p_1*\bar{p_2}\in X$ by definition.\newline $(\Longleftarrow):$ Assume $X$ is a path connected space, we must show that there is a point $a\in X$ such that each point of $X$ can be joined to $a$ by a path in $X$.\skip Since $X$ is path connected, $\forall x,y\in X$, $\exists p:x\to y\in X$ where $p$ is a path. Fix some $a\in X$. Then for each $x_{i\in I}\in X$, the paths $p_1,p_2,\dots,p_i$ where $p_1:x_1\to a$, $p_2:x_2\to a$ and so on must be in $X$ by definition of path connectedness. Thus we have showed that each point of $X$ can be joined to $a$ by a path in $X$.
+    \end{proof}
+\end{itemize}
+\end{document}

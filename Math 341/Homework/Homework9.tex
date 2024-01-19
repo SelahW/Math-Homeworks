@@ -1,0 +1,37 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{mathtools}
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{centernot}
+\usepackage{marvosym}
+\let\marvosymLightning\Lightning
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}{Corollary}[theorem]
+\newtheorem*{remark}{Remark}
+\renewcommand\qedsymbol{QED}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\divby}{%
+  \mathrel{\text{\vbox{\baselineskip.65ex\lineskiplimit0pt\hbox{.}\hbox{.}\hbox{.}}}}%
+  }
+\newcommand{\notdivby}{\centernot\divby}
+\title{\scalebox{2}{Math 341 Homework 9}}
+\author{\scalebox{1.5}{Theo Koss}}
+\date{October 2020}
+\begin{document}
+\maketitle
+\section{Practice problems}
+\section{Problem 9.1}
+Give 3 examples of nonequivalence relations
+\begin{enumerate}
+    \item Let $S=Z$ and $R(x,y)="x<y"$. This is not an equivalence relation because it is not symmetric, because $x<y$ does not imply $x>y$.
+    \item Let $S=Z$ and $R(x,y)="x>y"$. This is not an equivalence relation because it is not symmetric, because $x>y$ does not imply $x<y$.
+    \item Let $S=Z$ and $R(x,y)="x\text{ is a child of }y"$. This is not an equivalence relation because it is not reflexive, because if $x=\text{me}$, I am not a child of myself.
+\end{enumerate}
+\section{Problem 9.8}
+Find $6^{2020}+8^{2019}\mod{7}$.
+\newline Since $6\equiv-1\mod{7}$ and $8\equiv1\mod{7}$: $6^{2020}+8^{2019}\equiv-1^{2020}+1^{2019}\mod{7}$. And since 2020 is even, $-1^{2020}=1$. And obviously, $1^{2019}=1$. So $6^{2020}+8^{2019}\equiv1+1=2\mod{7}$.
+\end{document}

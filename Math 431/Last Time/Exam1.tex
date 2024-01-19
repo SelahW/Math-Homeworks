@@ -1,0 +1,107 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{mathtools}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\R}{\mathbb{R}}
+\renewcommand\qedsymbol{QED}
+\newcommand{\divby}{%
+  \mathrel{\text{\vbox{\baselineskip.65ex\lineskiplimit0pt\hbox{.}\hbox{.}\hbox{.}}}}%
+  }
+\newcommand{\notdivby}{\centernot\divby}
+\title{\scalebox{2}{Math 431 Exam 1}}
+\author{\scalebox{1.5}{Theo Koss}}
+\date{October 2020}
+\begin{document}
+\maketitle
+\section{Problem 1: Euclidean Algorithm}
+$17x+11y=562$. Since the merchant is giving us 11 ounce coins, $y$ must be negative. Euclidean Alg:$$17=11\cdot1+6$$ $$11=6\cdot1+5$$ $$6=5\cdot1+1$$ $$5=5\cdot1+0$$. In reverse:$$1=(6\cdot1)+(-1\cdot5)$$ $$=(-1\cdot11)+(2\cdot6)$$ $$=(2\cdot17)+(-3\cdot11)$$ $$=(-3\cdot11)+(2\cdot17)$$ So for the case $17x+11y=1$, $x=2,y=-3$. Then for $17x+11y=562$, we can simply multiply by 562. So $x=1124, y=-1686$. We should give 1124 coins, the merchant should give us 1686.
+\section{Problem 2: Cyclic Groups}
+
+\section{Problem 3: Isomorphisms}
+Let $(G,*)$ and $(H,\#)$ be groups with operations $*$ and $\#$, respectively. An Isomorphism from $G$ to $H$ is a function $$\phi:G\longrightarrow H$$
+Such that \begin{enumerate}
+    \item $\phi$ is a bijection
+    \item For all $x,y\in G$, $\phi(x*y)=\phi(x)\#\phi(y)$.
+\end{enumerate}
+Prove:
+\begin{enumerate}
+    \item Let $(G,*)$ be a group, and let $\phi:G\longrightarrow G$ be the identity function $\phi(x)=x$, for all $x\in G$. Show that $\phi$ is an isomorphism.
+    \begin{proof}
+    To prove that $\phi$ is an isomorphism, we must prove $\phi(x*y)=\phi(x)*\phi(y)$, and that $\phi$ is a bijection. \newline Let $a,b,c\in G$, such that $a*b=c$. We know, by the definition of $\phi$, that $\phi(a)=a$, and $\phi(b)=b$. \newline $\phi(a*b)=\phi(c)=c=a*b=\phi(a)*\phi(b)$. Thus, $\phi$ is a homomorphism.\newline N2S: $\phi$ is a bijection. $\phi:G\longrightarrow G$ is a bijection iff $\phi$ is:\begin{enumerate}
+        \item Injective: $\phi(x)=\phi(y)\Longrightarrow x=y$ and
+        \item Surjective:  $\forall b\in G$, $\exists a\in G$ such that $\phi(a)=b$.
+    \end{enumerate}
+    Injective: let $x,y\in G$, and assume $\phi(x)=\phi(y)$. Since $\phi(x)=x$ and $\phi(y)=y$, $\phi(x)=\phi(y)\Longrightarrow x=y$. As required.
+    \newline Surjective: Take some $y\in G$, must show that $y=\phi(x)$. That is, $y=x$. This is only true if $x=y$ thus, there exists exactly 1 number for each $y$ such that $\phi(x)=y$. Thus it is surjective.
+    \end{proof}
+    \item Let $n\in\N$. Recall the set $n\Z$, defined by $$n\Z=\{m\in\Z|m \text{ is a multiple of }n\}$$ is an additive subgroup of $(\Z,+)$. Prove that the fuction $f:\Z\longrightarrow n\Z$, where $f(k)=nk$ for all $k\in\Z$, is an isomorphism.
+    \begin{proof}
+    To prove that $f$ is an isomorphism, we must prove $f(x*y)=f(x)*f(y)$, for $x,y\in\Z$, and that $f$ is a bijection. \newline Let $a,b,c\in Z$, such that $a*b=c$. Then $f(a)=na$ and $f(b)=nb$. Since $a*b=c$, $f(a*b)=f(c)=nc=n(a*b)=na*nb=f(a)*f(b)$. As required.
+    \newline N2S: $f$ is a bijection, from above, injection: $f(x)=f(y)\Longrightarrow x=y$. Surjection: $\forall b\in\Z$, $\exists a\in\Z$ such that $f(a)=b$.
+    \newline Injection: Let $x,y\in\Z$, and assume $f(x)=f(y)$, by the definition of $f$, $f(x)=nx$, $f(y)=ny$. So $f(x)=f(y)\Longrightarrow nx=ny$, simply divide by $n$ to achieve $x=y$. As required.
+    \newline Surjection: Take some $y\in G$, must show that $y=f(x)$. That is, $y=nx$. Divide both sides by $n$: $\frac{y}{n}=x$, thus there is a distinct number $x$, namely $x=\frac{y}{n}$, such that $f(x)=y$.
+    \newline Thus $f$ is an isomorphism.
+    \end{proof}
+\end{enumerate}
+\section{Problem 4: Cyclic Groups ``are" $\Z_n$}
+Explain why $<a>$ is isomorphic to the additive group of integers modulo $n$, $(\Z_n,+)$. Show the function $f: <a>\longrightarrow \Z_n$, where $f(a^k)\equiv k \mod n$ is an isomorphism.
+\begin{proof} To prove that $f$ is an isomorphism, we must prove $f(a^{x*y})=f(a^x)*f(a^y)$, for $x,y\in\Z$, and that $f$ is a bijection.
+\newline Let $x,y,z\in <a>$, such that $x*y=z$. Then $f(a^x)\equiv x\mod n$ and $f(a^y)\equiv y\mod n$. And since $x*y=z$, $f(a^{x*y})=f(a^z)\equiv z=x*y \mod n$. As required
+\newline N2S: $f$ is a bijection, from above, injection: $f(a^x)=f(a^y)\Longrightarrow x\equiv y\mod n$. Surjection: $\forall b\in\Z_n$, $\exists c\in <a>$ such that $f(a^c)\equiv b\mod n$.
+\newline Injection: Let $x,y\in <a>$, and assume $f(a^x)\equiv f(a^y)\mod n$, by the definition of $f$, $f(a^x)\equiv x\mod n$, $f(a^y)\equiv y\mod n$. So $f(a^x)=f(a^y)\Longrightarrow x\equiv y\mod n$.
+\newline Surjection: Take some $y\in <a>$, must show that $y=f(a^x)$. That is, $y\equiv x\mod n$. There is a distinct $x$ for which this is true, namely $x\equiv y\mod n$, so $f$ is a surjection.
+\newline Thus $f$ is an isomorphism.
+\end{proof}
+\section{Problem 5: Cryptanalyis/Code Breaking}
+PXPXKXENVDRUXVTNLXHYMXGMAXYKXJN
+\newline XGVRFXMAHWGXXWLEHGZXKVBIAXKMXQM
+
+By Cryptanalysing, we see that X is the most common letter, so we assume the mapping is $E\Longrightarrow X$.
+Using this assumption, the mapping is $n'=n+19 \mod{26}$. Then $W\Longrightarrow P$, since $16=23+19 \mod{26}$, and so on.
+Decrypted message: "We were lucky because often the frequency method needs longer cipher text".
+\section{Problem 6: Fast Modular Exponentiation}
+FLT: (Little, not last :p) $a^p=a \mod p$ for prime $p$. Similarly, $a^{p-1}=1 \mod p$.
+\begin{enumerate}
+    \item $4^{1007} \mod 5$. We know by FLT that $4^4=1$, and, by exponentiation rules, $4^{1007}=4^{4\cdot251+3}=(4^{4})^{251}\cdot4^3=1^{251}\cdot4^3=64\equiv4\mod5$.
+    \item $7^{147}\mod11$ By FLT $7^{10}=1\mod11$, so $7^{147}=7^{140}\cdot7^7=7^7=6\mod11$.
+    \item $7^{100}\mod13$ By FLT $7^{12}=1\mod13$, so $7^{100}=7^{96}\cdot7^4=7^4=9\mod13$.
+    \item $13^{100}\mod7$ By FLT $13^{6}=1\mod13$, so $13^{100}=13^{98}\cdot13^2=13^2=169=1\mod7$.
+\end{enumerate}
+\section{Problem 7: Fast Modular Exponentiation 2, Electric Boogaloo}
+Euler's Theorem: If $\gcd(a,b)=1$, then $a^{\phi(b)}\equiv1\mod n$.
+\begin{enumerate}
+    \item $3^{23}\mod10$. Since $\phi(10)=4$, $3^4=1\mod10$. So $3^{23}=3^{20}\cdot3^3=27=7\mod10$.
+    \item $7^{100}\mod16$. Since $\phi(16)=8$, $7^8=1\mod16$. So $7^{100}=7^{96}\cdot7^4=7^4=2401=1\mod16$.
+    \item $2^{20}\mod21$. Since $\phi(21)=12$, $2^12=1\mod21$. So $2^{20}=2^{12}\cdot2^8=2^8=256=4\mod21$.
+    \item $5^{2015}\mod24$. Since $\phi(24)=8$, $5^8=1\mod24$. So $2^{2015}=2^{2008}\cdot2^7=2^7=128=8\mod24$.
+    \item $101^{100^{99}}\mod7$. Since $\phi(7)=6$, $100^{99}=100^{98}\cdot100^1=100=2\mod7$. So $101^{100^{99}}=101^{2}=10201=2\mod7$.
+\end{enumerate}
+\section{Problem 8: Finding Multiplicative Inverses Modulo $n$}
+Multiplicative inverse of $14\in\Z_{39}$. $\gcd(14,39)=1$ so there is an inverse. N2F: $r,s\in\Z$ s.t. $14r+39s=1$.
+\newline Euclidean Alg:$$39=14\cdot2+11$$ $$14=11\cdot1+3$$ $$11=3\cdot3+2$$ $$3=2\cdot1+1$$ $$2=2\cdot1+0$$. Reverse Euclidean Alg: $$1=(2\cdot-1)+(3\cdot1)$$ $$=(-1\cdot11)+(3\cdot4)$$ $$=(4\cdot14)+(-5\cdot11)$$ $$=(-5\cdot39)+(14\cdot14)$$ So $r=14, s=-5$, we can ignore the $s$ since for $14r+39s=1\mod39$, any integer times 39 will be equivalent to 0. So $14r+39s=1\mod39\Longrightarrow14r=1\mod39$. Therefore the multiplicative inverse of $14\in\Z_{39}$ is 14.
+\section{Problem 9: Diffie-Helman Key Exchange}
+\begin{enumerate}
+    \item $A=g^a\mod p$ and $B=g^b\mod p$.
+    \newline $A=3^{12}\mod17=4$.
+    \newline $B=3^8\mod17=16$.
+    \item Alice calculates $B^a\mod p$ and Bob calculates $A^b\mod p$, find and show they are equal.
+    \newline $B^a=16^{12}\mod17=1$
+    \newline $A^b=4^8\mod17=1$
+    \newline $B^a=A^b=1$.
+    \item The number $k=B^a=A^b\mod p$ is the private key for Alice and Bob's cryptosystem. Use $k$ as the number in a shift cipher to encode ``Hi".
+    \newline $k=1$, so $n'=n+1\mod26$. ``H''$=8$, $H'=9\mod26=9=I$. ``I''$=9$, $I'=10\mod26=10=J$. So ``Hi''$\Longrightarrow$``Ij''.
+\end{enumerate}
+\section{Problem 10: RSA Cryptography}
+Let $p=47$, $q=59$, $N=pq=2773$, and $e=157$.
+\begin{enumerate}
+    \item Compute mult. inverse of $e\mod\Phi(N)$.\newline $\Phi(N)=(p-1)(q-1)=2668$. \newline N2F: $d\in\N$, such that $ed\equiv 1\mod2668$. $157\cdot17=2669\equiv1\mod2668$. $d=17$.
+    \item Encrypt the message ``Hi'' by computing it's digitization $m$, and the cyphertext $m^e\mod N$.
+    \newline ``Hi''$=0809$. $809^{157}\equiv1252\mod2668$.
+    \item 0802=536, 2179=2587, 2276=620, 1024=584 (mod 2668). Not sure what to do when the number is not of in digitized form :/.
+\end{enumerate}
+\end{document}

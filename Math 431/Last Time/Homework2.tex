@@ -1,0 +1,108 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{mathtools}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{enumitem}
+\usepackage{centernot}
+\newcommand{\subscript}[2]{$#1 _ #2$}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\R}{\mathbb{R}}
+\renewcommand\qedsymbol{QED}
+\newcommand{\divby}{%
+  \mathrel{\text{\vbox{\baselineskip.65ex\lineskiplimit0pt\hbox{.}\hbox{.}\hbox{.}}}}%
+  }
+\newcommand{\notdivby}{\centernot\divby}
+\title{\scalebox{2}{Math 431 Homework 1}}
+\author{\scalebox{1.5}{Theo Koss}}
+\date{September 2020}
+\begin{document}
+\maketitle
+\section{Chapter 2 Problems}
+\subsection{Problem 1}
+Find $x\in\Z$ which satisfy each of the following:
+\begin{enumerate}[label=(\alph*)]
+    \item $3x\equiv2$ (mod 7)
+    $x=3$
+    \item $5x+1\equiv13$ (mod 23)
+    $x=7$
+    \item $5x+1\equiv13$ (mod 26)
+    $x=16$
+    \item $9x\equiv3$ (mod 5)
+    $x=2$
+    \item $5x\equiv1$ (mod 6)
+    $x=5$
+    \item $3x\equiv1$ (mod 6)
+    Never satisfied since $6\divby3$
+\end{enumerate}
+\newpage
+\subsection{Problem 2}
+Which of the following multiplication tables defined on the set $G=\{a,b,c,d\}$ form a group?
+\begin{enumerate}[label=(\alph*)]
+    \item
+    \begin{table}[h]
+\begin{tabular}{l|llll}
+$\cdot$ & a & b & c & d \\ \hline
+a                    & a & c & d & a \\
+b                    & b & b & c & d \\
+c                    & c & d & a & b \\
+d                    & d & a & b & c
+\end{tabular}
+\end{table}
+This is not a group because it is not associative: It says that $a\cdot(b\cdot c)\centernot=(a\cdot b)\cdot c$.
+    \item 
+    \begin{table}[h]
+\begin{tabular}{l|llll}
+$\cdot$ & a & b & c & d \\ \hline
+a                    & a & b & c & d \\
+b                    & b & a & d & c \\
+c                    & c & d & a & b \\
+d                    & d & c & b & a
+\end{tabular}
+\end{table}
+This is a group, it satisfies all 4 properties of a group, Closure, Associativity, Identity, and Inverse.
+\newpage
+\item
+\begin{table}[h]
+\begin{tabular}{l|llll}
+$\cdot$ & a & b & c & d \\ \hline
+a                    & a & b & c & d \\
+b                    & b & c & d & a \\
+c                    & c & d & a & b \\
+d                    & d & a & b & c
+\end{tabular}
+\end{table}
+This is a group, it satisfies Closure, Associativity, Identity and Inverse.
+\item
+\begin{table}[h]
+\begin{tabular}{l|llll}
+$\cdot$ & a & b & c & d \\ \hline
+a                    & a & b & c & d \\
+b                    & b & c & d & a \\
+c                    & c & d & a & b \\
+d                    & d & a & b & c
+\end{tabular}
+\end{table}
+This is also a group, it satisfies all 4 properties of a group.
+\end{enumerate}
+\subsection{Problem 3}
+Let a and b be elements in a group G. Prove that $ab^na^{-1}=(aba^{-1})^n$ for $n\in\Z$.
+\begin{proof}
+Since by the definition of a group, G is associative, that means that $ab^na^{-1}=(aa^{-1})b^n$ and also by the definition of a group, $a\cdot a^{-1}=e$. Therefore $ab^na^{-1}=(aa^{-1})b^n=eb^n=b^n$. Also, by associativity, $(aba^{-1})^n=(aa^{-1}b)^n$, and by exponent rules, we can split up the parenthesis like so: $(aa^{-1}b)^n=(aa^{-1})^n\cdot b^n$. Since, as we stated before, $a\cdot a^{-1}=e$, and $e^n=e$ for all $n$, then $(aa^{-1})^n\cdot b^n=eb^n=b^n$. Thus the two results are equal, as required.
+\end{proof}
+\subsection{Problem 4}
+\begin{enumerate}[label=(\alph*)]
+    \item Is ISBN 0-534-91500-0 a valid ISBN code? What about ISBN 0-534-91700-0 and ISBN 0-534-19500-0?
+    \newline ISBN  0-534-91500-0 Check: $(5\cdot9)+(3\cdot8)+(4\cdot7)+(9\cdot6)+(1\cdot5)+(5\cdot4)=(45+24+28+54+5+20)=176\equiv0\mod11$ So yes, it is valid.
+    \newline ISBN 0-534-91700-0 = (ISBN  0-534-91500-0)+8$\equiv8\mod11$, so no, this is not a valid ISBN.
+    \newline ISBN 0-534-19500-0 Check: $(5\cdot9)+(3\cdot8)+(4\cdot7)+(1\cdot6)+(9\cdot5)+(5\cdot4)=(45+24+28+6+45+20)\equiv3\mod11$. This is not a valid ISBN
+    \item How many different ISBN codes are there?
+    \newline There are 10 choices for spot 1 (0-9), then 10 for spot 2, and so on, and there are 11 choices for spot 10. So there are $10^9\cdot11=11,000,000,000$ different ISBN-10 codes.
+    \item A publisher has houses in Germany and the United States. Its German prefix is 3-540. If its United States prefix will be 0-abc, find abc such that the rest of the ISBN code will be the same for a book printed in Germany and in the United States. Under the ISBN coding method the first digit identifies the language; German is 3 and English is 0.The next group of numbers identifies the publisher, and the last group identifies the specific book.
+    \newline For the German prefix: $(3\cdot10)+(5\cdot9)+(4\cdot8)+\text{Rest of the ISBN}\equiv0\mod11$
+    \newline Therefore the U.S. prefix must be equivalent to the German one (mod 11). Therefore $30+45+32=107=9a+8b+7c$. $a=8,b=0,c=5$. So the U.S. prefix would be 0-805
+\end{enumerate}
+\end{document}

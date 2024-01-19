@@ -1,0 +1,55 @@
+\documentclass{article}
+\usepackage{enumitem}
+\usepackage{graphicx}
+\usepackage{microtype}
+\usepackage{amsmath}
+\usepackage[utf8]{inputenc}
+\newcommand{\myskip}{\par\null\par}
+\title{Math 305 Midterm Review}
+\author{Theodore Koss}
+\date{March 2023}
+\begin{document}
+
+\maketitle
+
+\begin{enumerate}
+    \item \begin{enumerate}
+        \item The rates on the arrows in the diagram represent the rate at which people move from one box to another. For example, the rate at which susceptible people move to infected is a product of three things, some constant $\alpha$, the number of people currently in $S$, and the number of people currently in $I$. Different assumptions can be made based on the variables used. 
+        \item I agree with it for the most part, the only inaccurate thing is that people who are carrying the virus but asymptomatic are put in the susceptible box. If I were to ``fix'' it I would make a new box for those who are asymptomatic, but are still able to transmit it to people. The box would be above (?) the infected box, leading to either quarantine or ``true'' infection (showing symptoms).
+        \item Continuous:\begin{align*}
+            \frac{dS}{dt}&=-\alpha SI-\theta SA\\
+            \frac{dI}{dt}&=-\omega I\\
+            \frac{dQ}{dt}&=-\delta Q-\beta Q\\
+            \frac{dR}{dt}&=-\gamma R\\
+            \frac{dD}{dt}&=\delta Q\\
+        \end{align*}
+        Discrete:
+        \begin{align*}
+            S(t+1)&=S(t)-\alpha S(t)I(t)-\theta S(t)A(t)\\
+            I(t+1)&=I(t)-\omega I(t)\\
+            Q(t+1)&=Q(t)-\delta Q(t)-\beta Q(t)\\
+            R(t+1)&=R(t)-\gamma R(t)\\
+            D(t+1)&=D(t)+\delta Q(t)\\
+        \end{align*}
+    \end{enumerate}
+    \item A white-tailed deer population is growing naturally by 26\% a year. By hunting and
+culling, 780,000 deer per year are removed from the population.\begin{enumerate}
+    \item Model: $$P(t+1)=1.26P(t)-780000$$
+    \item If $$P(0)=2000000$$ then $$P(1)=1.26(2000000)-780000=174000$$ Decreases. If $$P(0)=4000000$$ then $$P(1)=1.26(4000000)-780000=4020000$$ Increases.\newline Steady state: $$P(t+1)=p(t)$$ then $$0.26P(t) = 780000$$ $\implies$ $$P(t)=3000000$$
+\end{enumerate}
+\item Manny is a 200-lb man who wants to drink steadily in order to maintain a ``buzzed”
+feeling without becoming drunk. This would correspond to maintaining a BAC of
+about 0.05.\begin{enumerate}[label=(\alph*)]
+    \item $$0.05 = \left(\frac{A\cdot5.14}{200\cdot0.73}\right) - 0.015\cdot1$$ $$A=.097\ \mathrm{oz}$$ About 1 standard drink per hour.
+    \item Model for BAC after n drinks. $$BAC(n) = \left(\frac{0.097\cdot n\cdot5.14}{200\cdot 0.73}\right) - 0.015\cdot n$$
+    \item Part A says he can drink 1 drink an hour in order to stay buzzed without being drunk, however the results from part B show that his BAC will only go up with time, so he will eventually become drunk doing this. 
+\end{enumerate}
+\item Hanta virus:\begin{enumerate}[label=(\alph*)]
+    \item Before: $$N(t) = 2^t$$ After: $$N(t) = 2^{(t-1.32)}$$
+    \item $$2^t = 1,000,000$$  $$t = 20.93\ \mathrm{hours}$$
+    \item $$2^{(t-1.32)} = 1,000,000,000$$ $$t=41.19\ \mathrm{hours}$$
+    \item $$2^{(t-1.32)} = 1,000,000,000,000$$ $$t = 61.45\ \mathrm{hours}$$
+\end{enumerate}
+\item New model: $$ N(t) = 2^{(t-1.32)} - 500,000,000t$$ $$2^{(t-1.32)} - 500,000,000t = 1,000,000,000,000$$ Gives $$t=51.45\ \mathrm{hours}$$ So if antibiotics are not administrated before 51 hours pass, the person will die. The statement ``If the number of copies of the virus reaches 1 billion, the virus cannot be stopped'' means that the immune system alone can not kill off more than the virus can replicate, so the number of infected cells in the body will only grow, so the person will die.
+\end{enumerate}
+\end{document}

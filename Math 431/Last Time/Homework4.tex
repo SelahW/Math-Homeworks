@@ -1,0 +1,97 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{mathtools}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{enumitem}
+\usepackage{centernot}
+\usepackage{marvosym}
+\let\marvosymLightning\Lightning
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}{Corollary}[theorem]
+\newtheorem*{remark}{Remark}
+\newtheorem{innercustomthm}{Theorem}
+\newenvironment{customthm}[1]
+  {\renewcommand\theinnercustomthm{#1}\innercustomthm}
+  {\endinnercustomthm}
+\newcommand{\subscript}[2]{$#1 _ #2$}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\renewcommand\qedsymbol{QED}
+\newcommand{\divby}{%
+  \mathrel{\text{\vbox{\baselineskip.65ex\lineskiplimit0pt\hbox{.}\hbox{.}\hbox{.}}}}%
+  }
+\newcommand{\notdivby}{\centernot\divby}
+\newcommand\setItemnumber[1]{\setcounter{enumi}{\numexpr#1-1\relax}}
+\title{\scalebox{2}{Math 431 Homework 4}}
+\author{\scalebox{1.5}{Theo Koss}}
+\date{October 2020}
+\begin{document}
+\maketitle
+\section{Problem 1}
+Which of the following sets are rings with respect to the usual operations of addition and multiplication.
+\begin{enumerate}
+    \item $7\Z$ Is a ring, because $7\Z$ is: \begin{enumerate}
+        \item An abelian group with addition, $\forall n,m\in\Z$, it: \newline satisfies closure: $7n+7m=7(n+m)$. \newline Has an additive identity: $0+7n=7n=7n+0$. \newline Has additive inverses: $7n+7n^{-1}=7n+(-7n)=0=(-7n)+7n$. \newline And is commutative: $7n+7m=7m+7n$.
+        \item Closed under multiplication and multiplication is associative: \newline $\forall a,b,c\in\Z$, $7a\cdot7b=7(7ab)$. and  $7a\cdot(7b\cdot7c)=(7a\cdot7b)\cdot7c$.
+        \item Multiplication left and right distributes over addition: \newline $\forall a,b,c\in\Z$, $7a\cdot(7b+7c)=7a\cdot7b+7a\cdot7c$ and $(7b+7c)\cdot7a=7b\cdot7a+7c\cdot7a$.
+    \end{enumerate}
+    \item $\Z_{18}$ is a ring, because $\Z_{18}$ is: \begin{enumerate}
+        \item An abelian group with addition, $\forall n,m\in\Z_{18}$, it: \newline satisfies closure and is commutative: $n+m=m+n\in\Z_{18}$. \newline Has an additive identity: $0+n=n=n+0$. \newline Has additive inverses: $n+n^{-1}=0=n^{-1}+n$, where $n^{-1}=18-n$.
+        \item Closed under multiplication and multiplication is associative: $\forall a,b,c\in\Z_{18}$, $a\cdot b=b\cdot a\in\Z_{18}$. and $a\cdot(b\cdot c)=(a\cdot b)\cdot c$.
+        \item Multiplication left and right distributes over addition: $\forall a,b,c\in\Z_{18}$, $a\cdot(b+c)=a\cdot b+a\cdot c$ and $(b+c)\cdot a=b\cdot a+c\cdot a$.
+    \end{enumerate}
+    \item $\Z_{19}$ is a ring, because similarly to $\Z_{18}$, $\Z_{19}$ is: \begin{enumerate}
+        \item An abelian group with addition, $\forall n,m\in\Z_{19}$, it satisfies closure and is commutative: $n+m=m+n\in\Z_{19}$. \newline Has an additive identity: $0+n=n=n+0$. \newline Has additive inverses: $n+n^{-1}=0=n^{-1}+n$, where $n^{-1}=19-n$. 
+        \item Closed under multiplication and multiplication is associative: $\forall a,b,c\in\Z_{19}$, $a\cdot b=b\cdot a\in\Z_{19}$. and $a\cdot(b\cdot c)=(a\cdot b)\cdot c$.
+        \item Multiplication left and right distributes over addition: $\forall a,b,c\in\Z_{19}$, $a\cdot(b+c)=a\cdot b+a\cdot c$ and $(b+c)\cdot a=b\cdot a+c\cdot a$.
+    \end{enumerate}
+    \item $\Z[i]=\{a+bi|a,b\in\Z,\text{ and }i^2=-1\}$ Is a ring, because it is: \begin{enumerate}
+        \item An abelian group with addition, $\forall x,y\in\Z[i]$, where $x=a+bi$ and $y=c+di$. \newline It satisfies closure, and is commutative: $x+y=y+x=(a+c)+(b+d)i\in\Z[i]$. \newline Has an additive identity: $0+x=x+0=(a+bi)+(0+0i)=(a+0)+(b+0)i=a+bi=x$. \newline Has additive inverses: $x^{-1}+x=x+x^{-1}=(a+bi)+(-a+(-bi))=(a-a)+(b-b)i=0+0i=0$.
+        \item Closed under multiplication and multiplication is associative: \newline $\forall x,y,z\in\Z[i]$ where $x=a+bi$, $y=c+di$. \newline and $z=e+fi$. $x\cdot y=(a+bi)\cdot(c+di)=(ac-bd)+(ad+bc)i\in\Z$. And $x\cdot(y\cdot z)=(a+bi)\cdot((ce-df)+(cf+de)i)=(ace-adf-bcf-bde)+(acf+ade+bce-bdf)i=(e+fi)\cdot((ac-bd)+(ad+bc)i)=z\cdot(x\cdot y)$
+        \item Multiplication distributes over addition: \newline $(y+z)\cdot x=x\cdot(y+z)=(a+bi)\cdot((c+e)+(d+f)i)=$\newline $(ac+ae)+(ad+af)i+(bc+be)i-(bd+bf)=xy+xz$
+    \end{enumerate}
+\end{enumerate}
+\section{Problem 2}
+Which of the above are also commutative rings?
+\begin{enumerate}
+    \item $7\Z$ is a commutative ring, $\forall x,y\in\Z$, $7x\cdot7y=7y\cdot7x$.
+    \item $\Z_{18}$ is a commutative ring, $\forall x,y\in\Z_{18}$, $x\cdot y\mod{18}=y\cdot x\mod{18}$.
+    \item $\Z_{19}$ is a commutative ring, similarly to $\Z_{19}$, $\forall x,y\in\Z_{18}$, $x\cdot y\mod{19}=y\cdot x\mod{19}$.
+    \item $\Z[i]$ is a commutative ring, $\forall x,y\in\Z[i]$ where $x=a+bi$ and $y=c+di$, $x\cdot y=(a+bi)\cdot(c+di)=(ac-bd)+(ad+bc)i$. $y\cdot x=(c+di)\cdot(a+bi)=(-bd+ac)+(bc+ad)i$. $\therefore x\cdot y=y\cdot x$.
+\end{enumerate}
+\section{Problem 3}
+Which of the above are rings with unity?
+\begin{enumerate}
+    \item $7\Z$ does \emph{not} have unity. 1 is not in $7\Z$.
+    \item $\Z_{18}$ is a ring with unity. $\forall x\in\Z_{18}$, $x\cdot1=1\cdot x=x$.
+    \item $\Z_{19}$ is a ring with unity. $\forall x\in\Z_{19}$, $x\cdot1=1\cdot x=x$.
+    \item $\Z[i]$ is a ring with unity. The multiplicative identity in this ring is $1+0i\in\Z[i]$. $\forall x\in\Z[i]$ where $x=a+bi$, $(a+bi)\cdot(1+0i)=(1+0i)\cdot(a+bi)=a+bi=x$.
+\end{enumerate}
+\section{Problem 4}
+Which of the above are integral domains?
+\begin{enumerate}
+    \item $7\Z$ is not an integral domain. It is a ring without unity, therefore it cannot be an integral domain.
+    \item $\Z_{18}$ is not an integral domain. It is a commutative ring with unity, however it contains many 0 divisors. E.g. $2\cdot9=0\mod{18}$, $3\cdot6=0\mod{18}$, $4\cdot9=0\mod{18}$, $6\cdot3=0\mod{18}$...
+    \item $\Z_{19}$ is an integral domain, as showed above it is a commutative ring with unity. And since the modulus is prime, it is relatively prime to every element in $\Z_{19}$. Therefore, by theorem 4.4, there are no 0 divisors and $\Z_{19}$ is an integral domain.
+    \item $\Z[i]$ is an integral domain. Since it is a commutative ring with unity, and it contains no 0 divisors.
+    \begin{proof}
+    N2S:  For all nonzero $x,y\in\Z[i]$ where $x=a+bi$ and $y=c+di$, $x\cdot y\neq0$.
+    \begin{remark}$\forall z=a+bi\in\Z[i],\exists \bar z=a-bi$ such that $z\cdot\bar z=a^2+b^2$ \end{remark}
+    Suppose, to the contrary, that there exists a nonzero $y=c+di$ such that $x\cdot y=0$. Multiply both sides by $\bar x\bar y$. $$x\bar x\cdot y\bar y=0$$ Using the remark above,$$(a^2+b^2)\cdot(c^2+d^2)=0$$ Since $a,b,c,d\in\Z$, and squaring an integer always yields a positive integer, we have the product of 2 positive integers. It is impossible for this product to equal 0 unless $a,b=0$ or $c,d=0$. \scalebox{1.5}{\Lightning}
+    \end{proof}
+\end{enumerate}
+\section{Problem 5}
+Which of the above are fields?
+\begin{enumerate}
+    \item $7\Z$ is not an integral domain, and therefore cannot be a field.
+    \item $\Z_{18}$ is not an integral domain, and therefore cannot be a field.
+    \item $\Z_{19}$ is a field. We have already proven it is an integral domain, so now all we N2S is $\forall x\neq0\in\Z_{19},\exists x^{-1}$ such that $x\cdot x^{-1}=1$. By theorem 4.6 in the text, this is true. \begin{proof}\begin{customthm}{4.6}Every integral domain containing just finitely many elements is a field.
+    \end{customthm} \end{proof}
+    \item $\Z[i]$ is not a field, since $-1+0i$ and $1+0i$ are the only elements with multiplicative inverses in $\Z[i]$. E.g. Element $x=2+0i$ has multiplicative inverse $x^{-1}=\frac{1}{2}+0i\notin\Z[i]$.
+\end{enumerate}
+\end{document}

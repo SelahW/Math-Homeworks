@@ -1,0 +1,145 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{mathtools}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\renewcommand\qedsymbol{QED}
+\title{\scalebox{2}{Math 341 Problem Set 1}}
+\author{\scalebox{1.5}{Theo Koss}}
+\date{September 2019}
+\begin{document}
+\maketitle
+\section{Practice Problems}
+\subsection*{Problem 1}
+Prove by induction: for all $n \in \N$,
+$$
+\sum_{i=1}^{n}\left(2i-1\right) = n^2.
+$$
+\begin{proof}
+\emph{Basis}: $n=1$ Check: $\sum_{i=1}^{1}\left(2i-1\right)=1=n^2$.
+\newline\emph{Induction step}: Assume the formula holds for $n=k$
+$$
+\sum_{i=1}^{k}\left(2i-1\right) = k^2.
+$$
+We must show it holds for $n=k+1$:
+$$
+\sum_{i=1}^{k+1}\left(2i-1\right) = \left(k+1\right)^2=k^2+2k+1.
+$$
+The sum is the sum of the first k terms, plus the last one.
+$$
+\sum_{i=1}^{k+1}\left(2i-1\right)=\sum_{i=1}^{k}\left(2i-1\right)+2k+1
+$$
+Using assumption:
+$$
+\sum_{i=1}^{k}\left(2i-1\right)+2k+1=k^2+2k+1 = \left(k+1\right)^2
+$$
+As required. Therefore, by induction, the formula is true for all $n \in \N$
+\end{proof}
+\subsection*{Problem 2}
+Prove by induction: for all $n \in \N$
+$$
+\sum_{i=1}^{n}i^2=\frac{n\left(n+1\right)\left(2n+1\right)}{6}
+$$
+\emph{Proof}. \emph{Basis}: $n=1$ Check: $\sum_{i=1}^{1}i^2=1=\frac{1\left(1+1\right)\left(2+1\right)}{6}$
+\newline \emph{Induction step}: Assume the formula holds for $n=k$:
+$$
+\sum_{i=1}^{k}i^2=\frac{k\left(k+1\right)\left(2k+1\right)}{6}=\frac{2k^3+3k^2+k}{6}
+$$
+We must show it holds for $n=k+1$:
+$$
+\sum_{i=1}^{k+1}i^2=\frac{\left(k+1\right)\left(k+2\right)\left(2k+3\right)}{6}=\frac{2k^3+9k^2+13k+6}{6}
+$$
+The sum on the left is equal to the sum from $i=1$ to $k$, plus the term $i=k+1$:
+$$
+\sum_{i=1}^{k+1}i^2=\sum_{i=1}^{k}i^2+k^2+2k+1
+$$
+Using assumption:
+$$
+\sum_{i=1}^{k}i^2+k^2+2k+1=\frac{k\left(k+1\right)\left(2k+1\right)}{6}+k^2+2k+1
+$$
+Simplifying:
+$$
+= \frac{2k^3+3k^2+k}{6}+\frac{6k^2+12k+6}{6}=\frac{2k^3+9k^2+13k+6}{6}=\sum_{i=1}^{k+1}i^2
+$$
+$\therefore$ the formula is true for all $n \in \N$.
+\subsection*{Problem 3}
+Prove by induction: for all $n \in \N$,
+$$
+\sum_{i=1}^{n}i^3=\left(\sum_{i=1}^{n}i\right)^2.
+$$
+\emph{Proof}. \emph{Basis}: $n=1$ Check: $\sum_{i=1}^{1}i^3=1=\left(\sum_{i=1}^{1}i\right)^2.$
+\newline\emph{Induction step}: Assume the formula holds for $n=k$:
+$$
+\sum_{i=1}^{k}i^3=\left(1+2+3+...+k\right)^2
+$$
+Show that the formula holds for $n=k+1$:
+$$
+\sum_{i=1}^{k+1}i^3=\left(1+8+27+...+k^3+\left(k+1\right)^3\right)
+$$
+The sum from 1 to $k+1$ is equal to the sum from 1 to $k$, plus the $i=k+1$ term, so:
+$$
+\sum_{i=1}^{k+1}i^3=\sum_{i=1}^{k}i^3+\left(k+1\right)^3
+$$
+Using our assumption, and the fact that $\sum_{i=1}^{n}i = \frac{n\left(n+1\right)}{2}$:
+$$
+\sum_{i=1}^{k+1}i^3=\left(1+2+3+...+k\right)^2+\left(k+1\right)^3=\left(\frac{k\left(k+1\right)}{2}\right)^2+\left(k+1\right)^3
+$$
+Simplifying:
+$$
+\left(\frac{k\left(k+1\right)}{2}\right)^2+\left(k+1\right)^3=\frac{k^2\left(k+1\right)^2}{4}+\left(k+1\right)^3=\frac{k^2\left(k+1\right)^2+4\left(k+1\right)^3}{4}
+$$
+More simplifying:
+$$
+\frac{k^2\left(k+1\right)^2+4\left(k+1\right)^3}{4}=\frac{k^4+6k^3+13k^2+12k+4}{4}=\frac{\left(k+1\right)^2\left(k+2\right)^2}{4}
+$$
+Factoring out a square:
+$$
+\frac{\left(k+1\right)^2\left(k+2\right)^2}{4}=\left(\frac{\left(k+1\right)\left(k+2\right)}{2}\right)^2
+$$
+And since $\left(\frac{\left(k+1\right)\left(k+2\right)}{2}\right)^2$ Is equal to $\left(\sum_{i=1}^{k+1}i\right)^2$, we have proven the induction case, and therefore the formula is true for all $n \in \N$.
+\subsection*{Problem 4}
+Find:$$\sum_{k=1}^{n}k\left(k!\right)$$
+Let $f\left(n\right)=\sum_{k=1}^{n}k\left(k!\right)$
+\begin{center}
+    \begin{tabular}{c|c}
+    $n$ & $f\left(n\right)$\\
+    \hline
+    1 & 1\\
+    \hline
+    2 & 5\\
+    \hline
+    3 & 23\\
+    \hline
+    4 & 119\\
+    \hline
+    5 & 719
+    \end{tabular}
+\end{center}
+Conjecture: $\sum_{k=1}^{n}k\left(k!\right)=\left(n+1\right)!-1, n \in \N$.
+\newline\newline\emph{Proof}. \emph{Basis}: Check $n=1$: $\sum_{k=1}^{1}k\left(k!\right)=1=\left(1+1\right)!-1$
+\newline \emph{Inductive step}: Assume the conjecture holds for $k=n$: $$\sum_{k=1}^{n}k\left(k!\right)=\left(n+1\right)!-1$$
+Show the conjecture holds for $k=n+1$: $$\sum_{k=1}^{n+1}k\left(k!\right)=\left(n+2\right)!-1$$
+The sum from 1 to $n+1$ includes the entire sum from 1 to $n$, plus the $k=n+1$ term:$$\sum_{k=1}^{n+1}k\left(k!\right)=\sum_{k=1}^{n}k\left(k!\right)+\left(n+1\right)\left(\left(n+1\right)!\right)$$
+Using our assumption:$$\sum_{k=1}^{n+1}k\left(k!\right)=\left(n+1\right)!-1+\left(n+1\right)\left(\left(n+1\right)!\right)$$
+Note that:$$\left(n+1\right)!=\left(n+1\right)\times n \times\left(n-1\right)\times...\times1$$
+For simplicity's sake, let $x=\left(n+1\right)$:
+$$\sum_{k=1}^{n+1}k\left(k!\right)=x!-1+x\times x!=\left(x+1\right)\times x!-1$$
+By the definition of a factorial:$$\left(x+1\right)\times x! = \left(x+1\right)!$$ So:$$\sum_{k=1}^{n+1}k\left(k!\right)=\left(x+1\right)\times x!-1=\left(x+1\right)!-1$$Substitute $\left(n+1\right)$ for $x$:$$\sum_{k=1}^{n+1}k\left(k!\right)=\left(n+2\right)!-1.$$
+As required, $\therefore$ our conjecture is true, $\sum_{k=1}^{n}k\left(k!\right)=\left(n+1\right)!-1, n \in \N$.
+\newpage \subsection*{Problem 5}
+Prove \emph{Bernoulli's inequality}: if $a>-1$ then $\left(1+a\right)^n \geq 1+na$ for all $n \in \N$
+\newline\emph{Proof}. \emph{Basis}: $n=1$ Check: $\left(1+a\right)^1=1+a$.
+\newline\emph{Inductive step}: Assume the inequality holds for $n=k$: $$\left(1+a\right)^k \geq 1+ka$$
+Prove it holds for $n=k+1$: $$\left(1+a\right)^{k+1}\geq 1+\left(k+1\right)a$$Splitting up the exponent:$$\left(1+a\right)^{k+1}=\left(1+a\right)^k\times\left(1+a\right)$$Using our assumption $\left(1+a\right)^k \geq 1+ka$:$$\left(1+a\right)^k\times\left(1+a\right)\geq \left(1+ka\right)\left(1+a\right)$$Simplifying:$$\left(1+ka\right)\left(1+a\right)=1+\left(k+1\right)a+ka^2$$And since $$\left(1+a\right)^{k+1}\geq 1+\left(k+1\right)a+ka^2$$It must also be greater than $1+\left(k+1\right)a$, as required. Therefore by induction, the inequality is true for $a>-1$
+\newline \subsection*{Problem 6}
+Prove by completing the square: $$2n+1<n^2:n\geq3$$
+\emph{Proof}. Moving everything to one side:$$n^2-2n-1>0:n\geq3$$Completing the square:$$\left(n-1\right)^2-2>0:n\geq3$$Getting n alone:$$\left(n-1\right)^2>2:n\geq3$$The absolute smallest that $\left(n-1\right)^2$ can be is 4, when $n=3$, which is greater than 2. Therefore, $\left(n-1\right)^2>2:n\geq3$, and similarly: $2n+1<n^2:n\geq3$.
+\newpage
+\subsection*{Problem 7}
+Prove by induction: $2^n\geq n^2:n\geq4$
+\newline \emph{Proof}. \emph{Basis}: $n=4$ Check: $$2^4\geq 4^2$$ Indeed it is, \emph{Induction step}: Assume the conjecture holds for $n=k$:$$2^k\geq k^2:k\geq4$$Show it holds for $n=k+1$:$$2^{k+1}\geq \left(k+1\right)^2:k\geq3$$Splitting up the exponent:$$2^k\times2\geq k^2+2k+1$$Using our assumption $2^k\geq k^2$:$$2^k\times2\geq2k^2\geq k^2+2k+1=\left(k+1\right)^2:\left(k\geq3\right)$$And since $$2^k\times2=2^{k+1}$$The following must be true:$$2^{k+1}\geq\left(k+1\right)^2:\left(k\geq3\right)$$As required. Therefore, by induction the inequality is true.
+\end{document}

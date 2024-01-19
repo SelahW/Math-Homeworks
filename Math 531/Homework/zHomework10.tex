@@ -1,0 +1,71 @@
+\documentclass[hidelinks,12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[table,xcdraw]{xcolor}
+\usepackage{mathtools}
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{centernot}
+\usepackage{marvosym}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\setcounter{tocdepth}{1}
+\usepackage{chngcntr}
+\counterwithin*{equation}{section}
+\counterwithin*{equation}{subsection}
+\let\marvosymLightning\Lightning
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}{Corollary}[theorem]
+\newtheorem*{remark}{Remark}
+\renewcommand\qedsymbol{QED}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\divby}{%
+  \mathrel{\text{\vbox{\baselineskip.65ex\lineskiplimit0pt\hbox{.}\hbox{.}\hbox{.}}}}%
+  }
+\newcommand{\notdivby}{\centernot\divby}
+\title{\scalebox{2}{Math 531 Homework 9}}
+\author{\scalebox{1.5}{Theo Koss}}
+\date{April 2021}
+\begin{document}
+\maketitle
+\section{Section 5.1}
+\begin{itemize}
+    \item Problem 1: Which of the following sets are subrings of the field $\Q$ of rational numbers? Assume that $m,n\in\Z$ with $n\neq0$ and $(m,n)=1$.\begin{enumerate}[label=(\alph*)]
+        \item $\{\frac{m}{n}|n\text{ is odd}\}$ \begin{proof}Call this set $H$. Clearly $H$ is a subset of $\Q$. So we need to show: $\forall a,b\in H$, $a-b\in H$ and $a\cdot b\in H$. Let $a=\frac{m_1}{n_1}$ and $b=\frac{m_2}{n_2}$. Therefore, $(m_1,n_1)=(m_2,n_2)=1$. And $n_1,n_2$ are odd numbers.\begin{enumerate}[label=\roman*]
+            \item $a-b=\frac{m_1}{n_1}-\frac{m_2}{n_2}=\frac{m_1n_2-m_2n_1}{n_1n_2}\in H$, since $n_1n_2$, the product of 2 odd numbers, is odd.
+            \item $a\cdot b=\frac{m_1m_2}{n_1n_2}=\frac{c}{d}$, clearly $(c,d)=1$ and $d$ is odd by the argument above.
+        \end{enumerate}Thus, $H$ is a subring of $\Q$. \end{proof}
+        \item $\{\frac{m}{n}|n\text{ is even}\}$.\begin{proof}Let $a=\frac{m_1}{n_1}$, $b=\frac{m_2}{n_2}$ $$a-b=\frac{m_1}{n_1}-\frac{m_2}{n_2}=\frac{m_1n_2-m_2n_1}{n_1n_2}\in H$$ Since $m_1n_2-m_2n_1\in\Q$ and $n_1n_2$ is even. $$a\cdot b=\frac{m_1m_2}{n_1n_2}\in H$$ Since $m_1m_2\in\Q$, and $n_1n_2$ is even. Thus $H$ is a subring.
+        \end{proof}
+        \item $\{\frac{m}{n}|4\centernot|n\}$
+        \item $\{\frac{m}{n}|(n,k)=1\}$ where $k$ is a fixed positive integer.\begin{proof}
+        Suppose $a=\frac{m_1}{n_1}$ and $b=\frac{m_2}{n_2}$ are in the set. Then by definition, $(n_1,k)=1$ and $(n_2,k)=1$ and thus, $(n_1n_2,k)=1$. Now we need to show that $\forall a,b\in H$, $a-b\in H$ and $a\cdot b\in H$.\begin{enumerate}[label=\roman*]
+            \item $a-b=\frac{m_1}{n_1}-\frac{m_2}{n_2}=\frac{m_1n_2-m_2n_1}{n_1n_2}\in H$, because as we showed above, $(n_1n_2,k)=1$.
+            \item $a\cdot b=\frac{m_1m_2}{n_1n_2}\in H$, of course.
+        \end{enumerate}
+        Thus this subset forms a subring.
+        \end{proof}
+    \end{enumerate}
+    \item Problem 2: Which of the following sets are subrings of the field $\R$ of real numbers?\begin{enumerate}[label=(\alph*)]
+        \item $A=\{m+n\sqrt{2}|m,n\in\Z\text{ and $n$ is even}\}$\begin{proof}Let $a_1,a_2\in A$, then $a=m_1+n_1\sqrt{2}$ and $b=m_2+n_2\sqrt{2}$. Now, $$a_1-a_2=(m_1-m_2)+(n_1-n_2)\sqrt{2}\in A$$ subtraction of two integers is an integer, and subtraction of two even integers is another even integer.\newline $$a_1a_2=(m_1+n_1\sqrt{2})(m_2+n_2\sqrt{2})$$ $$=m_1m_2+m_1n_2\sqrt{2}+n_1m_2\sqrt2+2n_1n_2$$ $$=(m_1m_2+2n_1n_2)(m_1n_2+n_1m_2)\sqrt{2}\in A$$ Clearly, $m_1n_2+n_1m_2$ is even because $n_1$ and $n_2$ are even. Thus $A$ is a subring of $\R$.
+        \end{proof}
+        \item $B=\{m+n\sqrt{2}|m,n\in\Z\text{ and $n$ is odd}\}$\begin{proof} Again, let $a_1,a_2\in B$, then $a=m_1+n_1\sqrt{2}$ and $b=m_2+n_2\sqrt{2}$. Then $$a_1-a_2=(m_1-m_2)+(n_1-n_2)\sqrt{2}$$ $m_1-m_2$ may not be odd, therefore $a_1-a_2\notin B$, and thus $B$ is not a subring of $\R$.
+        \end{proof}
+        \item $C=\{a+b\sqrt[3]{2}|a,b\in\Q\}$\begin{proof}Let $m_1=a_1+b_1\sqrt[3]2$, $m_2=a_2+b_2\sqrt[3]2$. $$m_1m_2=(a_1+b_1\sqrt[3]2)(a_2+b_2\sqrt[3]2)$$ $$=a_1a_2+(2^{\frac{2}{3}}b_1b_2)+(a_1b_2+a_2b_1)\sqrt[3]2$$ $2^{\frac{2}{3}}$ is not a rational number, therefore $m_1m_2\notin C$ and thus $C$ is not a subring of $\R$.
+        \end{proof} 
+        \item $D=\{a+b\sqrt[3]{3}+c\sqrt[3]{9}|a,b,c\in\Q\}$\begin{proof}Let $m_1=a_1+b_1\sqrt[3]3+c_1\sqrt[3]9$ and $m_2=a_2+b_2\sqrt[3]3+c_2\sqrt[3]9$. $$m_1m_2=(a_1+b_1\sqrt[3]3+c_1\sqrt[3]9)(a_2+b_2\sqrt[3]3+c_2\sqrt[3]9)$$ $$=a_2a_2+a_1b_2\sqrt[3]{3}+a_1c_2\sqrt[3]{9}+b_1a_2\sqrt[3]{3}+b_1b_23^{\frac{2}{3}}+...$$ There's more stuff but I know $3^{\frac{2}{3}}\notin\Q$ so I'll stop there.
+        \end{proof}
+        \item $E=\{m+nu\}$\begin{proof}
+        \end{proof}
+        \item $F=\{\}$\begin{proof}
+        \end{proof}
+    \end{enumerate}
+    \item Problem 6: Show that no proper nontrivial subset of $\Z$ can form a ring under the usual operations of addition and multiplication.\begin{proof}Suppose, for the sake of contradiction, that $(M,+,\cdot)$ is a ring, where $M$ is a nontrivial subset of the integers. Then by definition of ring, the multiplicative identity $1\in M$, and also by definition, each element should have an additive inverse in $M$. Thus, $-1\in M$.\newline Now for any integer $n\in\Z^+$, we have:$$\underbrace{1+1+\dots+1}_{\text{$n$ times}}=n$$ $$\implies n\in M\implies \Z^+\subseteq M$$ And by definition of a ring, $\forall n\in M$, $\exists -n\in M$, where $$n+(-n)=0\implies\underbrace{-1+(-1)+\dots+(-1)}_{\text{$n$ times}}=-n$$ $$\implies\Z\subseteq M\implies M=\Z$$ This is a contradiction, because we said $M$ was a proper subset of $\Z$, implying $M\neq\Z$.
+    \end{proof}
+\end{itemize}
+\end{document}

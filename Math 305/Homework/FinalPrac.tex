@@ -1,0 +1,136 @@
+\documentclass{article}
+\usepackage{enumitem}
+\usepackage{graphicx}
+\usepackage{microtype}
+\usepackage{amsmath}
+\usepackage[utf8]{inputenc}
+\newcommand{\myskip}{\par\null\par}
+\title{Math 305 Final Review}
+\author{Theodore Koss}
+\date{May 2023}
+\begin{document}
+
+\maketitle
+\section*{Problem 1}Draw a flow diagram and write down a continuous or a discrete model that could describe the changing populations below.
+\begin{enumerate}[label=(\alph*)]
+    \item 100 fish per unit time are removed from a pond that has a population of fish that grows at a steady $2 \%$ per year.$$P(t+1)=1.02P(t)-100$$
+    \item Baleen whales have a maximum growth rate of $5 \%$ per year and a carrying capacity of 400000 in the Antarctic fishery.$$\frac{dW}{dt}=0.05W(1-\frac{W}{400000})$$
+    \item A rabbit population in the absence of predators would grow at a yearly rate of $\mathrm{r} \%$. Wolves consume rabbits in a way that can be reasonably modeled by a mass-action term. If there are no rabbits to eat, wolves die at a rate proportional to their population size. Rabbits:$$\frac{dR}{dt}=rR-aRW$$ Wolves: $$\frac{dW}{dt}=cRW-dW$$
+\end{enumerate}
+\section*{Problem 2} Consider an SIR model for a diphtheria epidemic in a school with 400 students, where each infected individual has a constant number, $c$, contacts with others in the population per unit time, and the average infectious period, $\frac{1}{\gamma}$, is 3 days. Probability of transmission when an infectious and a susceptible person 'meets' is $a=0.2$.
+\begin{enumerate}[label=(\alph*)]
+    \item Write down a continuous SIR model describing this situation.\begin{align*}
+\frac{dS}{dt} &= -\frac{a c}{\gamma} \frac{SI}{N} \\
+\frac{dI}{dt} &= \frac{a c}{\gamma} \frac{SI}{N} - \frac{I}{\frac{1}{\gamma}} \\
+\frac{dR}{dt} &= \frac{I}{\frac{1}{\gamma}}
+\end{align*}
+    \item Give a condition for $c$ that guarantees that an epidemic does not start, that is, $I(t) \leq I(0)$ for all $t \geq 0$.\begin{align*}
+\frac{dI}{dt} &\leq 0 \\
+\frac{a c}{\gamma} \frac{SI}{N} - \frac{I}{\frac{1}{\gamma}} &\leq 0 \\
+a c S - \gamma^2N &\leq 0 \\
+c &\leq \frac{\gamma^2N}{aS}
+\end{align*}
+    \item Assume that the contact number $B$ is 5 for diphtheria, where $B=\frac{a c}{\gamma}$. What is the smallest percentage of the population that need to be immunized before somebody comes down with the disease to guarantee that an epidemic does not start?\begin{align*}
+        I &\geq \frac{a c}{\gamma} \\
+I &\geq B \\
+p &\geq \frac{B}{N} \cdot 100
+    \end{align*}
+\end{enumerate}
+\section*{Problem 3} Jack drinks 5 cups of strong coffee in succession just before his race in an athletic competition at the Olympics. Caffeine is very rapidly absorbed in the body. $A$ strong cup of coffee has about 150 mg of caffeine. The half-life of caffeine in the body is about 3 hours.
+\begin{enumerate}[label=(\alph*)]
+    \item Formulate and solve a model that describes the amount of caffeine in his body.\begin{align*}
+        C(0)&=750mg\\
+        \frac{dC}{dt}&=-k\cdot C(t)\\
+        \frac{1}{2}&=e^{-k\cdot 3}\\
+        \implies k&=\frac{ln2}{3}\\
+        C(t)&=750\cdot e^{-\frac{ln2}{3}\cdot t}\\
+    \end{align*}
+    \item It is estimated that only about $8 \%$ of caffeine in the body actually ends up in the plasma. A person has about. 0.04 liters of plasma per $\mathrm{kg}$ of body weight, and Jack weighs $80 \mathrm{~kg}$. The International Olympic Committee limits caffeine plasma concentration to about 16.8 mg per liter. Is Jack in danger of violating this limit if he is tested 30 minutes after the race?\begin{align*}
+        P(t)&=.08\cdot C(t)\\
+        P(.5)&=.08\cdot750\cdot e^{-(\frac{ln2}{3}\cdot.5)}\\
+        &\approx 53.45 mg\\
+    \mathrm{Jack~has~}3.2L\mathrm{~of~plasma~so~concentration~}&=\frac{53.45}{3.2}mg/L\\
+        &\approx16.7mg/L<16.8mg/L\\
+    \end{align*}Jack is not in danger of violating the limit.
+\end{enumerate}
+\section*{Problem 4} Consider a customer service model with three states: satisfied, neutral, and dissatisfied. The transition probabilities between these states are as follows:\begin{itemize}
+    \item If a customer is satisfied, there is a 0.8 probability that they will remain satisfied in the next interaction, a 0.15 probability that they will become neutral, and a 0.05 probability that they will become dissatisfied.
+    \item If a customer is neutral, there is a 0.3 probability that they will become satisfied, a 0.6 probability that they will remain neutral, and a 0.1 probability that they will become dissatisfied.
+    \item If a customer is dissatisfied, there is a 0.2 probability that they will become satisfied, a 0.3 probability that they will become neutral, and a 0.5 probability that they will remain dissatisfied.
+\end{itemize}
+\begin{enumerate}[label=(\alph*)]
+    \item What is the probability that if a customer starts in the neutral state they will be: satisfied after 3 interactions?\begin{itemize}
+        \item $N\to S\to S\to S$
+        \item $N\to S\to N\to S$
+        \item $N\to S\to D\to S$
+        \item $N\to N\to S\to S$
+        \item $N\to N\to N\to S$
+        \item $N\to N\to D\to S$
+        \item $N\to D\to S\to S$
+        \item $N\to D\to N\to S$
+        \item $N\to D\to D\to S$
+    \end{itemize}
+    Are all the possible sequences which end in $S$. Now to calculate the probabilities:\begin{itemize}
+        \item $P(N\to S\to S\to S)=0.192$
+        \item $P(N\to S\to N\to S)=0.0135$
+        \item $P(N\to S\to D\to S)=0.003$
+        \item $P(N\to N\to S\to S)=0.144$
+        \item $P(N\to N\to N\to S)=0.108$
+        \item $P(N\to N\to D\to S)=0.012$
+        \item $P(N\to D\to S\to S)=0.016$
+        \item $P(N\to D\to N\to S)=0.009$
+        \item $P(N\to D\to D\to S)=0.01$
+    \end{itemize}
+    \begin{align*}
+    P(N\to x\to x\to S) &= P(N\to S\to S\to S) \\
+    &\quad + P(N\to S\to N\to S) \\
+    &\quad + P(N\to S\to D\to S) \\
+    &\quad + P(N\to N\to S\to S) \\
+    &\quad + P(N\to N\to N\to S) \\
+    &\quad + P(N\to N\to D\to S) \\
+    &\quad + P(N\to D\to S\to S) \\
+    &\quad + P(N\to D\to N\to S) \\
+    &\quad + P(N\to D\to D\to S) \\
+    &= 0.192 + 0.0135 + 0.003 + 0.144 + 0.108 + 0.012 + 0.016 + 0.009 + 0.01 \\
+    &= 0.5085
+    \end{align*}
+\item Do you expect a steady-state for this problem, that is, will the probabilities of being in the different states settle after a long time? Why or why not?
+\end{enumerate}
+\section*{Problem 5}
+In a board gaming club, there are five players (Alice, Bob, Charlie, David, and Emily) who regularly compete against each other in various board games. They use the Elo rating system to rank their skills. The current Elo ratings for each player are as follows:
+\begin{itemize}
+    \item Alice: 1800
+    \item Bob: 2000
+    \item Charlie: 2100
+    \item David: 1900
+    \item Emily: 2200
+\end{itemize}
+They decide to have a board game tournament consisting of three matches. The results of the matches are as follows:
+\begin{itemize}
+    \item Match 1: Alice defeats Bob.
+    \item Match 2: Charlie defeats David.
+    \item Match 3: Emily defeats Alice.
+\end{itemize}
+Using the Elo rating system, calculate the new Elo ratings for each player after the tournament. Assume the k-factor (the parameter that determines the amount of rating change) is 32. Determine the new rankings of the players based on their updated Elo ratings. New ratings:\begin{itemize}
+    \item Alice: 1780.52
+    \item Bob: 1988.03
+    \item Charlie: 2112.97
+    \item David: 1875.03
+    \item Emily: 2211.48
+\end{itemize}
+\section*{Problem 6}
+Consider a one-dimensional cellular automaton with a binary state, where each cell can be either 0 or 1 . The evolution of the cellular automaton follows the following rule:
+\begin{itemize}
+    \item If the cell is currently 0 and both of its neighboring cells are also 0 , it will remain 0 in the next generation.
+    \item If the cell is currently 0 and exactly one of its neighboring cells is 1 , it will become 1 in the next generation.
+    \item If the cell is currently 0 and both of its neighboring cells are 1 , it will remain 0 in the next generation.
+    \item If the cell is currently 1 , it will become 0 in the next generation.
+\end{itemize}
+Consider an initial configuration of the cellular automaton in which all cells are 0 except for a segment of 10 cells. In this 10 cell segment the first cell is 1 , the second cell is 0 , and the remaining cells are randomly assigned either 0 or 1 .
+\begin{enumerate}[label=(\alph*)]
+    \item Write down the initial configuration of your cellular automaton.
+    \item Calculate the configuration of the cellular automaton after one generation.
+    \item Determine the configuration of the cellular automaton after two generations.
+    \item Find the steady state configuration of the cellular automaton, if any.
+\end{enumerate}
+\end{document}

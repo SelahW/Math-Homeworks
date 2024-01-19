@@ -1,0 +1,68 @@
+\documentclass[a4paper,12pt]{extarticle}
+\usepackage{geometry,microtype,mathtools,amsthm,amssymb}
+\usepackage[utf8]{inputenc}
+\usepackage[font=small,labelfont=bf]{caption}
+\theoremstyle{definition}
+\newtheorem{definition}{Definition} \newtheorem{theorem}{Theorem} \newtheorem{corollary}{Corollary}[theorem] \newtheorem*{remark}{Remark}
+\newcommand{\R}{\mathbb{R}} \newcommand{\Q}{\mathbb{Q}} \newcommand{\Z}{\mathbb{Z}} \newcommand{\N}{\mathbb{N}} \newcommand{\myskip}{\par\null\par} \renewcommand\qedsymbol{QED} \renewcommand{\leq}{\leqslant}\renewcommand{\geq}{\geqslant}
+\title{Math 431 Homework 4}
+\author{Theo Koss}
+\date{September-October 2022} 
+\begin{document}
+    \maketitle
+\section*{Section 3.5}
+\begin{itemize}
+    \item \textbf{Problem 34:} Find all the subgroups of $\Z_3\times\Z_3$. Use this information to show that $\Z_3\times\Z_3$ is not the same group as $\Z_9.$\begin{remark}{(Let $G=\Z_3\times\Z_3$) Every subgroup must have $e$, the identity element. Then if it has element $a\in G$, it must also have element $a^{-1}\in G$. It also must not have any other elements other than $e,a,a^{-1}$, because if it did have some $b\in G$ where $b\notin\{e,a,a^{-1}\}$, then it would also include all combinations of $a$ and $b$, and the inverses. This would then make our subgroup $\{e,a,a^{-1},b,b^{-1},ab,a^{-1}b,ab^{-1},a^{-1}b^{-1}\}$ which is equal to $G$ itself.}\end{remark} With this one can see that all the subgroups of $\Z_3\times\Z_3$ must be of the form $\{e,a,a^{-1}\}$, or be the 2 trivial subgroups.\begin{enumerate}
+        \item $H_1=\{e\}$
+        \item $H_2=\{(0,0),(0,1),(0,2)\}$
+        \item $H_3=\{(0,0),(1,0),(2,0)\}$
+        \item $H_4=\{(0,0),(1,1),(2,2)\}$
+        \item $H_5=\{(0,0),(1,2),(2,1)\}$
+        \item $H_6=\Z_3\times\Z_3$ itself
+    \end{enumerate}
+    Subgroups of $\Z_9$:\begin{enumerate}
+        \item $H_1=\{e\}$
+        \item $H_2=\{0,3,6\}$
+        \item $H_3=\Z_9$ itself
+    \end{enumerate}Since there is only 1 nontrivial proper subgroup of $\Z_9$, and 4 of $\Z_3\times\Z_3$, we know that $\Z_3\times\Z_3\ncong\Z_9$.
+    \item \textbf{Problem 40:} Let $G$ consist of the $2\times2$ matrices of the form:$$\left(\begin{array}{cc}
+    \cos\theta & -\sin\theta \\
+    \sin\theta & \cos\theta \\
+    \end{array}\right)$$ where $\theta\in\R$. Prove that $G$ is a subgroup of $SL_2(\R)$.\begin{proof}First, to show that if matrix $A\in G$, then $A\in SL_2(\R)$, note that $\det(A)=\cos^2\theta+\sin^2\theta=1$. So indeed $A\in SL_2(\R)$. This shows $G\subset SL_2(\R)$. \myskip Now, using proposition 3.31 in the text,\begin{theorem} \emph{Let $H$ be a subset of a group $G$. Then $H$ is a subgroup of $G$ if and only if $H\neq\emptyset$, and whenever $g,h\in H$ then $gh^{-1}$ is in $H$.}\end{theorem}\begin{itemize}
+        \item As we've shown, $G\subset SL_2(\R)$.
+        \item Clearly, $G\neq\emptyset$, for example, let $\theta=0$, then $I=\left(\begin{array}{cc}
+    1 & 0 \\
+    0 & 1 \\
+    \end{array}\right)\in G$.
+        \item Let $A=\left(\begin{array}{cc}
+    \cos\theta & -\sin\theta \\
+    \sin\theta & \cos\theta \\
+    \end{array}\right)$, $B=\left(\begin{array}{cc}
+    \cos\phi & -\sin\phi \\
+    \sin\phi & \cos\phi \\
+    \end{array}\right)$ where $\theta,\phi\in\R$ be elements of $G$. Then it remains to show that $AB^{-1}\in G$ and $BA^{-1}\in G$ (Matrix multiplication is \emph{not} commutative.)\myskip As we can see, $B^{-1}=\left(\begin{array}{cc}
+    \cos\phi & \sin\phi \\
+    -\sin\phi & \cos\phi \\
+    \end{array}\right)$ So, \begin{align*}
+    AB^{-1}&=\left(\begin{array}{cc}
+    \cos\theta & -\sin\theta \\
+    \sin\theta & \cos\theta \\
+    \end{array}\right)\cdot\left(\begin{array}{cc}
+    \cos\phi & \sin\phi \\
+    -\sin\phi & \cos\phi \\
+    \end{array}\right)\\
+    &=\left(\begin{array}{cc}
+    \cos(\theta-\phi) & \sin(\theta-\phi) \\
+    -\sin(\theta-\phi) & \cos(\theta-\phi) \\
+    \end{array}\right)\\
+    &=\left(\begin{array}{cc}
+    \cos(\phi-\theta) & -\sin(\phi-\theta) \\
+    \sin(\phi-\theta) & \cos(\phi-\theta) \\
+    \end{array}\right)\in G
+    \end{align*}
+    Then $BA^{-1}\in G$ similarly.
+    \end{itemize}
+    Thus, $G$ satisfies each of the 3 conditions of prop. 3.31. Therefore $G$ is a subgroup of $SL_2(\R)$.
+    \end{proof}
+\end{itemize}
+\end{document}

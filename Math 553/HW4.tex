@@ -1,0 +1,80 @@
+\documentclass[a4paper,17pt]{extarticle}
+\usepackage{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage[table,xcdraw]{xcolor}
+\usepackage{mathtools}
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{centernot}
+\usepackage{marvosym}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\setcounter{tocdepth}{1}
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}
+\let\marvosymLightning\Lightning
+\renewcommand{\skip}{\par\null\par}
+\newcommand{\T}{\mathcal T}
+\renewcommand{\O}{\mathcal{O}}
+\renewcommand{\Lightning}{\scalebox{1.5}{\marvosymLightning}}
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}{Corollary}[theorem]
+\newtheorem*{remark}{Remark}
+\renewcommand\qedsymbol{QED}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\divby}{%
+  \mathrel{\text{\vbox{\baselineskip.65ex\lineskiplimit0pt\hbox{.}\hbox{.}\hbox{.}}}}%
+  }
+\newcommand{\notdivby}{\centernot\divby}
+\title{\scalebox{2}{Math 553 Homework 4}}
+\author{\scalebox{1.5}{Theo Koss}}
+\date{April 2022}
+\begin{document}
+\maketitle
+\section{Section 2.3}
+\begin{itemize}
+    \item Problem 1: Let $S^2=\left\{(x,y,z)\in \R^3;\ x^2+y^2+z^2=1 \right\}$ be the unit sphere and let $A:S^2\to S^2$ be the antipodal map $A(x,y,z)=(-x,-y-z)$. Prove that $A$ is a diffeomorphism.\begin{proof} For $A$ to be a diffeomorphism it must be:\begin{enumerate}
+        \item Differentiable (or smooth).\skip The map $(x,y,z)\mapsto(-x,-y,-z)$ from $\R^3$ to itself is smooth. $A$ is a restriction of this map, therefore $A$ is smooth.
+        \item Has inverse $A^{-1}$ which is also smooth.\skip All $A$ does is flip the signs of each coordinate, so $A^{-1}$ must also simply flip the signs. Therefore $A^{-1}=A$. Since we proved above that $A$ is smooth, then $A^{-1}$ must also be smooth.
+    \end{enumerate}
+    Thus $A$ is a diffeomorphism.
+    \end{proof}
+    \item Problem 5: Let $S\subset\R^3$ be a regular surface, and let $d: S\to\R$ be given by $d(p)=|p-p_0|$, where $p\in S$, $p_0\neq\R^3$, $p_0\notin S$; that is, $d$ is the distance from $p$ to a fixed point $p_0$ not in S. Prove that $d$ is smooth.\begin{proof}\begin{remark}Ex. 1 in the text states, the square of the distance from a fixed point $p_0\in\R^3$, $f(p)=|p-p_0|^2$ is differentiable. Furthermore it states that the need for the square comes from the fact that the distance $|p-p_0|$ is not differentiable only at $p=p_0$.\end{remark}\skip Using this, we now simply need to show that $p$ is never equal to $p_0$. This is simple, as $p\in S$ and $p_0\notin S$, therefore they must never be equal. Therefore $d$ is smooth
+    \end{proof}
+    \item Problem 6: Prove that the definition of a differentiable map between surfaces does not depend on the parametrizations chosen.\begin{proof}A differentiable map is a smooth, continuous map $\phi:S_1\to S_2$. $\phi$ is differentiable at $p\in S_1$ if given parametrizations: $f:U\in\R^2\to S_1$ and $g:W\in\R^2\to S_2$. With $p\in f(U)$ and $\phi(f(U))\subset g(W)$, the map $g^{-1}\circ\phi\circ f:U\to W$ is differentiable at $q=f^{-1}(p)$.
+    \skip\begin{align*}
+        g_1^{-1}\circ\phi\circ f_1 &= g_1^{-1}\circ g_2\circ(g_2^{-1}\circ\phi\circ f_2)\circ f_2^{-1}\circ f_1\\
+        &=G\circ(g_2^{-1}\circ\phi\circ f_2)\circ F
+    \end{align*}
+    and
+    \begin{align*}
+        g_2^{-1}\circ\phi\circ f_2 &= g_2^{-1}\circ g_1\circ(g_1^{-1}\circ\phi\circ f_1)\circ f_1^{-1}\circ f_2\\
+        &=G^{-1}\circ(g_1^{-1}\circ\phi\circ f_1)\circ F^{-1}
+    \end{align*}
+    The maps $G$ and $F$ are diffemorphisms, therefore they are smooth, so this composition must be smooth. Therefore we have shown if $g_1^{-1}\circ\phi\circ f_1$ is smooth, then $g_2^{-1}\circ\phi\circ f_2$ is smooth. Therefore the choice of $f_1$ and $g_1$ or $f_2$ and $g_2$ does not matter.
+    \end{proof}
+    \item Problem 7: Prove that the relation ``$S_1$ is diffeomorphic to $S_2$'' is an equivalence relation.\begin{proof} If $S_1\simeq S_2$ then there is a smooth, bijective map $f:S_1\to S_2$ and its inverse $f^{-1}:S_2\to S_1$ is also smooth.\skip 1. Trivially, $S\simeq S$ for all manifolds $S$.
+    \skip 2. Since the function and its inverse necessarily exist, $S_1\simeq S_2\iff S_2\simeq S_1$.
+    \skip 3. If $S_1\simeq S_2$, and $S_2\simeq S_3$, then there exist functions $f:S_1\to S_2$ and $g:S_2\to S_3$, therefore the composition $g\circ f:S_1\to S_3$ necessarily exists, is smooth (composition of two smooth functions is smooth), and is bijective (composition of two bijections is a bijection).\skip Therefore, ``$S_1$ is diffeomorphic to $S_2$'' is an equivalence relation.
+    \end{proof}
+\end{itemize}
+\section{Section 2.4}
+\begin{itemize}
+    \item Problem 1: Show that the equation of the tangent plane at $(x_0,y_0,z_0)$ of a regular surface given by $f(x,y,z)=0$, where 0 is a regular value of $f$ is, $$f_x(x_0,y_0,z_0)(x-x_0)+f_y(x_0,y_0,z_0)(y-y_0)+f_z(x_0,y_0,z_0)(z-z_0)$$ $$=0$$
+    \item Problem 7: Let $f:S\to R$ be given by $f(p)=|p-p_0|^2$, where $p\in S$ and $p_0$ is a fixed point of $\R^3$. Show that $df_p(w)=2w\cdot(p-p_0),w\in T_p(S)$.\skip Choose a differentiable curve $\alpha:(-\epsilon,\epsilon)\to S$ with $\alpha(0)=p$, $\alpha'(0)=w$. Then $f(\alpha(t))=|\alpha(t)-p_0|^2$ and $$df_p(w)=\frac{d}{dt}f(\alpha(t))|_{t=0}=2\alpha'(t)\cdot(\alpha(t)-p_0)|_{t=0}$$ $$=2w\cdot(p-p_0)$$ As desired.
+    \item Problem 10: Let $\alpha:I\to\R^3$ be a regular parametrized curve with nonzero curvature everywhere and PBAL. Let $$x(s,v)=\alpha(s)+r(n(s)\cos v+b(s)\sin v,\quad r=\text{const.}\neq0,s\in I$$ be a parametrized surface (the tube of radius r around $\alpha$), where $n$ is the normal vector and $b$ is the binormal vector of $\alpha$. Show that, when $x$ is regular, its unit normal vector is $$N(s,v)=-(n(s)\cos v+b(s)\sin v)$$\skip $$N=\frac{x_s\wedge x_v}{|x_s\wedge x_v|}$$\begin{align*}
+        x_s &= t+rn'(s)\cos v+rb'(s)\sin v\\
+        &= t+r(-kt-\tau b)\cos v+r\tau n\sin v\\
+        &= (1-rk\cos v)t-(r\tau\cos v)b+(r\tau\sin v)n\\
+        \\
+        x_v &= 0-rn\sin v+rb\cos v\\
+        &= (-r\sin v)n+(r\cos v)b
+    \end{align*}
+    $$N=\frac{(0,(r\sin \left(v\right)\left(-rk\cos \left(v\right)+1\right))b,(r\cos \left(v\right)\left(-rk\cos \left(v\right)+1\right))n)}{\sqrt{r^2}\sqrt{(1-rk\cos v)^2}\sqrt{\sin^2v+\cos^2v}}$$ $$=-(b(s)\sin v+n(s)\cos v)$$
+    \item Problem 21: Sorry ran out of time :(
+\end{itemize}
+\end{document}

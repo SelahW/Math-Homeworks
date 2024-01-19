@@ -1,0 +1,25 @@
+\documentclass[a4paper,12pt]{extarticle}
+\usepackage{geometry,microtype,mathtools,amsthm,amssymb}
+\usepackage[utf8]{inputenc}
+\usepackage[font=small,labelfont=bf]{caption}
+\theoremstyle{definition}
+\newtheorem{definition}{Definition} \newtheorem{theorem}{Theorem} \newtheorem{corollary}{Corollary}[theorem] \newtheorem*{remark}{Remark}
+\newcommand{\R}{\mathbb{R}} \newcommand{\Q}{\mathbb{Q}} \newcommand{\Z}{\mathbb{Z}} \newcommand{\N}{\mathbb{N}} \newcommand{\myskip}{\par\null\par} \renewcommand\qedsymbol{QED} \renewcommand{\leq}{\leqslant}\renewcommand{\geq}{\geqslant}
+\title{Math 431 Homework 5} 
+\author{Theo Koss}
+\date{October 2022}
+\begin{document}
+    \maketitle
+\section*{Section 4.5}
+\begin{itemize}
+    \item \textbf{Problem 10:} Find all elements of finite order in the following groups:\begin{enumerate}
+        \item $\Z:$ $|0|=1$, $|a|=\infty$ for $a\neq0\in\Z$.\myskip $an=0\implies a=0\text{ or }n=0$. Since $n$ can't equal 0, $a=0$.
+        \item $\Q^*:$ $|1|=1$, $|a|=\infty$ $\forall a\neq1\in\Q^*$. \myskip Let $a=\frac{p}{q}$, $a^n=1\implies \frac{p^n}{q^n}=1$. Thus $p^n=q^n$, where $n\in\Z^+$. Therefore $p=q$, so $a=1$.
+        \item $\R^*:$ $|1|=1$, $|a|=\infty$ $\forall a\neq1\in\R^*$. \myskip $a^n=1\implies a=\sqrt[n]{1}=1$. So if $a^n$ has finite order, $a$ must be equal to 1.
+    \end{enumerate}
+    \item \textbf{Problem 25:} Let $p$ be prime and $r\in\Z^+$. How many generators does $\Z\slash p^r\Z$ have?\myskip \textbf{Corollary 4.14} of Theorem 4.13 in the text:\newline The generators of $\Z\slash n\Z$ are the integers $r$ such that $1\leq r< n$ and $\gcd(r,n)=1$.
+    \myskip Using this, $\Z\slash p\Z$ has $p-1$ generators, since it is all numbers coprime to $p$. In general $\Z\slash p^r\Z$ has $p^r-p^{r-1}$ generators. \myskip This is true because the only things coprime to $p^n$ for prime $p$ are multiples of $p$, so the only elements we have to worry about are multiples of $p$ less than or equal to $p^n$. This is $\{p,2p,3p,...,p^{n-1}p\}$, and there are $p^{n-1}$ such elements. Note that $p^{n-1}p=p^n\equiv0$. Now to find the number of generators, we simply take all the elements of our group, ($p^r$) and subtract off the coprime ones, ($p^{r-1}$). Leaving us with the nice fact: \begin{align}
+        |U(p^r)|=p^r-p^{r-1}
+    \end{align}
+\end{itemize}
+\end{document}

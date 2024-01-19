@@ -1,0 +1,107 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{mathtools}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\R}{\mathbb{R}}
+\renewcommand\qedsymbol{QED}
+\newcommand{\divby}{%
+  \mathrel{\text{\vbox{\baselineskip.65ex\lineskiplimit0pt\hbox{.}\hbox{.}\hbox{.}}}}%
+  }
+\newcommand{\notdivby}{\centernot\divby}
+\title{\scalebox{2}{Math 431 Homework 1}}
+\author{\scalebox{1.5}{Theo Koss}}
+\date{September 2020}
+\begin{document}
+\maketitle
+\section{Chapter 1 Problems}
+Restate the following congruences, using the language of multiples.
+\begin{enumerate}
+    \item Restate the following congruences, using the language of multiples.
+    \begin{enumerate}
+        \item $3x \equiv 1$ (mod 11)
+        \begin{itemize}
+            \item 11 divides the quantity $(3x-1)$.
+        \end{itemize}
+        \item $5x \equiv 0$ (mod 3)
+                \begin{itemize}
+            \item 3 divides the quantity $5x$.
+        \end{itemize}
+        \item If $xy \equiv 0$ (mod p), then $x \equiv 0$ (mod p) or $y \equiv 0$ (mod p)
+        \begin{itemize}
+            \item If p divides the quantity $xy$, then either p divides $x$ or p divides $y$.
+        \end{itemize}
+    \end{enumerate}
+    \item Simplify $2^{100}$ (mod 11) \newline Using exponent rules: $$2^{100}=2^{10^{10}}$$And since, $$2^{10}=1024=1\  \text{(mod 11)}$$We have$$2^{100}=2^{10^{10}}=1^{10}=1\  \text{(mod 11)}$$
+    \newpage \item For each of the following pairs of numbers $a$ and $b$, calculate gcd($a,b$) and find integers $r$ and $s$ such that gcd($a, b$) = $ra + sb$.
+    \begin{enumerate}
+        \item 14 and 39 
+            \begin{itemize}
+                \item gcd(14,39)=1. $14r+39s=1$. $r=14, s=-5$
+            \end{itemize}
+        \item 234 and 165
+        \begin{itemize}
+            \item gcd(234,165)=3. $234r+165s=3$. $r=12, s=-17$ 
+        \end{itemize}
+        \item 471 and 562
+            \begin{itemize}
+                \item Euclidean Alg.$$562=471\cdot1+91$$ $$471=91\cdot5+16$$ $$91=16\cdot5+11$$ $$16=11\cdot1+5$$ $$11=5\cdot2+1$$ $\therefore$ The GCD is 1.\newline So $471r+562s=1$.\newline Finding $r$ and $s$ using \begin{enumerate}
+                \item $91=562+(-1)\cdot471$
+                \item $16=471+(-5)\cdot91$
+                \item $11=91+(-5)\cdot16$
+                \item $5=16+(-1)\cdot11$
+            \end{enumerate}
+            So:$$1=11+(-2)\cdot5$$ Using (iv.):$$=11+(-2)\cdot[16+(-1)\cdot11]$$ Distributing \& simplifying:$$=3\cdot11+(-2)\cdot16$$ Using (iii.):$$=3\cdot[91+(-5)\cdot16]+(-2)\cdot16$$ Distributing \& simplifying again:$$=3\cdot91+(-17)\cdot16$$Using (ii.):$$=3\cdot91+(-17)\cdot[471+(-5)\cdot91]$$You guessed it! More distributing \& simplifying:$$=88\cdot91+(-17)\cdot471$$Using (i.):$$=88\cdot[562+(-1)\cdot471]+(-17)\cdot471$$Finally:$$=88\cdot562+(-105)\cdot471$$ Thus, $r=88, s=-105$.
+            \end{itemize}
+        \item 1739 and 9923
+        \begin{itemize}
+            \item Euclidean Alg.$$9923=1739\cdot5+1228$$ $$1739=1228\cdot1+511$$ $$1228=511\cdot2+206$$ $$511=206\cdot2+99$$ $$206=99\cdot2+8$$ $$99=8\cdot12+3$$ $$8=3\cdot2+2$$ $$3=2\cdot1+1$$ $\therefore$ The GCD is 1.\newline So $1739r+9923s=1$ \newpage Finding $r$ and $s$ using \begin{enumerate}
+                \item $1228=9923+(-5)\cdot1739$
+                \item $511=1739+(-1)\cdot1228$
+                \item $206=1228+(-2)\cdot511$
+                \item $99=511+(-2)\cdot206$
+                \item $8=206+(-2)\cdot99$
+                \item $3=99+(-12)\cdot8$
+                \item $2=8+(-2)\cdot3$
+            \end{enumerate}
+            This is gonna be a long one:$$1=3+(-1)\cdot2$$Using (vii.): $$=3+(-1)\cdot[8+(-2)\cdot3]$$ Simplifying \& using (vi.):$$=3\cdot[99+(-12)\cdot8]+(-1)\cdot8$$ Simplifying \& using (v.):$$=3\cdot99+(-37)\cdot[206+(-2)\cdot99]$$ Simplifying \& using (iv.):$$=(-37)\cdot206+77\cdot[511+(-2)\cdot206]$$Simplifying \& using (iii.):$$=77\cdot511+(-191)\cdot[1228+(-2)\cdot511]$$Simplifying \& using (ii.):$$=(-191)\cdot1228+459\cdot[1739+(-1)\cdot1228]$$Simplifying \& using (i.):$$=459\cdot1739+(-650)\cdot[9923+(-5)\cdot1739]$$Simplifying:$$=3709\cdot1739+(-650)\cdot9923$$ Thus, $r=3709, s=650$ 
+            \end{itemize}
+        \item 23771 and 19945
+        \begin{itemize}
+            \item Euclidean Alg. $$23771=19945\cdot1+3826$$ $$19945=3826\cdot5+815$$ $$3826=815\cdot4+566$$ $$815=566\cdot1+249$$ $$566=249\cdot2+68$$ $$249=68\cdot3+45$$ $$68=45\cdot1+23$$ $$45=23\cdot1+22$$ $$23=22\cdot1+1$$ $\therefore$ The GCD is 1.\newline So $23771r+19945s=1$. Finding $r$ and $s$ using: \begin{enumerate}
+                \item $3826=19945\cdot(-1)+23771$
+                \item $815=3826\cdot(-5)+19945$
+                \item $566=815\cdot(-4)+3826$
+                \item $249=566\cdot(-1)+815$
+                \item $68=249\cdot(-2)+566$
+                \item $45=68\cdot(-3)+249$
+                \item $23=45\cdot(-1)+68$
+                \item $22=23\cdot(-1)+45$
+                \item $1=22\cdot(-1)+23$
+            \end{enumerate}
+            $$1=23+(-1)\cdot22$$Using (viii.): $$=23+(-1)\cdot[23\cdot(-1)+45]$$ Simplifying \& using (vii.):$$=2\cdot[45\cdot(-1)+68]+(-1)\cdot45$$ Simplifying \& using (vi.):$$=(-3)\cdot[68\cdot(-3)+249]+2\cdot68$$ Simplifying \& using (v.):$$=11\cdot[249\cdot(-2)+566]+(-3)249$$Simplifying \& using (iv.):$$=(-25)\cdot[566\cdot(-1)+815]+11\cdot566$$Simplifying \& using (iii.):$$=36\cdot[815\cdot(-4)+3826]+(-25)\cdot815$$Simplifying \& using (ii.):$$=(-169)\cdot[3826\cdot(-5)+19945]+36\cdot3826$$Simplifying \& using (i.):$$=881\cdot[19945\cdot(-1)+23771]+(-169)\cdot19945$$Simplifying:$$=881\cdot23771+(-1050)\cdot19945$$  Thus, $r=881, s=-1050$.
+        \end{itemize}
+        \item -4357 and 3754
+        \begin{itemize}
+            \item Euclidean Alg. $$-4357=(-1)\cdot3754-$$
+        \end{itemize}
+    \end{enumerate}
+    \item Prove that the infinite sum: $1!+2!+3!+4!+5!+...\equiv0$ (mod 9).
+    \begin{proof}
+    By the definition of equivalence modulo 9, $a\equiv0$ (mod 9) iff $a\divby9$, in other words, $a=9c$, and $a,c \in \Z$. Since the sum: $1+2+3!+4!+...+8!=46233=9\cdot(5137)$, it is divisible by 9, and therefore equivalent to 0 (mod 9). The remaining part of the infinite sum, $9!+10!+11!+...$, by the definition of a factorial, \underline{must} be divisible by 9. Since any number $x\geq9$ factorial is equal to: $x!=(2\cdot3\cdot4\cdot...\cdot9\cdot...\cdot x)$, which, by the associative property, is equal to: $x!=9\cdot(2\cdot3\cdot4...\cdot x)$. And if we let $c=(2\cdot3\cdot4...\cdot x)$, any number $x\geq9$ factorial is of the form $x!=9c$, and $c\in\Z$. We also know that any number that is divisible by 9, plus another number also divisible by 9, must be divisible by 9. To prove this, let $n,m\divby9$, that is to say that, $n=9l,m=9k$. The sum $(n+m)\divby9$, since $(n+m)=9k+9l=9(k+l)$. Therefore the sum $(1+2+3!+4!+...+8!)\divby9)$, and $(9!+10!+11!+...)\divby9$, so the full sum: $1!+2!+3!+4!+5!+...\equiv0$ (mod 9).
+    \end{proof}
+    \item Prove the relation defined on $\R^{2}$ by $(x_{1},y_{1})\sim(x_{2}, y_{2})$ if $x_{1}^{2}+y_{1}^{2}=x_{2}^{2}+y_{2}^{2}$ is an equivalence relation.
+    \begin{proof}
+    An equivalence relation must satisfy 3 properties:\begin{enumerate}
+        \item Reflexivity
+        \item Symmetry
+        \item Transitivity
+    \end{enumerate}
+    First, to prove reflexivity: $(x_{1},y_{1})\sim(x_{1},y_{1})$. Means: $x_{1}^{2}+y_{1}^{2}=x_{1}^{2}+y_{1}^{2}$. Which is always true for all $(x_{1},y_{1})\in\R^{2}$. Therefore the relation is reflexive. Next, we must prove symmetry: $(x_{1},y_{1})\sim(x_{2}, y_{2})\Longrightarrow(x_{2},y_{2})\sim(x_{1}, y_{1})$ Suppose $(x_{1},y_{1})\sim(x_{2}, y_{2})$, then $x_{1}^{2}+y_{1}^{2}=x_{2}^{2}+y_{2}^{2}$. To show that $(x_{2},y_{2})\sim(x_{1}, y_{1})$ gives the same result, we will expand it: $x_{2}^{2}+y_{2}^{2}=x_{1}^{2}+y_{1}^{2}$, and since addition is commutative, $(x_{2},y_{2})\sim(x_{1}, y_{1})$. Lastly, to prove transitivity, we must show that if $(x_{1},y_{1})\sim(x_{2},y_{2})$, and $(x_{2},y_{2})\sim(x_{3},y_{3})$, then $(x_{1},y_{1})\sim(x_{3},y_{3})$. Suppose that $(x_{1},y_{1})\sim(x_{2},y_{2})$, and $(x_{2},y_{2})\sim(x_{3},y_{3})$. This means, $x_{1}^{2}+y_{1}^{2}=x_{2}^{2}+y_{2}^{2}$ and \newline $x_{2}^{2}+y_{2}^{2}=x_{3}^{2}+y_{3}^{2}$. Then, by definition, $x_{1}^{2}+y_{1}^{2}=x_{2}^{2}+y_{2}^{2}=x_{3}^{2}+y_{3}^{2}$. Therefore $x_{1}^{2}+y_{1}^{2}=x_{3}^{2}+y_{3}^{2}\Longrightarrow(x_{1},y_{1})\sim(x_{3},y_{3})$. Therefore the relation satisfies all 3 conditions, so it is an equivalence relation.
+    \end{proof}
+\end{enumerate}
+\end{document}

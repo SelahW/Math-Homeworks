@@ -1,0 +1,52 @@
+\documentclass[hidelinks,12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[table,xcdraw]{xcolor}
+\usepackage{mathtools}
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{centernot}
+\usepackage{marvosym}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\setcounter{tocdepth}{1}
+\usepackage{chngcntr}
+\counterwithin*{equation}{section}
+\counterwithin*{equation}{subsection}
+\let\marvosymLightning\Lightning
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}{Corollary}[theorem]
+\newtheorem*{remark}{Remark}
+\renewcommand\qedsymbol{QED}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\divby}{%
+  \mathrel{\text{\vbox{\baselineskip.65ex\lineskiplimit0pt\hbox{.}\hbox{.}\hbox{.}}}}%
+  }
+\newcommand{\notdivby}{\centernot\divby}
+\title{\scalebox{2}{Math 531 Homework 9}}
+\author{\scalebox{1.5}{Theo Koss}}
+\date{April 2021}
+\begin{document}
+\maketitle
+\section{Section 5.4}
+\begin{itemize}
+\item Problem 2: Show that the associative and commutative laws hold for addition in $\Q(D)$.\begin{proof}\begin{enumerate}[label=(\alph*)]
+    \item Associative: Let $$x=a_1+b_1D$$ $$y=a_2+b_2D$$ $$z=a_3+b_3D$$ N2S: $(x+y)+z=x+(y+z)$. $$(x+y)+z=(a_1+b_1D+a_2+b_2D)+a_3+b_3D$$ $$=((a_1+a_2)+(b_1+b_2)D)+a_3+b_3D$$ $$=(a_1+a_2)+a_3+(b_1+b_2)D+b_3D$$ $$=a_1+(a_2+a_3)+((b_1+b_2)+b_3)D$$ $$=a_1+(a_2+a_3)+b_1D+(b_2+b_3)D$$ $$=a_1+b_1D+[(a_2+a_3)+(b_2+b_3)D]$$ $$=a_1+b_1D+[a_2+b_2D+a_3+b_3D]$$ $$=x+(y+z)$$ As required.
+    \item Commutative: Let $$x=a_1+b_1D$$ $$y=a_2+b_2D$$ $$x+y=(a_1+b_1D)+(a_2+b_2D)$$ $$=(a_1+a_2)+(b_1+b_2)D$$ $$=(a_2+a_1)+(b_2+b_1)D$$ $$=a_2+a_1+b_2D+b_1D$$ $$a_2+b_2D+a_1+b_1D$$ $$=y+x$$ As required.
+ \end{enumerate}
+\end{proof}
+\item Problem 3: Show that the associative and commutative laws hold for multiplication in $\Q(D)$.\begin{proof}\begin{enumerate}[label=(\alph*)]
+\item Associative: Let $$x=a_1+b_1D$$ $$y=a_2+b_2D$$ $$z=a_3+b_3D$$ N2S: $x\cdot (y\cdot z)=(x\cdot y)\cdot z$. $$x\cdot (y\cdot z)=(a_1+b_1D)\cdot((a_2+b_2D)\cdot(a_3+b_3D))$$ $$=(a_1+b_1D)\cdot((a_2a_3-b_2b_3)+(a_2b_3+b_2a_3)D)$$ $$=(a_1(a_2a_3-b_2b_3)-b_1(a_2b_3+b_2a_3))+(a_1(a_2b_3+b_2a_3)+b_1(a_2a_3-b_2b_3))D$$ $$=(a_1a_2a_3-a_1b_2b_3-b_1a_2b_3-b_1b_2a_3)+(a_1a_2b_3+a_1b_2a_3+b_1a_2a_3-b_1b_2b_3)D$$ 
+$$(x\cdot y)\cdot z=((a_1a_2-b_1b_2)+(a_1b_2+b_1a_2)D)\cdot(a_3+b_3D)$$ $$=(a_1a_2a_3-a_1b_2b_3-b_1a_2b_3-b_1b_2a_3)+(a_1a_2b_3+a_1b_2a_3+b_1a_2a_3-b_1b_2b_3)D$$ $$=x\cdot (y\cdot z)$$ As required, therefore multiplication is associative in $\Q(D)$.
+
+\item Commutative: Let $$x=a_1+b_1D$$ $$y=a_2+b_2D$$ $$x\cdot y=(a_1+b_1D)\cdot(a_2+b_2D)=(a_1a_2-b_1b_2)+(a_1b_2+b_1a_2)D$$ $$y\cdot x=(a_2+b_2D)\cdot(a_1+b_1D)=(a_2a_1-b_2b_1)+(b_2a_1+a_2b_1)D$$ $$=(a_1a_2-b_1b_2)+(a_1b_2+b_1a_2)D$$
+$$\therefore x\cdot y=y\cdot x$$ Thus multiplication is commutative in $\Q(D)$.
+\end{enumerate}
+\end{proof}
+\end{itemize}
+\end{document}

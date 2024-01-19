@@ -1,0 +1,28 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{mathtools}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{centernot}
+\newcommand{\notequiv}{\centernot\equiv}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newtheorem{theorem}{Theorem}
+\newcommand{\divby}{%
+  \mathrel{\text{\vbox{\baselineskip.65ex\lineskiplimit0pt\hbox{.}\hbox{.}\hbox{.}}}}%
+  }
+\newcommand{\notdivby}{\centernot\divby}
+\renewcommand\qedsymbol{QED}
+\title{\scalebox{2}{Math 341 Exam 1}}
+\author{\scalebox{1.5}{Theo Koss}}
+\date{September 2020}
+\begin{document}
+\maketitle
+\section{Problem 2}
+Prove by induction: if $a\geq-1$, then, $(1+a)^n\geq1+na$ for all $n\geq0$.
+\begin{proof}
+\emph{Basis}: Check for $n=1$: $1+a\geq1+a$.\newline \emph{Inductive step}: \newline Assume the formula holds for $n=k$, so $(1+a)^k\geq(1+ka), a\geq-1$ We must show it holds for $n=k+1$, that is: $$(1+a)^{k+1}\geq(1+(k+1)a)$$ Simplifying:$$(1+a)\cdot(1+a)^k\geq(1+a(k+1))$$ Using our assumption:$$(1+a)^k\cdot(1+a)\geq(1+a(k+1))\cdot(1+a)$$ Thus:$$(1+a)^{k+1}\geq(1+(k+1)a)\cdot(1+a)\Longrightarrow(1+a)^{k+1}\geq(1+(k+1)a)$$ As required.
+\end{proof}
+\end{document}
