@@ -27,7 +27,7 @@
 \subsection{Problem 8.3}
 Let $f:X\to Y$ and $g:Y\to Z$ be maps, prove that if the composition $g\circ f$ is injective then $f$ is injective.
 \begin{proof}
-\newline Consider the injective composition $g\circ f:X\to Z$, and suppose $x_1\neq x_2$ this implies $g(f(x_1))\neq g(f(x_2))$. By the definition of a function, this implies that $f(x_1)\neq f(x_2)$, thus $f$ is an injection.
+Consider the injective composition $g\circ f:X\to Z$, and suppose $x_1\neq x_2$ this implies $g(f(x_1))\neq g(f(x_2))$. By the definition of a function, this implies that $f(x_1)\neq f(x_2)$, thus $f$ is an injection.
 \end{proof}
 \subsection{Problem 8.9}
 Construct a bijection from $\N$ to $2\Z^+$ (the set of positive, even integers).
@@ -42,7 +42,7 @@ A function $g:X\to Y$, is surjective if $\forall y\in Y$, $\exists x\in X$ such 
     \item Injectivity: $\forall n_1\neq n_2\in\N$, then the mapping is $f(n_1)=2n_1$ and $f(n_2)=2n_2$, if $f(n_1)=f(n_2)$ then $2n_1=2n_2\Longrightarrow2(n_1-n_2)=0$. However since the integers have no nontrivial zero divisors, $(n_1-n_2)$ must be equal to zero, therefore $n_1=n_2$. And since this is true, the contrapositive must be true (if $n_1\neq n_2$, then $f(n_1)\neq f(n_2)$), as required. Therefore the function $f$ is injective.
     \item Surjectivity: $\forall z\in 2\Z^+$, $\exists n\in\N$ such that $f(n)=z$. If we choose some arbitrary $z\in2\Z^+$, by definition, $z=2n$, and since $z$ is a positive, even integer, we can write this as $z=f(n)$. Therefore $f$ is surjective.
 \end{enumerate}
-\newline Since $f(n)=z$ is both injective and surjective, then it is a bijection from $\N\to2\Z^+$, As required.
+Since $f(n)=z$ is both injective and surjective, then it is a bijection from $\N\to2\Z^+$, As required.
 \end{proof}
 \subsection{Problem 8.10}
 Prove that there is a bijection $\N\to\Z$.
@@ -57,14 +57,14 @@ Consider $f:\N\to\Z$, defined by $f(n)=
 \begin{remark}
 A function $f:X\to Y$ is injective iff $f(x)=f(y)\Longrightarrow x=y$.
 \end{remark}
-\newline \textbf{N2S}: Bijectivity \begin{enumerate}
+\textbf{N2S}: Bijectivity \begin{enumerate}
     \item Injectivity: For some $n_1,n_2\in\N$, suppose $f(n_1)=f(n_2)$. Then there are 3 cases:
     \begin{enumerate}
         \item If they are both even, then $f(n_1)=k$, where $n_1=2k$. Also $f(n_2)=k$, where $n_2=2k$, it is clear that, $n_1=n_2=2k$.
         \item If they are both odd, then $f(n_1)=-k$, where $n_1=2k+1$. Also $f(n_2)=-k$, where $n_2=2k+1$, again it is clear that $n_1=n_2=2k+1$.
         \item If one is even and one is odd, then $f(n_1)=k$, where $n_1=2k$ and $f(n_2)=-k$, where $n_2=2k+1$. However in this case $n_1\neq n_2$, because one is $2k$, and one is $2k+1$. $2k\neq2k+1$, clearly. \scalebox{1.5}{\Lightning}
     \end{enumerate}
-    \newline Therefore $f$ is an injection.
+Therefore $f$ is an injection.
     \item Surjectivity: $\forall z\in\Z$, $\exists n\in\N$ s.t. $f(n)=z$. Take some $z\in\Z$, $z$ has a sign (positive or negative), or it is 0. \begin{enumerate}
         \item If $z$ is positive, then $z$ is produced by $f(2n)$. Ex. $(z=1,n=2$, $(z=2,n=4)$,...
         \item If $z$ is negative, then $z$ is produced by $f(2n+1)$. Ex. $(z=-1,n=3)$, $(z=-2,n=5)$,...
