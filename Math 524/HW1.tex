@@ -1,0 +1,76 @@
+\documentclass[hidelinks,12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{mathtools}
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{centernot}
+\usepackage{marvosym}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\setcounter{tocdepth}{1}
+\let\marvosymLightning\Lightning
+\renewcommand{\geq}{\geqslant}
+\renewcommand{\leq}{\leqslant}
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}{Corollary}[theorem]
+\newtheorem*{remark}{Remark}
+\renewcommand\qedsymbol{QED}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\divby}{%
+  \mathrel{\text{\vbox{\baselineskip.65ex\lineskiplimit0pt\hbox{.}\hbox{.}\hbox{.}}}}%
+  }
+\newcommand{\notdivby}{\centernot\divby}
+\title{\scalebox{2}{Math 524 Homework 1}}
+\author{\scalebox{1.5}{Theo Koss}}
+\date{Feburary 2024}
+
+\begin{document}
+
+\maketitle
+\begin{enumerate}
+  \item Let $0 . a_1 a_2 a_3 \cdots$ be an infinite, but not periodic, decimal expansion. Consider the sets
+    \[
+\begin{aligned}
+& A=\left\{x \in \mathbb{Q} \mid x \leq 0 . a_1 a_2 \cdots a_k \text { for some } k \geq 1\right\} \\
+& B=\left\{x \in \mathbb{Q} \mid x \geq 0 . a_1 a_2 \cdots a_k \text { for all } k \geq 1\right\} .
+\end{aligned}\]
+Show that $(A, B)$ is a gap in $(\mathbb{Q}, \leq)$.
+\begin{proof}[Proof]
+  We must show the following:\begin{enumerate}
+    \item $A$ and $B$ are nonempty, disjoint, and $A\cup B=\Q$.
+    \item If $a\in A$ and $b\in B$, then $a<b$.
+    \item $A$ has no greatest element, and $B$ has no least element.
+  \end{enumerate}
+  \begin{enumerate}
+    \item $A$ and $B$ are both nonempty because for example $0\in A$ and $1\in B$. Suppose $a\in A$, then we have that \[a\leq 0.a_1a_2\dots a_k\implies a\not> 0.a_1a_2\dots a_k\]
+      Note: $a\neq 0.a_1a_2\dots a_k$ for \underline{ALL} $k$, therefore $a\notin B$. So $A\cap B=\emptyset$.Finally, any $q\in\Q$ is either greater than $x$, less than $x$, or equal to $x$ for some $k$. Therefore $A\cup B=\Q$ 
+    \item Let \(a\in A\) and $b\in B$. Then from above, we have shown $a\notin B$, negating the condition for set $B$ we get $\exists k\geq 1$ such that $a<0.a_1a_2\dots a_k$, thus $a<b$.
+    \item Suppose $a=0.a_1a_2\dots a_k\in A$ is a greatest element for some $k\geq1$, then consider $a'=0.a_1a_2\dots a_ka_{k+1}>a$, therefore $A$ has no greatest element. (Also note every finite decimal is $\in\Q$.)\\
+      Similar argument holds for $B$, assume $b$ is a least element, then write it as $b=\frac{x}{y}$, but then we have $b'=\frac{x}{y+1}<b$.
+  \end{enumerate}
+\end{proof}
+\item Let $F$ be the set of all rational numbers that have a decimal expansion with only a finite number of nonzero digits. Show that $F$ is dense in $\mathbb{Q}$.
+  \begin{proof}[Proof]
+    Fix $a,b\in\Q$ with $a<b$. By definition we have $a=\frac{x}{y}$ for $x,y\in\Z$ and $y\neq0$ and $b=\frac{w}{z}$.Then consider $b-a=\frac{p}{q}$ for integers $p,q$ (by closure), then we have $b-a=\frac{p}{q}\geq\frac{1}{q}>\frac{1}{10^n}$ for some $n\in\N$. So there is some $n$ such that $\frac{1}{10^n}<b-a$. Then, let $X=\{\frac{k}{10^n}|k\in\Z,n\in\N\}$. Elements of $X$ are finite decimal expansions, and there is a largest $c\in X$ such that $c\leq a$. Then, simply add $c+\frac{1}{10^n}$ (Choose the $n$ you need). Then $a<c+\frac{1}{10^n}<b$.
+  \end{proof}
+\item Let $D$ (the dyadic rationals) be the set of all numbers $m / 2^n$ where $m$ is an integer and $n$ is a natural number. Show that $D$ is dense in $\mathbb{Q}$. [Hint: Consider base 2 expansions.]
+\item In the construction of the real numbers in terms of the rational numbers, we defined the sum of two real numbers by the rule $a+b=\inf \{r+s \mid r, s \in \mathbb{Q}$ and $x \leq r, y \leq s\}$. Prove that addition of real numbers is commutative and associative and satisfies the law $a+0=a$ for all real numbers $a$.
+\item Consider the periodic base 3 expansion $(0.010101 \cdots)_3$. Use geometric series to express this number as a ratio of two integers.
+\item In this problem, you will show that the $p$-series $\sum_{n=1}^{\infty} 1 / n^p$ is convergent whenever $p>1$. [Note that we have not yet studied integration, so the Integral Test may not be used at this point in the course.]
+  \begin{enumerate}
+    \item Show, by induction, that if $\left(x_n\right)_{n=1}^{\infty}$ is a sequence of positive numbers, then the partial sums $s_n=x_1+\cdots+x_n$ are a monotone increasing sequence. Conclude that if the partial sums are bounded above, then the sum $\sum_{n=1}^{\infty} x_n$ converges.
+    \item Assume $p>1$. Observe that\[
+\begin{aligned}
+&\frac{1}{1}+\left(\frac{1}{2^p}+\frac{1}{3^p}\right)+\left(\frac{1}{4^p}+\frac{1}{5^p}+\frac{1}{6^p}+\right. \left.\frac{1}{7^p}\right)+\left(\frac{1}{8^p}+\cdots+\frac{1}{15^p}\right)+\cdots \\
+  \leq &1\left(\frac{1}{1^p}\right)+2\left(\frac{1}{2^p}\right)+4\left(\frac{1}{4^p}\right)+8\left(\frac{1}{8^p}\right)+\cdots
+\end{aligned}\]
+Show that the right-hand side of this inequality converges, and hence the partial sums of the left hand-side are bounded above. Then conclude that $\sum_{n=1}^{\infty} 1 / n^p$ is convergent.
+  \end{enumerate}
+\end{enumerate}
+
+\end{document}
