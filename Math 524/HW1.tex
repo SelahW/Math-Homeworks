@@ -59,8 +59,36 @@ Show that $(A, B)$ is a gap in $(\mathbb{Q}, \leq)$.
     Fix $a,b\in\Q$ with $a<b$. By definition we have $a=\frac{x}{y}$ for $x,y\in\Z$ and $y\neq0$ and $b=\frac{w}{z}$.Then consider $b-a=\frac{p}{q}$ for integers $p,q$ (by closure), then we have $b-a=\frac{p}{q}\geq\frac{1}{q}>\frac{1}{10^n}$ for some $n\in\N$. So there is some $n$ such that $\frac{1}{10^n}<b-a$. Then, let $X=\{\frac{k}{10^n}|k\in\Z,n\in\N\}$. Elements of $X$ are finite decimal expansions, and there is a largest $c\in X$ such that $c\leq a$. Then, simply add $c+\frac{1}{10^n}$ (Choose the $n$ you need). Then $a<c+\frac{1}{10^n}<b$.
   \end{proof}
 \item Let $D$ (the dyadic rationals) be the set of all numbers $m / 2^n$ where $m$ is an integer and $n$ is a natural number. Show that $D$ is dense in $\mathbb{Q}$. [Hint: Consider base 2 expansions.]
+  \begin{proof}
+    Let $x$ and $y$ be two rationals with $x<y$. Then expand them in base 2, such that $x=$Some string of 1's and 0's, and $y$ also is some string of 1's and 0's. Then the dyadic rationals $D=\{\frac{m}{2^n}\mid m\in\Z, n\in\N\}$ look like numbers in base 2 with terminating decimals. Specifically, numbers in $D$ with $m=1$ look like $.00\dots1$. \[\frac{1}{2}_2=.1\ \frac{1}{4}_2=.01\ \frac{1}{8}_2=.001\] Then, write $x$ and $y$ down and find the first digit at which they differ. Say $k$, then $\frac{1}{2^k}$ can fit inside, so then find the largest dyadic rational $z$ smaller than $x$. (This just means cut off the decimal at some point). Then \[x<z+\frac{1}{2^k}<y\]
+  \end{proof}
+  
 \item In the construction of the real numbers in terms of the rational numbers, we defined the sum of two real numbers by the rule $a+b=\inf \{r+s \mid r, s \in \mathbb{Q}$ and $x \leq r, y \leq s\}$. Prove that addition of real numbers is commutative and associative and satisfies the law $a+0=a$ for all real numbers $a$.
+  \begin{proof}[Proof]
+    \begin{enumerate}
+      \item Associative: \begin{align*}
+          (a+b)+c&=\inf\{r+s\mid r,s\in\Q,\,(a+b)\leq r,\,c\leq s\}\\
+                 &=\inf\{r+s\mid r,s\in\Q,\,c\leq s, \inf\{l+k\mid l,k\in\Q\dots\}\leq r\}\\
+                 &=\inf\{(l+k)+s\mid l,k,s\in\Q,\,c\leq s,\,x\leq l,\,y\leq k\}\tag{$x$ and $y$ came from second addition}\\
+                 &=\inf\{l+(k+s)\mid l,k,s\in\Q\mid \dots\}\tag{By definition of rationals}\\
+                 &=\inf\{l+j\mid l,j\in\Q,\,a\leq l, (b+c)\leq j\}\\
+                 &=a+(b+c)
+      \end{align*}
+    \item Commutative:\begin{align*}
+        a+b&=\inf\{r+s\mid r,s\in\Q\,a\leq r,\,b\leq s\}\\
+           &=\inf\{s+r\mid r,s\in\Q\,b\leq s,\,a\leq r\}\\
+           &=b+a
+    \end{align*}
+  \item $0+a=a$:
+    \begin{align*}
+      0+a&=\inf\{r+s\mid r,s\in\Q,\,a\leq r,\,b\leq s\}\\
+         &=[]
+    \end{align*}
+    \end{enumerate}
+  \end{proof}
 \item Consider the periodic base 3 expansion $(0.010101 \cdots)_3$. Use geometric series to express this number as a ratio of two integers.
+  \[0.010101\dots_3=0\cdot3+0\cdot\frac{1}{3}+1\cdot\frac{1}{9}+0\cdot\frac{1}{27}+1\cdot\frac{1}{81}+\dots\]
+\[=\sum_{n=0}^{\infty}\frac{1}{9}^n=\frac{a}{1-r}=\frac{1}{1-\frac{1}{9}}=\frac{9}{8}\]
 \item In this problem, you will show that the $p$-series $\sum_{n=1}^{\infty} 1 / n^p$ is convergent whenever $p>1$. [Note that we have not yet studied integration, so the Integral Test may not be used at this point in the course.]
   \begin{enumerate}
     \item Show, by induction, that if $\left(x_n\right)_{n=1}^{\infty}$ is a sequence of positive numbers, then the partial sums $s_n=x_1+\cdots+x_n$ are a monotone increasing sequence. Conclude that if the partial sums are bounded above, then the sum $\sum_{n=1}^{\infty} x_n$ converges.
@@ -70,6 +98,13 @@ Show that $(A, B)$ is a gap in $(\mathbb{Q}, \leq)$.
   \leq &1\left(\frac{1}{1^p}\right)+2\left(\frac{1}{2^p}\right)+4\left(\frac{1}{4^p}\right)+8\left(\frac{1}{8^p}\right)+\cdots
 \end{aligned}\]
 Show that the right-hand side of this inequality converges, and hence the partial sums of the left hand-side are bounded above. Then conclude that $\sum_{n=1}^{\infty} 1 / n^p$ is convergent.
+  \end{enumerate}
+  \begin{enumerate}
+    \item Base case: $n=2$:\[s_2>s_1\text{ Since }x_2>0\] is indeed a monotone increasing sequence.\\
+      Inductive step: Assume $s_k>s_{k-1}$. Then we must show $s_{k+1}>s_k$.$s_{k+1}=s_k+x_{k+1}$. We have $x_{k+1}>0$ by assumption, so $s_{k+1}>s_k$.\\
+      Then, by the monotone increasing+ bounded above theorem, if all the $s_n$'s are bounded above, $\sum_{n=1}^{\infty}$ converges. 
+    \item RHS = \[1\left(\frac{1}{1^p}\right)+2\left(\frac{1}{2^p}\right)+4\left(\frac{1}{4^p}\right)+8\left(\frac{1}{8^p}\right)+\cdots\]
+      RHS converges by telescoping. Therefore the partial sums are bounded above, so \[\sum_{n=1}^{\infty}\frac{1}{n^p}\text{ Converges for }p>1\]
   \end{enumerate}
 \end{enumerate}
 
