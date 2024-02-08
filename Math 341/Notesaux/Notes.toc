@@ -62,12 +62,12 @@
 \contentsline {subsubsection}{\numberline {10.1.1}Problem 10.1}{26}{subsubsection.10.1.1}%
 \contentsline {subsubsection}{\numberline {10.1.2}Problem 10.3}{26}{subsubsection.10.1.2}%
 \contentsline {subsubsection}{\numberline {10.1.3}Problem 10.4}{27}{subsubsection.10.1.3}%
-\contentsline {section}{\numberline {11}Modular Arithmetic, Wilson’s Theorem,\newline Fermat’s little theorem}{28}{section.11}%
+\contentsline {section}{\numberline {11}Modular Arithmetic, Wilson’s Theorem, Fermat’s little theorem}{28}{section.11}%
 \contentsline {subsection}{\numberline {11.1}Practice Problems}{28}{subsection.11.1}%
 \contentsline {subsubsection}{\numberline {11.1.1}Problem 11.1}{28}{subsubsection.11.1.1}%
 \contentsline {subsubsection}{\numberline {11.1.2}Problem 11.4}{28}{subsubsection.11.1.2}%
 \contentsline {subsubsection}{\numberline {11.1.3}Problem 11.7}{29}{subsubsection.11.1.3}%
-\contentsline {section}{\numberline {12}Modular Arithmetic, Euler’s $\phi $ function, Euler’s Theorem}{30}{section.12}%
+\contentsline {section}{\numberline {12}Mod Arithmetic, Euler’s function, Euler’s Thm}{30}{section.12}%
 \contentsline {subsection}{\numberline {12.1}Practice Problems}{30}{subsection.12.1}%
 \contentsline {subsubsection}{\numberline {12.1.1}Problem 12.1}{30}{subsubsection.12.1.1}%
 \contentsline {subsubsection}{\numberline {12.1.2}Problem 12.3}{30}{subsubsection.12.1.2}%

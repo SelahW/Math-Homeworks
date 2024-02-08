@@ -285,7 +285,7 @@ Let $f(n)=\sum_{k=1}^{n}k(k!)$
     \end{tabular}
 \end{center}
 Conjecture: $\sum_{k=1}^{n}k(k!)=(n+1)!-1, n \in \N$.
-\newline\newline\begin{proof}\emph{Basis}: Check $n=1$: $\sum_{k=1}^{1}k(k!)=1=(1+1)!-1$
+\begin{proof}\emph{Basis}: Check $n=1$: $\sum_{k=1}^{1}k(k!)=1=(1+1)!-1$
 \newline \emph{Inductive step}: Assume the conjecture holds for $k=n$: $$\sum_{k=1}^{n}k(k!)=(n+1)!-1$$
 Show the conjecture holds for $k=n+1$: $$\sum_{k=1}^{n+1}k(k!)=(n+2)!-1$$
 The sum from 1 to $n+1$ includes the entire sum from 1 to $n$, plus the $k=n+1$ term:$$\sum_{k=1}^{n+1}k(k!)=\sum_{k=1}^{n}k(k!)+(n+1)((n+1)!)$$
@@ -298,16 +298,16 @@ As required, $\therefore$ our conjecture is true, $\sum_{k=1}^{n}k(k!)=(n+1)!-1,
 \newpage 
 \subsubsection{Problem 3.5}
 Prove \emph{Bernoulli's inequality}: if $a>-1$ then $(1+a)^n \geq 1+na$ for all $n \in \N$
-\newline\begin{proof} \emph{Basis}: $n=1$ Check: $(1+a)^1=1+a$.
+\begin{proof} \emph{Basis}: $n=1$ Check: $(1+a)^1=1+a$.
 \newline\emph{Inductive step}: Assume the inequality holds for $n=k$: $$(1+a)^k \geq 1+ka$$
 Prove it holds for $n=k+1$: $$(1+a)^{k+1}\geq 1+(k+1)a$$Splitting up the exponent:$$(1+a)^{k+1}=(1+a)^k\times(1+a)$$Using our assumption $(1+a)^k \geq 1+ka$:$$(1+a)^k\times(1+a)\geq (1+ka)(1+a)$$Simplifying:$$(1+ka)(1+a)=1+(k+1)a+ka^2$$And since $$(1+a)^{k+1}\geq 1+(k+1)a+ka^2$$It must also be greater than $1+(k+1)a$, as required. Therefore by induction, the inequality is true for $a>-1$ \end{proof}
 \subsubsection{Problem 3.6}
 Prove by completing the square: $$2n+1<n^2:n\geq3$$
-\begin{proof} Moving everything to one side:$$n^2-2n-1>0:n\geq3$$Completing the square:$$(n-1)^2-2>0:n\geq3$$Getting n alone:$$(n-1)^2>2:n\geq3$$The absolute smallest that $(n-1)^2$ can be is 4, when $n=3$, which is greater than 2. Therefore, $(n-1)^2>2:n\geq3$, and similarly:\newline $$2n+1<n^2:n\geq3$$ \end{proof}
+\begin{proof} Moving everything to one side:$$n^2-2n-1>0:n\geq3$$Completing the square:$$(n-1)^2-2>0:n\geq3$$Getting n alone:$$(n-1)^2>2:n\geq3$$The absolute smallest that $(n-1)^2$ can be is 4, when $n=3$, which is greater than 2. Therefore, $(n-1)^2>2:n\geq3$, and similarly: $$2n+1<n^2:n\geq3$$ \end{proof}
 \newpage
 \subsubsection{Problem 3.7}
 Prove by induction: $2^n\geq n^2:n\geq4$
-\newline \begin{proof} \emph{Basis}: $n=4$ Check: $$2^4\geq 4^2$$ Indeed it is, \emph{Induction step}: Assume the conjecture holds for $n=k$:$$2^k\geq k^2:k\geq4$$Show it holds for $n=k+1$:$$2^{k+1}\geq (k+1)^2:k\geq3$$Splitting up the exponent:$$2^k\times2\geq k^2+2k+1$$Using our assumption $2^k\geq k^2$:$$2^k\times2\geq2k^2\geq k^2+2k+1=(k+1)^2:(k\geq3)$$And since $$2^k\times2=2^{k+1}$$The following must be true:$$2^{k+1}\geq(k+1)^2:(k\geq3)$$As required. Therefore, by induction the inequality is true.\end{proof}
+\begin{proof} \emph{Basis}: $n=4$ Check: $$2^4\geq 4^2$$ Indeed it is, \emph{Induction step}: Assume the conjecture holds for $n=k$:$$2^k\geq k^2:k\geq4$$Show it holds for $n=k+1$:$$2^{k+1}\geq (k+1)^2:k\geq3$$Splitting up the exponent:$$2^k\times2\geq k^2+2k+1$$Using our assumption $2^k\geq k^2$:$$2^k\times2\geq2k^2\geq k^2+2k+1=(k+1)^2:(k\geq3)$$And since $$2^k\times2=2^{k+1}$$The following must be true:$$2^{k+1}\geq(k+1)^2:(k\geq3)$$As required. Therefore, by induction the inequality is true.\end{proof}
 \newpage
 \section{Divisibility}
 \subsection{Notation:}
@@ -378,7 +378,7 @@ By definition, $a=bq+r$, and $0\leq r<b$, then $-a=bq'+r'$, $0\leq r<b$. $q'=-q$
 \subsubsection{Problem 5.4}
 Let $b\in\N$ and suppose $-b<r<b$. Prove that if $r\divby b$, then $r=0$.
 \begin{proof}
-Recall that by definition of divisibility, $r\divby b\implies r=bn,\text{ for some }n\in\Z$. Also since $-b<r<b$, then $$-b<bn<b$$ again where $n\in\Z$. We can divide everything by $b$ to get:$$-1<n<1, n\in\Z$$There are no integers $n$ between -1 and 1, except 0. Thus $n=0$ and since $r=bn$, $r=0$.
+Recall that by definition of divisibility, $r\divby b\implies r=bn$ for some $n\in\Z$. Also since $-b<r<b$, then $$-b<bn<b$$ again where $n\in\Z$. We can divide everything by $b$ to get:$$-1<n<1, n\in\Z$$There are no integers $n$ between -1 and 1, except 0. Thus $n=0$ and since $r=bn$, $r=0$.
 \end{proof}
 \newpage
 \section{Prime Numbers}
@@ -532,14 +532,14 @@ Since $\gcd$ can be written as a linear combination, and $a,n$ being relatively 
 \end{proof}
 \subsubsection{Problem 10.3}
 Find all the invertible elements of $\Z_{10}$.
-\newline \begin{remark}
+\begin{remark}
 By problem 10.1, an element $a\in\Z_{x}$ is invertible iff $\gcd{(a,x)}=1$, that is to say that the only invertible elements are relatively prime to the modulus $x$.\end{remark}
 Therefore the invertible elements in $\Z_{10}$ are $\{1,3,7,9\}$. We can also check that this is correct because Euler's Totient function, $\phi(10)=4$, which is the number of elements relatively prime to 10. :)
 \subsubsection{Problem 10.4}
 Let $p$ be a prime, find all invertible elements of $\Z_{p}$.
 \newline As described above, invertible elements are all of the elements $a\in\Z_{p}$ such that $\gcd{(a,p)=1}$. Since $p$ is prime, it is relatively prime to every number smaller than it, so the invertible elements of $\Z_{p}$ are: $\{1,2,...,p-1\}$.
 \newpage
-\section{Modular Arithmetic, Wilson’s Theorem,\newline Fermat’s little theorem}
+\section{Modular Arithmetic, Wilson’s Theorem, Fermat’s little theorem}
 \subsection{Practice Problems}
 \subsubsection{Problem 11.1}
 Let $p$ be prime, solve the equation $x^2\equiv1$ in $\Z_p$. (Find all solutions, and prove that there are no other solutions.)
@@ -555,7 +555,7 @@ N2S: $\nexists x\in S$, such that $L_y(x)=0$. To the contrary, assume such an $x
 Find $2019^{2020}\mod{43}$.
 \newline By FlT, (Fermat's Little Theorem) Since $43$ is prime, any $a^{42}=1\mod{43}$. $$2020=42\cdot48+4,\text{ and }2019=-2\mod{43}$$ $$2019^{2020}=(-2^{42})^{48}(-2^4)$$ As stated above, by FlT, $$(-2^{42})^{48}=1^{48}=1\mod{43}$$ So $$(-2^{42})^{48}(-2^4)=1\cdot-2^4=16\mod{43}$$
 \newpage
-\section{Modular Arithmetic, Euler’s $\phi$ function, Euler’s Theorem}
+\section{Mod Arithmetic, Euler’s function, Euler’s Thm}
 \subsection{Practice Problems}
 \subsubsection{Problem 12.1}
 Prove that for every $n\geq0$, $11^{12n+6}+1\divby13$.
@@ -609,7 +609,7 @@ By definition, an element $x\in\Z_n$ is invertible iff $\gcd(x,n)=1$, (they are 
         \item Message: $n=99$.
     \end{enumerate}
     \item Encrypt the message.\newline $c\equiv n^e\mod{N}$. \newline $c\equiv 99^3=970299\equiv823\mod{901}$. Cyphertext: $c=823$.
-    \item Decrypt the message.\newline $c^d\equiv n\mod{N}$. \newline $$c^d=823^{555}=99^{1665}=99^{k(16)(52)+1}$$ In this case, $k=2$ because $2\cdot(16)\cdot(52)=1664$. According to Euler's Theorem, $$n^{\phi(N)}\equiv1\mod{N}$$ Also, in step (b) of part (i), we found $$\phi(N)=16\cdot52=832$$ So, $$n^{(2\cdot16\cdot52)+1}=\underbrace{(n^{1664})}_{\equiv1\mod{N}}\cdot(n^1)\mod{N}=n=99$$
+    \item Decrypt the message.\newline $c^d\equiv n\mod{N}$. $$c^d=823^{555}=99^{1665}=99^{k(16)(52)+1}$$ In this case, $k=2$ because $2\cdot(16)\cdot(52)=1664$. According to Euler's Theorem, $$n^{\phi(N)}\equiv1\mod{N}$$ Also, in step (b) of part (i), we found $$\phi(N)=16\cdot52=832$$ So, $$n^{(2\cdot16\cdot52)+1}=\underbrace{(n^{1664})}_{\equiv1\mod{N}}\cdot(n^1)\mod{N}=n=99$$
 \end{enumerate}
 \newpage
 \section{Exams}
@@ -687,7 +687,7 @@ Let $f(x)=x^2$. For each pair of sets $X$ and $Y$ below, determine if $f$ define
 \subsubsection{Problem 1}
 Give an example of a relation that is reflexive and transitive, but not symmetric.
 \begin{proof}
-Consider the set $X=\{1,2,3\}$ and the relation $R=\{(1,1),(2,2),(3,3)\newline(1,2),(2,3),(1,3)\}$. This is reflexive because all of $(1,1),(2,2),(3,3)$ are in the relation. It is transitive because $1R2,2R3\Longrightarrow1R3$ is true. However it is not symmetric because $(1,3)$ is in the relation, but $(3,1)$ is not. In other words, you can start at 1 and get to 3, but you can't start at 3 and get to 1.
+  Consider the set $X=\{1,2,3\}$ and the relation \[R=\{(1,1),(2,2),(3,3),(1,2),(2,3),(1,3)\}\] This is reflexive because all of $(1,1),(2,2),(3,3)$ are in the relation. It is transitive because $1R2,2R3\Longrightarrow1R3$ is true. However it is not symmetric because $(1,3)$ is in the relation, but $(3,1)$ is not. In other words, you can start at 1 and get to 3, but you can't start at 3 and get to 1.
 \end{proof}
 \subsubsection{Problem 2}
 Fix $n\in\N$, prove that if $a\equiv b\mod{n}$, and $c\equiv d\mod{n}$, then $ac\equiv bd\mod{n}$.
@@ -698,7 +698,7 @@ By definition, if $a\equiv b\mod{n}$, then $$b=a+nk$$, for some $k\in\Z$ and sim
 Determine if $x\mod{n}$ is invertible, and if yes, find its inverse for the following pairs:
 \begin{enumerate}
     \item $x=15, n=42$. By problem 10.1, an element $x\mod{n}$ is invertible iff $\gcd(x,n)=1$. In this case, $\gcd(15,42)=3$, therefore $x$ is a zero divisor, and therefore has no inverse.
-    \item $x=22, n=13$. $x\equiv9\mod{13}$, and by the same argument, $\gcd(9,13)=1$, so $x$ has an inverse, $x'=3$, since $9\cdot3=27\equiv1\mod{13}$.
+    \item $x=22, n=13$. $x\equiv9\mod{13}$, and by the same argument,\\ $\gcd(9,13)=1$, so $x$ has an inverse, $x'=3$, since $9\cdot3=27\equiv1\mod{13}$
 \end{enumerate}
 \subsubsection{Problem 4}
 Let $n\in\N$ and $y\in\Z_n$. Suppose that the left multiplication map $L_y:\Z_n\to\Z_n$ is bijective. Prove that $y$ is invertible.
