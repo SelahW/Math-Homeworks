@@ -19,7 +19,7 @@
   \mathrel{\text{\vbox{\baselineskip.65ex\lineskiplimit0pt\hbox{.}\hbox{.}\hbox{.}}}}%
   }
 \newcommand{\notdivby}{\centernot\divby}
-\title{\scalebox{2}{Math 341 Final Project}}
+\title{\scalebox{1.75}{Math 341 Final Project}}
 \author{\scalebox{1.5}{Theo Koss}}
 \date{December 2020}
 \begin{document}
@@ -36,6 +36,6 @@
         \item Message: $n=99$.
     \end{enumerate}
     \item Encrypt the message.\newline $c\equiv n^e\mod{N}$. \newline $c\equiv 99^3=970299\equiv823\mod{901}$. Cyphertext: $c=823$.
-    \item Decrypt the message.\newline $c^d\equiv n\mod{N}$. \newline $$c^d=823^{555}=99^{1665}=99^{k(16)(52)+1}$$ In this case, $k=2$ because $2\cdot(16)\cdot(52)=1664$. According to Euler's Theorem, $$n^{\phi(N)}\equiv1\mod{N}$$ Also, in step (b) of part (i), we found $$\phi(N)=16\cdot52=832$$ So, $$n^{(2\cdot16\cdot52)+1}=\underbrace{(n^{1664})}_{\equiv1\mod{N}}\cdot(n^1)\mod{N}=n=99$$
+    \item Decrypt the message.\newline $c^d\equiv n\mod{N}$. $$c^d=823^{555}=99^{1665}=99^{k(16)(52)+1}$$ In this case, $k=2$ because $2\cdot(16)\cdot(52)=1664$. According to Euler's Theorem, $$n^{\phi(N)}\equiv1\mod{N}$$ Also, in step (b) of part (i), we found $$\phi(N)=16\cdot52=832$$ So, $$n^{(2\cdot16\cdot52)+1}=\underbrace{(n^{1664})}_{\equiv1\mod{N}}\cdot(n^1)\mod{N}=n=99$$
 \end{enumerate}
 \end{document}
