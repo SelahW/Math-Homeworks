@@ -1,0 +1,156 @@
+\documentclass[hidelinks,12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{mathtools}
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{centernot}
+\usepackage{marvosym}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\setcounter{tocdepth}{1}
+\let\marvosymLightning\Lightning
+\renewcommand{\geq}{\geqslant}
+\renewcommand{\leq}{\leqslant}
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}{Corollary}[theorem]
+\newtheorem*{remark}{Remark}
+\renewcommand\qedsymbol{QED}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\divby}{%
+  \mathrel{\text{\vbox{\baselineskip.65ex\lineskiplimit0pt\hbox{.}\hbox{.}\hbox{.}}}}%
+  }
+\newcommand{\notdivby}{\centernot\divby}
+\title{\scalebox{1.5}{CompSci 150 Homework 1}}
+\author{\scalebox{1.5}{Theo Koss}}
+\date{February 2024}
+
+\begin{document}
+
+\maketitle
+\begin{enumerate}
+    \item \begin{enumerate}
+            \item OR:\[\begin{bmatrix}
+                1 & 1 & \vline & 1\\
+                1 & 0 & \vline & 1\\
+                0 & 1 & \vline & 1\\
+                0 & 0 & \vline & 0\\
+            \end{bmatrix}\]
+        \item AND: \[\begin{bmatrix}
+                1 & 1 & \vline & 1\\
+                1 & 0 & \vline & 0\\
+                0 & 1 & \vline & 0\\
+                0 & 0 & \vline & 0\\
+            \end{bmatrix}\]
+        \item XOR:\[\begin{bmatrix}
+                1 & 1 & \vline & 0\\
+                1 & 0 & \vline & 1\\
+                0 & 1 & \vline & 1\\
+                0 & 0 & \vline & 0\\
+            \end{bmatrix}\]
+        \item NOT:\[\begin{bmatrix}
+                0 & \vline & 1\\
+                1 & \vline & 0\\
+            \end{bmatrix}\]
+    \end{enumerate}
+    \item\begin{enumerate}
+            \item $(x\ \mathrm{XOR}\ y)\lor(x\land y)$:
+                \[\begin{bmatrix}
+                1 & 1 & \vline & 1\\
+                1 & 0 & \vline & 1\\
+                0 & 1 & \vline & 1\\
+                0 & 0 & \vline & 0\\
+                \end{bmatrix}\]
+            \item $\mathrm{NOT}((x\lor y)\land z)$:
+                \[\begin{bmatrix}
+                    1 & 1 & 1 & \vline & 0\\
+                    1 & 1 & 0 & \vline & 1\\
+                    1 & 0 & 0 & \vline & 1\\
+                    1 & 0 & 1 & \vline & 0\\
+                    0 & 1 & 1 & \vline & 0\\
+                    0 & 0 & 1 & \vline & 1\\
+                    0 & 1 & 0 & \vline & 1\\
+                    0 & 0 & 0 & \vline & 1\\
+                \end{bmatrix}\]
+    \end{enumerate}
+    \item\begin{enumerate}
+        \item RAM: Random Access Memory, stores short-term data which can be referred back to by the computer.
+        \item Sequential Access: Opposite of RAM, instead of reading randomly, data must be read sequentially. Slower than RAM but more space.
+        \item WORM: Write Once, Read Many. Data storage which can be written only once, then read many times, good for things like games, movies.
+        \item WMRM: Write Many, Read Many. Data storage which can be written and read as many times as needed.
+        \item ASCII: American Standard Code for Information Interchange, a character encoding format, each character is given a numerical value which computers can then use.
+    \end{enumerate}
+\item Bitstring to Hex:\begin{enumerate}
+            \item $0101_2=5_{16}$
+            \item $0010_2=2_{16}$
+        \item $1010_2=A_{16}$
+        \item $1101_2=D_{16}$
+    \end{enumerate}
+\item Decimal to Binary:\begin{enumerate}
+        \item $21=10101_2$
+        \item $15=1111_2$
+        \item $43=101011_2$
+        \item $128=10000000_2$
+        \item $3\,\frac{5}{8}=11.101_2$
+        \item $9\,\frac{11}{64}=1001.001011)_2$
+    \end{enumerate}
+\item Binary to Decimal:\begin{enumerate}
+        \item $11_2=3$
+        \item $101_2=5$
+        \item $101110_2=46$
+        \item $11010001_2=209$
+        \item $11.101_2=3\,\frac{5}{8}$
+        \item $10.1011_2=2\,\frac{11}{16}$
+    \end{enumerate}
+\item Decimal to 2`s complement.\begin{enumerate}
+        \item $17\to101111$ 
+        \item $21\to101011$
+        \item $-19\to010011$
+        \item $-27\to011011$
+    \end{enumerate}
+    \item2`s complement to Decimal:\begin{enumerate}
+        \item $0010101\to21$
+        \item $0011010\to26$
+    \item $1010101\to-43$
+    \item $1110010\to-14$
+    \end{enumerate}
+\item Binary addition:\begin{enumerate}
+            \item \[1101+0110=10011\] 
+            \item \[101+011=1000\]
+            \item \[01.01+10.11=100.00\]
+            \item \[11.0110+00.1101=100.0011\]
+    \end{enumerate}
+\item 2's complement addition:
+    \[1010+0110=10000\tag{Underflow}\]
+    \[0101+0011=1000\tag{Overflow}\]
+    \[0111+1100=10011\tag{Underflow}\]
+    \[1011+1100=10111\]
+\item \begin{enumerate}
+    \item Memory Module: Very fast, but low storage. Can read and write very quickly.
+    \item Hard Drive: Slower to read and write data, much larger storage for similar size.
+    \item CD-ROM: Even slower than HDD, prone to damaging the physical disk, losing data.
+\end{enumerate}
+\item The faster the platter spins, the faster the computer can locate the data you ask for. (Since it is sequential, it has to first go through all of the data leading up to it.)
+\item CD-RW is rewriteable, whereas CD-R is not. CD-RW is WMRM, CD-R is WORM.
+\item Higher sample rate means a more accurate representation of the original sound. However it also consumes much more storage. 
+\item \begin{enumerate}
+    \item Resolution: The number of pixels in the bitmap, higher resolution means more pixels, which leads to a ``crisper'' image quality.
+    \item Color: Each pixel in the bitmap has some color, usually in hexadecimal, with a red, green and blue portion which defines its color.
+\end{enumerate}
+\item \begin{align*}
+        000 &\to 0001\\
+        001 &\to 0010\\
+        010 &\to 0100\\
+        011 &\to 0111\\
+        100 &\to 1000\\
+        101 &\to 1011\\
+        110 &\to 1101\\
+        111 &\to 1110\\
+\end{align*}
+    \item Data compression is important because video files grow huge very quickly, so being able to compress it into a smaller size greatly reduces the storage needed.
+\end{enumerate}
+\end{document}
