@@ -1,0 +1,195 @@
+\documentclass[hidelinks,12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{mathtools}
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{centernot}
+\usepackage{marvosym}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\setcounter{tocdepth}{1}
+\let\marvosymLightning\Lightning
+\renewcommand{\geq}{\geqslant}
+\renewcommand{\leq}{\leqslant}
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}{Corollary}[theorem]
+\newtheorem*{remark}{Remark}
+\renewcommand\qedsymbol{QED}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\divby}{%
+    \mathrel{\text{\vbox{\baselineskip.65ex\lineskiplimit0pt\hbox{.}\hbox{.}\hbox{.}}}}%
+}
+\newcommand{\notdivby}{\centernot\divby}
+\title{\scalebox{1.5}{CompSci 150 Homework 2}}
+\author{\scalebox{1.5}{Theo Koss}}
+\date{April 2024}
+
+\begin{document}
+
+\maketitle
+\begin{enumerate}
+    \item \begin{enumerate}
+            \item Similar: They both temporarily store data. They both can be accessed by the CPU, and they are both ``volatile'', meaning they lose their data when the computer's power is turned off.
+            \item Difference: They differ in capacity, and access speed. Registers - fast but limited in size, main memory larger capacity but slower. They also differ in their role, registers serve as storage for data being changed by the CPU, when a program is excecuted. Main memory cells serve as the main storage for programs.
+        \end{enumerate}
+    \item \begin{enumerate}
+            \item $0x2304$:\[0010\ 0011\ 0000\ 0100\]
+            \item Opcode of $0xB2A5$:\[B=1011\]
+            \item Operand of $0xB2A5$:\[2A5=0010\ 1010\ 0101\]
+        \end{enumerate}
+    \item Start: $0x98=152_{10}$ end: $0xA2=162_{10}$.\\ There are 11 memory cells in this block. The addresses are counting up in hex from $0x98$ to $0xA2$:\begin{align*}
+        0x98\\
+        0x99\\
+        0x9A\\
+        0x9B\\
+        0x9C\\
+        0x9D\\
+        0x9E\\
+        0x9F\\
+        0xA0\\
+        0xA1\\
+        0xA2\\
+    \end{align*}
+\item Value of the program counter after $0xB0CD$ is the operand, $CD$.
+    \item[6.] \begin{enumerate}
+        \item First, load each value from memory into its own register.
+        \item Add together the registers containing $x$ and $y$ (only 2 at a time).
+        \item Add the result to the register containing $z$.
+        \item Store the result in memory.
+    \end{enumerate}
+    For $(2x)+y$, load each value into its own register, multiply the register containing $x$ by 2, then add the result to the register containing $y$. Then store the result in memory.
+    \item[7.]Translate to English:
+        \begin{enumerate}
+            \item $0x7123$: OR the bit patterns in registers $2$ and 3, placing the result in register $1$.
+            \item $0x40E1$: MOVE the bit pattern in register $E$ to register 1.
+            \item $OxA304$: ROTATE the bit pattern in register 3 to the right, 4 times.
+            \item $OxB100$: JUMP to the instruction at address $00$ if register $1$ has the same bit pattern as register 0. Otherwise, continue.
+            \item $0x2BCD$: LOAD register $B$ with bit pattern $CD$.
+        \end{enumerate}
+    \item[9.] Translate from English to Vole:
+        \begin{enumerate}
+            \item $0x2677$
+            \item $0x1677$
+            \item $0xBA24$
+            \item $0xA403$
+            \item $0x81E2$
+        \end{enumerate}
+    \item[11.]Classify whether the instruction changes the contents of the memory cell at location $0x3C$, retrieves the contents of $0x3C$, or is independent of $0x3C$.
+        \begin{enumerate}
+            \item $0x353C$: Changes.
+            \item $0x253C$: Retrieves.
+            \item $0x153C$: Retrieves.
+            \item $0x3C3C$: Changes.
+            \item $0x403C$: Independent.
+        \end{enumerate}
+    \item[12.]
+        \begin{enumerate}
+            \item Translate first instruction: $0x2655$ = LOAD register 6 with the bit pattern 55.
+            \item If PC started containing $0x00$, what bit patterns is in register $0x6$ when the machine halts?: Bit pattern: 55.
+        \end{enumerate}
+    \item[13.]\begin{enumerate}
+        \item First instruction: $0x1221$ = LOAD register 2 with the bit pattern found in 21.
+        \item First instruction starting with $0x01$: $0x2134$ = LOAD register 1 with bit pattern 34.
+    \end{enumerate}
+    \item[15.]
+        \begin{enumerate}
+            \item When the machine halts, the bit pattern found in register $A$ will be in address $0x00$.\\ Register $A$ contains: ADD bit patterns of register $B$ and $C$. $B$ contains: bit pattern $03$. $C$ also contains bit pattern $03$. So $A$ is the sum of $0x03$ and $0x03$.
+            \item Program counter has bit pattern $0x0A$.
+        \end{enumerate}
+    \item[18.]Value in register $0x0$: $0010+0010=0100=4_{10}$.
+    \item[23.]Write a prograam in Vole to perform:
+        \begin{enumerate}
+            \item Move the value at memory location $0xD8$ to memory location $0xB3$.\begin{align*}
+                    \text{Address}&\quad\text{Contents}\\
+                    0x00 &\quad 0x11\\
+                    0x01 &\quad 0xD8\\
+                    0x02 &\quad 0x31\\
+                    0x03 &\quad 0xB3\\
+                    0x04 &\quad 0xC0\\
+                    0x05 &\quad 0x00\\
+            \end{align*}
+            \item Interchange the values stored at memory locations $0xD8$ and \\$0xB3$.
+                \begin{align*}
+                    \text{Address}&\quad\text{Contents}\\
+                    0x00 &\quad 0x11\\
+                    0x01 &\quad 0xD8\\
+                    0x02 &\quad 0x12\\
+                    0x03 &\quad 0xB3\\
+                    0x04 &\quad 0x31\\
+                    0x05 &\quad 0xB3\\
+                    0x06 &\quad 0x32\\
+                    0x07 &\quad 0xD8\\
+                    0x08 &\quad 0xC0\\
+                    0x09 &\quad 0x00\\ 
+                \end{align*}
+            \item If the value stored in $0x44$ is $0x00$, then place the value 
+                $0x01$ in memory location $0x46$, otherwise put the value $0xFF$ in memory location $0x46$.
+                \begin{align*}
+                    \text{Address}&\quad\text{Contents}\\
+                    0x00 &\quad 0x11\\
+                    0x01 &\quad 0x44\tag{Load reg. 1 with value of mem. loc. 0x44}\\
+                    0x02 &\quad 0x20\\
+                    0x03 &\quad 0x00\tag{Load reg. 2 with bit pattern 0x00}\\
+                    0x04 &\quad 0x23\\
+                    0x05 &\quad 0x01\tag{Load reg. 3 with bit pattern 0x01}\\
+                    0x06 &\quad 0xB1\\
+                    0x07 &\quad 0x0E\tag{Check if reg. 1 is equal to reg. 0, if true, jump to 0x0E. If false, continue.}\\
+                    0x08 &\quad 0x24\\
+                    0x09 &\quad 0xFF\tag{Load reg. 4 with bit pattern 0xFF}\\
+                    0x0A &\quad 0x34\\
+                    0x0B &\quad 0x44\tag{Store reg. 4 to mem. loc. 0x44}\\
+                    0x0C &\quad 0xC0\\
+                    0x0D &\quad 0x00\tag{Halt}\\
+                    0x0E &\quad 0x33\\
+                    0x0F &\quad 0x44\tag{Store reg. 3 to mem. loc. 0x44}\\
+                    0x10 &\quad 0xC0\\
+                    0x11 &\quad 0x00\tag{Halt}\\
+                \end{align*}
+
+        \end{enumerate}
+    \item[34.]\begin{enumerate}
+            \item
+                \begin{align*}
+                    & 111001\\
+                    \text{AND }& 101001\\
+                    = & 101001\\
+                \end{align*}
+            \item[c.]
+                \begin{align*}
+                    & 001110\\
+                    \text{AND }& 010101\\
+                    = & 000100\\
+                \end{align*}
+            \item[i.]
+                \begin{align*}
+                    & 111001\\
+                    \text{XOR }& 101001\\
+                    = & 010000\\
+                \end{align*}
+        \end{enumerate}
+        (P.S. A link between math and CS: ``AND'' is multiplication in the boolean ring $\Z/2\Z$, and ``XOR'' is addition (mod 2))
+        \[0\cdot1=0\quad 1\cdot1=1\quad 0\cdot0=0\]
+        \[0+1=1\quad 1+1=0\quad 0+0=0\]
+        and:
+        \[1\cdot(1+0)=(1\cdot1)+(1\cdot0)=1+0=1\tag{Multiplication distributes over +}\]
+        Corresponds to the truth tables for AND and XOR.
+    \item[35.]Identify mask and logical operation needed:
+        \begin{enumerate}
+            \item Put 1s in the upper 4 bits of an 8-bit pattern without disturbing the other bits:
+                \[\text{Mask }=11110000\]
+                \[\text{Operation = OR}\]
+            \item Complement the most significant bit of an 8-bit pattern without changing the other bits:
+                \[\text{Mask }=10000000\]
+                \[\text{Operation = XOR}\]
+            \item[d.] Put a 0 in the least significant bit of an 8-bit pattern without disturbing the other bits:
+                \[\text{Mask }=11111110\]
+                \[\text{Operation = AND}\]
+                (Essentially, multiply every bit by 1, except least significant bit which gets multiplied by 0)
+        \end{enumerate}
+\end{enumerate}
+\end{document}
