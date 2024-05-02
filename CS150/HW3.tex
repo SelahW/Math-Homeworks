@@ -1,0 +1,92 @@
+\documentclass[hidelinks,12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{mathtools}
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{centernot}
+\usepackage{marvosym}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\setcounter{tocdepth}{1}
+\let\marvosymLightning\Lightning
+\renewcommand{\geq}{\geqslant}
+\renewcommand{\leq}{\leqslant}
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}{Corollary}[theorem]
+\newtheorem*{remark}{Remark}
+\renewcommand\qedsymbol{QED}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\divby}{%
+    \mathrel{\text{\vbox{\baselineskip.65ex\lineskiplimit0pt\hbox{.}\hbox{.}\hbox{.}}}}%
+}
+\newcommand{\notdivby}{\centernot\divby}
+\title{\scalebox{1.5}{CompSci 150 Homework 3}}
+\author{\scalebox{1.5}{Theo Koss}}
+\date{May 2024}
+
+\begin{document}
+
+\maketitle
+\begin{enumerate}
+    \item Four activities of a typical operating system:
+        \begin{enumerate}
+            \item Process management.
+            \item Memory management.
+            \item Access to file system, ability to create/modify/delete.
+            \item Device management, including inputs such as keyboards, mice, other devices.
+        \end{enumerate}
+    \item In batch processing, tasks are collecting into ``batches'' and are executed without direct interaction from the user. (Maybe like running sudo dnf update on Fedora or sudo apt update on other linux distros)\\
+        Interactive processing involves direct user interaction in real time. Input is provided and the system spits out a result immediately.
+    \item[5.] A multitasking operating system is an operating system that allows multiple tasks or processes to run at the same time. ``Parallel excecution''. 
+    \item[6.] I can watch a youtube video on my phone (Pixel 6a) while scrolling social media e.g. Twitter. Also on my PC/Laptop, discord (for example) can be running in the background, while I'm doing something else.
+    \item[8.]\begin{enumerate}
+            \item User interface is the part which allows users to interact with the computer. This includes command lines and GUI's. Makes running commands and performing actions easy.
+            \item The kernel is the part of the operating system which manages system resources and allows software applications to interact with the actual hardware in the computer. Includes process management, memory management, file system management and other important processes.
+        \end{enumerate}
+    \item[10.] A process is a running program. It represents a sequence of instructions being executed, and has its own memory, data, and system resources which are allocated by the OS.
+    \item[11.] A process table contains:\begin{itemize}
+            \item Process ID
+            \item Process state
+            \item Program counter
+            \item CPU Registers
+            \item Memory management information
+    \end{itemize}
+    \item[12.] A process which is ready is prepared to execute and is ready to be run by the CPU.\\
+        A process which is waiting is unable to execute, and it is waiting for some event to occur before it can.
+    \item[16.]\begin{itemize}
+            \item Application software is designed for users to peform specific tasks, such as Mozilla Firefox, GNU Image Processing (GIMP) and other applications such as games.
+            \item System software on the other hand provides the foundation and the essential services which are needed to operate the computer.
+        \end{itemize}
+    \item[18.] The booting process is as follows:\begin{enumerate}
+            \item POST: Power on self test. The hardware components run a self-test. 
+            \item BIOS Initializes: Basic input/output system.
+            \item Boot excecution: Can choose which operating system to boot into (if you have multiple)
+            \item Kernel Initializes.
+            \item User Login
+    \end{enumerate}
+    \item[19.] The booting process is necessary because the computer needs to initialize many components, such as hardware, operating system/kernel, and system software. Without this the computer will not function.
+    \item[24.] \begin{itemize}
+            \item CPU times, when to run what.
+            \item RAM allocation.
+            \item Input and output devices (keyboards, mice, speakers, etc...)
+            \item File system, what is stored where, who has access to what data (admin user vs normal user)
+            \item Application software, user running games or other applications.
+        \end{itemize}
+    \item[27.] When a process' time slice is over, \begin{enumerate}
+            \item Suspend that process.
+            \item Save process state.
+            \item Update process status.
+            \item Select next process to execute.
+            \item Resume excecution.
+            \item Repeat.
+    \end{enumerate}
+    \item[28.] Contained in the state of a process is the Process ID, position of the Program Counter, CPU register values, memory management, and other useful information.
+    \item[29.] One example is if there is limited resources. If a process needs access to a specific resource which is currently low, it may enter a waiting state. This does not consume the process' full allocated time slice 
+    \item[33.] An important use for the test-and-set instruction is mutual exclusion, which is designed to only allow one process to access a shared resource at one time. Test-and-set is used to assure that only one process can try to access a resource at once, by using lock variables and checking the result.
+\end{enumerate}
+\end{document}
