@@ -1,0 +1,50 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{mathtools}
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{centernot}
+\usepackage{marvosym}
+\let\marvosymLightning\Lightning
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}{Corollary}[theorem]
+\newtheorem*{remark}{Remark}
+\renewcommand\qedsymbol{QED}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\divby}{%
+  \mathrel{\text{\vbox{\baselineskip.65ex\lineskiplimit0pt\hbox{.}\hbox{.}\hbox{.}}}}%
+  }
+\newcommand{\notdivby}{\centernot\divby}
+\title{\scalebox{2}{Math 341 Exam 3}}
+\author{\scalebox{1.5}{Theo Koss}}
+\date{November 2020}
+\begin{document}
+\maketitle
+\section{Problem 1}
+Give an example of a relation that is reflexive and transitive, but not symmetric.
+\begin{proof}
+Consider the set $X=\{1,2,3\}$ and the relation $R=\{(1,1),(2,2),(3,3),(1,2),(2,3),(1,3)\}$. This is reflexive because all of $(1,1),(2,2),(3,3)$ are in the relation. It is transitive because $1R2,2R3\Longrightarrow1R3$ is true. However it is not symmetric because $(1,3)$ is in the relation, but $(3,1)$ is not. In other words, you can start at 1 and get to 3, but you can't start at 3 and get to 1.
+\end{proof}
+\section{Problem 2}
+Fix $n\in\N$, prove that if $a\equiv b\mod{n}$, and $c\equiv d\mod{n}$, then $ac\equiv bd\mod{n}$.
+\begin{proof}
+By definition, if $a\equiv b\mod{n}$, then $$b=a+nk$$, for some $k\in\Z$ and similarly, $$d=c+nl$$ for some $l\in\Z$. \newline N2S: $bd=ac+nq$, since this shows $bd\equiv ac\mod{n}$. So $$bd=(a+nk)(c+nl)=ac+anl+cnk+n^2kl$$ Thus, $$bd=ac+n(al+ck+nkl)$$ Let $q=(al+ck+nkl)$. This shows that $bd=ac+nq$, for some $q\in\Z$, therefore $bd\equiv ac\mod{n}$.
+\end{proof}
+\section{Problem 3}
+Determine if $x\mod{n}$ is invertible, and if yes, find its inverse for the following pairs:
+\begin{enumerate}
+    \item $x=15, n=42$. By problem 10.1, an element $x\mod{n}$ is invertible iff $\gcd(x,n)=1$. In this case, $\gcd(15,42)=3$, therefore $x$ is a zero divisor, and therefore has no inverse.
+    \item $x=22, n=13$. $x\equiv9\mod{13}$, and by the same argument, $\gcd(9,13)=1$, so $x$ has an inverse, $x'=3$, since $9\cdot3=27\equiv1\mod{13}$.
+\end{enumerate}
+\section{Problem 4}
+Let $n\in\N$ and $y\in\Z_n$. Suppose that the left multiplication map $L_y:\Z_n\to\Z_n$ is bijective. Prove that $y$ is invertible.
+\begin{proof}
+N2S: $\exists y'\in\Z_n$ such that $y'y\equiv1\mod{n}$.\newline If the left multiplication map $L_y:\Z_n\to\Z_n$ is bijective, then it is injective and surjective. By the definition of surjectivity, this means every number $x\in\{1,2,...,n-1\}$ is mapped to. This means there must be some mapping $L_y$ from $y$ to 1, and therefore $y$ has an inverse (is invertible).
+\end{proof}
+\section{Problem 5}
+Find $1120^{1012}\mod{11}$.
+\newline Note $1120\equiv9\mod{11}$, and by FlT, since 11 is prime, $a^{10}\equiv1\mod{11}$. $$9^{1012}=9^{10\cdot101+2}=(9^{10})^{42}(9^2)=1\cdot9^2=81\equiv4\mod{11}$$
+\end{document}

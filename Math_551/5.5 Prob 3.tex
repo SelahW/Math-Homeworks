@@ -1,0 +1,32 @@
+\documentclass[hidelinks,12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[table,xcdraw]{xcolor}
+\usepackage{mathtools}
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{centernot}
+\usepackage{marvosym}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\setcounter{tocdepth}{1}
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}
+\let\marvosymLightning\Lightning
+\renewcommand{\skip}{\par\null\par}
+\newcommand{\T}{\mathcal T}
+\renewcommand{\O}{\mathcal{O}}
+\renewcommand{\Lightning}{\scalebox{1.5}{\marvosymLightning}}
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}{Corollary}[theorem]
+\newtheorem*{remark}{Remark}
+\renewcommand\qedsymbol{QED}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\divby}{%
+  \mathrel{\text{\vbox{\baselineskip.65ex\lineskiplimit0pt\hbox{.}\hbox{.}\hbox{.}}}}%
+  }
+\newcommand{\notdivby}{\centernot\divby}\begin{document}
+Let $X$ be a space and $P$ a path component of $X$. Prove that $P$ is a subset of some component of $X$.\begin{proof}Let $C$ be a component of $X$, $x$ a point of $C$ and $P$ be the path component of $X$ which contains $x$.\skip Then, since $P$ is by definition path connected, it must also be connected. Since $P$ is connected, $P\subset C$.\end{proof}\end{document}

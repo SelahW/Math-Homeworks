@@ -1,0 +1,64 @@
+\documentclass[a4paper,12pt]{extarticle}
+\usepackage{geometry,microtype,mathtools,amsthm,amssymb, enumitem}
+\usepackage[utf8]{inputenc}
+\usepackage[font=small,labelfont=bf]{caption}
+\theoremstyle{definition}
+\newtheorem{definition}{Definition} \newtheorem{theorem}{Theorem} \newtheorem{corollary}{Corollary}[theorem] \newtheorem*{remark}{Remark}
+\newcommand{\R}{\mathbb{R}} \newcommand{\Q}{\mathbb{Q}} \newcommand{\Z}{\mathbb{Z}} \newcommand{\N}{\mathbb{N}} \newcommand{\myskip}{\par\null\par} \renewcommand\qedsymbol{QED} \renewcommand{\leq}{\leqslant}\renewcommand{\geq}{\geqslant}
+\title{Math 431 Homework 11} 
+\author{Theo Koss}
+\date{November 2022}
+\begin{document}
+\maketitle
+\section{Section 9.4}
+\begin{itemize}
+    \item Problem 18: Prove that the subgroup of $\Q^*$ consisting of elements of the form $2^m3^n$ for $m, n\in\Z$ is an internal direct product isomorphic to $\Z\times\Z$.\begin{proof} To be an internal direct product, the subgroups $H$ and $K$ must satisfy the following properties:
+    \begin{enumerate}
+        \item $S=HK=\{2^m3^n:2^m\in H,3^n\in K\}$. \checkmark
+        \item $H\cap K = \{e\}$. \checkmark\ since $m=0,n=0\implies 1\in H, 1\in K$. For $m,n>0$, $2^m$ is even, and $3^n$ is odd, therefore they will never intersect again. 
+        \item $hk=kh$ for all $h\in H$ and $k\in K$. \checkmark\ $2^m\cdot3^n=3^n\cdot2^m$ for all $m,n$, by commutativity of integers.
+    \end{enumerate}
+    Now, to show $S\cong \Z\times\Z$, by Theorem 9.27, $S\cong H\times K$, so it remains to show that $H\cong \Z$ and $K\cong \Z$. Define an isomorphism $\phi:\Z\to H$, by $\phi(m)=2^m$. Now we must show \begin{enumerate}
+        \item Well-defined, suppose $m=a$, then $\phi(m)=2^m=2^a=\phi(a)$. Thus $\phi$ is well-defined. \checkmark
+        \item Order-preserving, 
+        \begin{align*}
+            \phi(m+a)&=2^{m+a}\\
+            &=2^m2^a\\
+            &=\phi(m)\phi(a)
+        \end{align*}\checkmark
+        \item Injective, if $\phi(m)=\phi(a)$, then $2^m=2^a\implies m=a$. \checkmark
+        \item Surjective, take an arbitrary $h\in H$, since it is in $H$, $h=2^m$ for some $m\in\Z$. \checkmark 
+    \end{enumerate}
+    The proof of $K\cong\Z$ is similar.
+    \end{proof}
+\end{itemize}
+\section{Section 10.4}
+\begin{itemize}
+    \item Problem 13:
+    \begin{enumerate}[label=(\alph*)]
+        \item Center of $S_3$ is $Z(S_3)=\{e\}$. The identity is the only element which commutes with all elements.
+        \item Center of $GL_2(\R)$ is $Z(GL_2(\R))=\left\{\begin{pmatrix}
+            a & 0 \\
+            0 & a 
+        \end{pmatrix},a\in\R\backslash 0\right\}$ Because this is just the identity matrix scaled by a nonzero scalar $a\in\R$.
+        \item \begin{proof}
+        Let $x\in Z(G)$, then $\forall g,g^{-1}\in G$, $gxg^{-1}=gg^{-1}x=ex=x$. Therefore $Z(G)$ is normal in $G$. It remains to show that it is a subgroup.\begin{itemize}
+            \item $e\in Z(G)$, clearly.
+            \item $\forall a,b\in Z(G)$, $ag=ga$ and $bg=gb$, so $g\cdot(ab)=agb=(ab)\cdot g$ therefore $ab\in G$.
+            \item Let $h\in Z(G)$, to show that the inverse is in $Z(G)$, we must show that $h^{-1}g=gh^{-1}$. $$h^{-1}(gh)h^{-1}=h^{-1}(hg)h^{-1}$$ Grouping $h$ with $h^{-1}$ using associativity, $$h^{-1}ghh^{-1}=h^{-1}hgh^{-1}$$ $$h^{-1}g=gh^{-1}$$ thus $h^{-1}\in Z(G)$.
+        \end{itemize} Therefore $Z(G)$ is a subgroup. Thus we have shown $Z(G)$ is a normal subgroup for all groups $G$.
+        \end{proof}
+        \item \begin{proof}
+        Let $G\slash Z(G)$ be a cyclic group. Then $\exists a\in G\slash Z(G)$ such that $\langle a \rangle=G\slash Z(G)$. Since this is a quotient group, we know $a$ is a coset of $G$. Therefore $\exists \alpha$ such that $a=\alpha Z(G)$. Furthermore, each coset of $G$ is some multiple of $\alpha$, i.e. $G=\alpha^k Z(G)$ for $k\in\Z$.\myskip Now consider two elements $g,h\in G$. So $g\in\alpha^kZ(G)$ and $h\in\alpha^lZ(G)$ for integers $k,l$. We must show that they commute. Consider two elements of $Z(G)$, $z_1$ and $z_2$. Then, by our definition, $g=\alpha^kz_1$ and $h=\alpha^lz_2$. So:\begin{align*}
+            g\cdot h&=\alpha^kz_1\cdot\alpha^lz_2\\
+            &=\alpha^k\alpha^lz_1z_2\\
+            &=\alpha^{k+l}z_1z_2\\
+            &=\alpha^{l+k}z_2z_1\\
+            &=\alpha^{l}\alpha^kz_2z_1\\
+            &=\alpha^lz_2\alpha^kz_1\\
+            &=h\cdot g
+        \end{align*} Thus $G$ is abelian.
+        \end{proof}
+    \end{enumerate}
+\end{itemize}
+\end{document}

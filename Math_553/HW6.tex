@@ -1,0 +1,59 @@
+\documentclass[a4paper,17pt]{extarticle}
+\usepackage{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage[table,xcdraw]{xcolor}
+\usepackage{mathtools}
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{centernot}
+\usepackage{marvosym}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\setcounter{tocdepth}{1}
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}
+\let\marvosymLightning\Lightning
+\renewcommand{\skip}{\par\null\par}
+\newcommand{\T}{\mathcal T}
+\renewcommand{\O}{\mathcal{O}}
+\renewcommand{\Lightning}{\scalebox{1.5}{\marvosymLightning}}
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}{Corollary}[theorem]
+\newtheorem*{remark}{Remark}
+\renewcommand\qedsymbol{QED}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\divby}{%
+  \mathrel{\text{\vbox{\baselineskip.65ex\lineskiplimit0pt\hbox{.}\hbox{.}\hbox{.}}}}%
+  }
+\newcommand{\notdivby}{\centernot\divby}
+\title{\scalebox{2}{Math 553 Homework 6}}
+\author{\scalebox{1.5}{Theo Koss}}
+\date{May 2022}
+\begin{document}
+\maketitle
+\section{Section 2.5}
+\begin{itemize}
+    \item Problem 2: Let $x(\phi,\theta)=(\sin\theta\cos\phi,\sin\theta\sin\phi,\cos\theta)$ be a parametrization of the unit sphere $S^2$. Let $P$ the plane $x=z\cot\alpha,0<\alpha<\pi$, and $\beta$ be the acute angle which the curve $P\cap S^2$ makes with the semimeridian $\phi=\phi_0$. Compute $\cos\beta$.\skip $$X_{\phi}=(-\sin\theta\sin\phi,\sin\theta\cos\phi,0)$$ $$X_{\theta}=(\cos\theta\cos\phi,\cos\theta\sin\phi,-\sin\theta)$$
+    From p. 115, the loxodrome calculation: $$\cos\beta=\frac{\theta'}{\sqrt{(\theta')^2+(\phi')^2\sin^2\theta}}$$ We know that $\frac{x}{z}=\tan\theta\cos\phi=\cot\alpha$. Differentiating w.r.t. $\theta$: $$\sec^2\theta\cos\phi=0$$ w.r.t. $\phi$: $$-\tan\theta\sin\phi=0$$ These hold whence $\phi=\frac{\pi}{2}$ and $\theta=0$. (I'm stuck here, I know I'm supposed to use the eqn I put above, but I don't understand what $\theta'$ and $\phi'$ are, since there is no parametrization. I tried differentiating the other eqn that the problem gave me but I don't understand the result.)
+    \item Problem 12: Show that the area of a regular tube of radius $r$ around a curve $\alpha$ is $2\pi r$ times the length of $\alpha$.\begin{proof}Let $X(s,v)=\alpha(s)+r(n(s)\cos v+b(s)\sin v), r\neq0,s\in I$ be the parametrization for such a tube. From the text, area is defined as $$A(R)=\iint_Q|X_s\times X_v|dsdv,\quad Q=X^{-1}(R)$$ For parametrization $X(s,v)$. $$X_s=t(s)+r((-\kappa t(s)+\tau b(s))\cos v-\tau n(s)\sin v)$$ $$X_v=r(-n(s)\sin v+b(s)\cos v)$$ Rewriting in terms of the Frenet Frame:\begin{align*}
+         X_s&=(1-r\kappa\cos v)\mathbf{t}-r\tau\sin v\mathbf{n}+r\tau\cos v\mathbf{b}\\ 
+         X_v&=-r\sin v\mathbf{n}+r\cos v\mathbf{b}\\
+         X_s\times X_v&=-r(1-r\kappa\cos v)(\mathbf{n}\cos v+\mathbf{b}\sin v)\\
+        |X_s\times X_v|&=\sqrt{r^2(n\cos v+b\sin v-br\kappa\sin v\cos v-nr\kappa\cos^2v)^2}\\
+        &=\sqrt{r^2((\cos v-r\kappa\cos^2v)n)^2+r^2((\sin v-r\kappa\sin v\cos v)b)^2}\\
+    \end{align*}
+    Again I got lost, I am not understanding this section
+    \end{proof}
+    \item Problem 14: The gradient of a differentiable function $f:S\to\R$ is a differentiable map grad $f:S\to\R^3$ which assigns to each point $p\in S$ a vector grad $f(p)\in T_pS\subset\R^3$ such that $$\langle\text{grad}f(p),v\rangle_p=df_p(v)\quad\text{For all }v\in T_pS.$$ Show that:\begin{enumerate}[label=\alph*.]
+        \item If $E,F,G$ are coefficients of the first fundamental form in a parametrization $x:U\subset\R^2\to S$, then grad $f$ on $x(U)$ is given by $$\text{grad} f=\frac{f_uG-f_vF}{EG-F^2}x_u+\frac{f_vE-f_uF}{EG-F^2}x_v$$ In particular, if $S=\R^2$ with coordinates $x,y$: $$\text{grad} f=f_xe_1+f_ye_2$$\skip Let $p=X(u,v)$ be a point, if $f:S\to\R$ is a differentiable function then grad $f(p)\in T_pS$. Thus $$\text{grad}f(p)=\alpha X_u+\beta X_v$$ for functions $\alpha,\beta$ defined on $U$. Using this, we achieve the following: $$f_u=\alpha E+\beta F\quad f_v=\alpha F+\beta G$$ Now, solving for $\alpha$ from this system: $$f_u-f_v=\alpha(E-F)+\beta(F-G)$$ $$\alpha=\frac{f_uE-f_uF-f_vE+f_vF}{\beta F-\beta G}$$
+        Then doing a similar thing for $\beta$ and
+        plugging in to the eqn above: $$\text{grad}f(p)=\frac{f_uG-f_vF}{EG-F^2}x_u+\frac{f_vE-f_uF}{EG-F^2}x_v$$
+        \item If you let $p\in S$ be fixed and $v$ vary in the unit circle $|v|=1$ in $T_pS$, then $df_p(v)$ is maximum iff $v=\text{grad}f/|\text{grad}f|$.\skip $$\langle\text{grad}f,v\rangle=|\text{grad}f(p)|\cos\theta\leq|\text{grad}f(p)|$$ if $|v|=1$. Then the upper bound must be given by $v=\text{grad}f/|\text{grad}f|$.
+        \item 
+    \end{enumerate}
+\end{itemize}
+\end{document}

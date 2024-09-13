@@ -1,0 +1,131 @@
+\documentclass[hidelinks,12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[table,xcdraw]{xcolor}
+\usepackage{mathtools}
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{centernot}
+\usepackage{marvosym}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\setcounter{tocdepth}{1}
+\let\marvosymLightning\Lightning
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}{Corollary}[theorem]
+\newtheorem*{remark}{Remark}
+\renewcommand\qedsymbol{QED}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\divby}{%
+  \mathrel{\text{\vbox{\baselineskip.65ex\lineskiplimit0pt\hbox{.}\hbox{.}\hbox{.}}}}%
+  }
+\newcommand{\notdivby}{\centernot\divby}
+\title{\scalebox{2}{Math 531 Homework 4}}
+\author{\scalebox{1.5}{Theo Koss}}
+\date{February 2021}
+\begin{document}
+\maketitle
+\section{Section 3.1}
+\begin{itemize}
+    \item Problem 2: For each binary operation $*$ defined on a set below, determine whether or not $*$ gives a group structure on the set. If it is not a group, say which axioms fail to hold.\begin{enumerate}[label=(\alph*)]
+        \item Define $*$ on $\Z$ by $a*b=ab$. This is not a group. It fails to have inverses for every elements except -1 and 1.
+        \item Define $*$ on $\Z$ by $a*b=\max\{a,b\}$. This operation fails to have an identity.
+        \item $*$ on $\Z$, $a*b=a-b$. This is not a group. It fails to be associative.
+        \item $*$ on $\Z$, $a*b=|ab|$. This is not a group. It fails to have inverses.
+        \item $*$ on $\R^+$, $a*b=ab$. This is a group, Identity: 1. Inverses: $\forall a\in\R^+, a\cdot\frac{1}{a}=e$, and $\frac{1}{a}$ is of course in $\R^+$.
+        \item $*$ on $\Q$, $a*b=ab$. This is a group, Identity: 1. $\forall a\in\Q, a\cdot\frac{1}{a}=e$, and $\frac{1}{a}$ is again in $\Q$.
+    \end{enumerate}
+    \item Problem 3: Let $(G,\cdot)$ be a group. Define a new bin. op. $*$ on $G$ by the formula $a*b=b\cdot a$, for all $a,b\in G$.\begin{enumerate}[label=(\alph*)]
+        \item Show that $(G,*)$ is a group.\begin{proof}Without loss of generality, assume $\cdot$ is defined by $a\cdot b=a+b$, for some $a,b\in G$, and where $+$ denotes traditional addition. Then $*$ is defined as $a*b=b\cdot a=b+a$. This is clearly a group.
+        \end{proof}
+        \item $(G,*)=(G,\cdot)$ iff $(G,\cdot)$ is an abelian group.
+    \end{enumerate}
+    \item Problem 11: Show that the set of all $2\times2$ matrices over $\R$ of the form $\begin{bmatrix}
+m & b\\
+0 & 1
+\end{bmatrix}$ with $m\neq0$ forms a group under matrix multiplication.\begin{proof}For notation's sake, call this set $G$. To prove this is a group, we N2S three things,\begin{enumerate}[label=\roman*]
+    \item There exists an identity element. Naturally, the identity element is $\begin{bmatrix}
+1 & 0\\
+0 & 1
+\end{bmatrix}$, this is of course in the set, as $1,0\in\R$.
+    \item There exists inverses for each element in $\R$. The inverse for each matrix $A\in G$ is $A^{-1}={\frac{1}{m}}\begin{bmatrix}
+1 & -b\\
+0 & m
+\end{bmatrix}=\begin{bmatrix}
+\frac{1}{m} & -\frac{b}{m}\\
+0 & 1
+\end{bmatrix}\in G$. Therefore, each element has an inverse.
+    \item The group operation is associative. Here we check: $\forall A,B,C\in G$, $(AB)C=A(BC)$.\newline $(AB)=\begin{bmatrix}
+m_a & b_a\\
+0 & 1
+\end{bmatrix}\cdot\begin{bmatrix}
+m_b & b_b\\
+0 & 1
+\end{bmatrix}=\begin{bmatrix}
+m_am_b & m_ab_b+b_a\\
+0 & 1
+\end{bmatrix}$.\newline $(AB)C=\begin{bmatrix}
+m_am_b & m_ab_b+b_a\\
+0 & 1
+\end{bmatrix}\cdot\begin{bmatrix}
+m_c & b_c\\
+0 & 1
+\end{bmatrix}=\begin{bmatrix}
+m_am_bm_c & m_am_bb_c+m_ab_b+b_a\\
+0 & 1
+\end{bmatrix}$.\newline $A(BC)=\begin{bmatrix}
+m_a & b_a\\
+0 & 1
+\end{bmatrix}\cdot\begin{bmatrix}
+m_bm_c & m_bb_c+b_b\\
+0 & 1
+\end{bmatrix}=\begin{bmatrix}
+m_am_bm_c & m_am_bb_c+m_ab_b+b_a\\
+0 & 1
+\end{bmatrix}\newline=(AB)C$. Therefore it is associative.
+\end{enumerate}
+\end{proof}
+    \item Problem 24: Let $G$ be a group. Prove that $G$ is abelian if and only if $(ab)^{-1}=a^{-1}b^{-1},\forall a,b\in G$.\begin{proof}Using these definitions, $$ab=((ab)^{-1})^{-1}=(a^{-1}b^{-1})^{-1}=(b^{-1})^{-1}(a^{-1})^{-1}=ba$$Therefore, if $(ab)^{-1}=a^{-1}b^{-1}$, then $G$ must be abelian.\newline For the other direction, if $G$ is abelian, then $ab=ba$. So we N2S that $(ab)^{-1}=a^{-1}b^{-1}$ follows from this. Indeed it does:$$(ab)^{-1}=b^{-1}a^{-1}=a^{-1}b^{-1}\text{ Since $G$ is abelian}$$As required.
+    \end{proof}
+\end{itemize}
+\section{Section 3.2}
+\begin{itemize}
+    \item Problem 1:\begin{enumerate}[label=(\alph*)]
+        \item $\begin{bmatrix}
+1 & -1\\
+1 & 0
+\end{bmatrix}$ Has order 6, because $\begin{bmatrix}
+1 & -1\\
+1 & 0
+\end{bmatrix}^6=I$.
+    \item $\begin{bmatrix}
+0 & 1\\
+-1 & 0
+\end{bmatrix}^4=I$, order 4.
+    \item $\begin{bmatrix}
+1 & 1\\
+0 & 1
+\end{bmatrix}^n=\begin{bmatrix}
+1 & n\\
+0 & 1
+\end{bmatrix}$, therefore this element has infinite order.
+    \item $\begin{bmatrix}
+-1 & 1\\
+0 & 1
+\end{bmatrix}^2=I$, order 2.
+    \end{enumerate}
+    \item Problem 3: Prove that the set of all rational numbers of the form $\frac{m}{n}$ where $m,n\in\Z$ and $n$ is square-free, is a subgroup of $Q$ under addition.\begin{proof} \begin{theorem}[Subgroup Test]\label{sgtest}Let $G$ be a group and let $H$ be a nonempty subset of $G$. If for all $a,b\in H$, $ab^{-1}\in H$, then $H\leqslant G$. \end{theorem}Proof of \ref{sgtest} \href{https://en.wikipedia.org/wiki/Subgroup_test}{\color{cyan}here}.\newline Using \ref{sgtest}, we N2S $\forall a,b\in H, ab^{-1}\in H$. In this case, that looks like $$ab^{-1}=\frac{m_a}{n_a}-\frac{m_b}{n_b}\in H$$This is of course true, because one of two things can happen, either \begin{enumerate}[label=(\roman*)]
+        \item $n_a$ and $n_b$ will share a divisor, in this case, the lcm of the two is that shared (prime, and therefore squarefree) factor.
+        \item $n_a$ and $n_b$ will be relatively prime, in this case, their product will be squarefree, so the denominator will be squarefree, as required.
+    \end{enumerate}
+    \end{proof}
+    \item Problem 7: Give an example of 3 permutations $\alpha,\beta,\gamma\neq e\in S_4$. Such that $\alpha\beta=\beta\alpha$ and $\beta\gamma=\gamma\beta$, but $\alpha\neq\gamma$.\newline Let $\beta=(23),\alpha=(1342),\gamma=(14)$, of course, since $\beta$ and $\gamma$ are disjoint, they commute. $\alpha\beta=(1342)(23)=(12)(34)=(23)(1342)=\beta\alpha$ as required.
+    \item Problem 12: Let $\sigma\in S_n$, and suppose $\sigma$ is written as a product of disjoint cycles. Show that $\sigma$ is even iff the number of cycles of even length is even. And show $\sigma$ is odd iff number of cycles of even length is odd.*Ask in class*\begin{proof}
+    \end{proof}
+\end{itemize}
+\end{document}

@@ -1,0 +1,79 @@
+\documentclass[a4paper,17pt]{extarticle}
+\usepackage{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage[table,xcdraw]{xcolor}
+\usepackage{mathtools}
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{centernot}
+\usepackage{marvosym}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\setcounter{tocdepth}{1}
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}
+\let\marvosymLightning\Lightning
+\renewcommand{\skip}{\par\null\par}
+\newcommand{\T}{\mathcal T}
+\renewcommand{\O}{\mathcal{O}}
+\renewcommand{\Lightning}{\scalebox{1.5}{\marvosymLightning}}
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}{Corollary}[theorem]
+\newtheorem*{remark}{Remark}
+\renewcommand\qedsymbol{QED}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\divby}{%
+  \mathrel{\text{\vbox{\baselineskip.65ex\lineskiplimit0pt\hbox{.}\hbox{.}\hbox{.}}}}%
+  }
+\newcommand{\notdivby}{\centernot\divby}
+\title{\scalebox{2}{Math 553 Homework 2}}
+\author{\scalebox{1.5}{Theo Koss}}
+\date{February 2022}
+\begin{document}
+\maketitle
+\section{Section 1.4}
+\begin{itemize}
+    \item Problem 2: A plane $P$ contained in $\R^3$ is given by the equation $ax+by+cz+d=0$. Show that the vector $v=(a,b,c)$ is perpendicular to the plane and that $|d|/\sqrt{a^2+b^2+c^2}$ measures the distance from the plane to the origin $(0,0,0)$.\begin{proof}Take two points on the plane: $(x_1,y_1,z_1),(x_2,y_2,z_2)$. They both satisfy: $$ax_1+by_1+cz_1=-d$$ $$ax_2+by_2+cz_2=-d$$ Then this gives $(x_1-x_2,y_1-y_2,z_1-z_2)\cdot(a,b,c)=0$. In other words, any vector on the plane is perpendicular to $(a,b,c)$.
+\end{proof}
+    \item Problem 4: Given two planes $a_ix+b_iy+c_iz+d_i=0$, $i=1,2$ prove that a necessary and sufficient condition for them to be parallel is $$\frac{a_1}{a_2}=\frac{b_1}{b_2}=\frac{c_1}{c_2}$$ Where the convention is made that if a denominator is zero, the corresponding number is  also zero.\begin{proof}$(\Longrightarrow):$ Consider two parallel planes, $$a_1x+b_1y+c_1z+d_1$$ $$a_2x+b_2y+c_2z+d_2$$
+    Since they are parallel, this implies that $a_1=a_2,b_1=b_2,c_1=c_2$. From this it is immediate that $\frac{a_1}{a_2}=\frac{b_1}{b_2}=\frac{c_1}{c_2}$.\skip$(\Longleftarrow):$ Assume that $\frac{a_1}{a_2}=\frac{b_1}{b_2}=\frac{c_1}{c_2}$. Then, the ratio of $a_1$ to $a_2$ must be exactly the ratio of $b_1$ to $b_2$, and that of $c_1$ and $c_2$. WLOG, consider these 3 ratios to be $k$. Then $ka_2=a_1$, $kb_2=b_1$ and $kc_2=c_1$. This shows that the normal vector of plane 2 is simply a multiple of the normal vector of plane 1. Therefore, the planes must be parallel.
+    \end{proof}
+    \item Problem 5: Show that an equation of a plane passing through three noncolinear points $p_1=(x_1,y_1,z_1)$, $p_2=(x_2,y_2,z_2)$, $p_3=(x_3,y_3,z_3)$ is given by $$(p_3-p_1)\wedge(p_3-p_2)\cdot(p-p_3)=0$$ where $p=(x,y,z)$ is an arbitrary point of the plane and $p-p_1$, for instance, means the vector $(x-x_1,y-y_1,z-z_1)$.\begin{proof}By the triple product determinant,$$[(p_3-p_1)\times(p_3-p_2)]\cdot(p-p_3)=det\left|
+    \begin{matrix}x_3-x_1 & y_3-y_1 & z_3-z_1\\
+    x_3-x_2 & y_3-y_2 & z_3-z_2 \\
+    x-x_3 & y-y_3 & z-z_3
+    \end{matrix}\right|=$$
+    $=[(x_3-x_1)\cdot((y_3-y_1)(z-z_3)-(z_3-z_2)(y-y_3))]$ \newline$-[(y_3-y_1)\cdot((x_3-x_2)(z-z_3)-(z_3-z_2)(x-x_3))]$ \newline$+[(z_3-z_1)\cdot((x_3-x_2)(y-y_3)-(y_3-y_2)(x-x_3))]$\newline Which is equal to $0$.
+    \end{proof}
+\end{itemize}
+\section{Section 1.5}\begin{itemize}
+    \item Problem 1: Given the parametrized curve (helix) $$\alpha(s)=\left(a\cos\left(\frac{s}{c}\right),a\sin\left(\frac{s}{c}\right),b\frac{s}{c}\right)$$ Where $c^2=a^2+b^2$.\begin{enumerate}[label={\alph*.}]
+        \item Show that $s$ is the arc length.\skip Arc length of helix given by: Arc length=$\sqrt{(a^2+b^2)}\frac{s}{c}$ $$=\sqrt{c^2}\frac{s}{c}$$ $$=c\cdot\frac{s}{c}=s$$ Therefore the arc length is $s$. 
+        \item Determine the curvature and torsion of $\alpha$.\skip $$\kappa=\frac{a}{a^2+b^2}=\frac{a}{c^2}$$ $$\tau=\frac{b}{a^2+b^2}=\frac{b}{c^2}$$
+        \item Determine the osculating plane of $\alpha$.\skip $$\begin{bmatrix}z_1-acos\left(\frac{s}{c}\right) & z_2-asin\left(\frac{s}{c}\right) & z_3-\frac{bs}{c}\\ -asin\left(\frac{s}{c}\right) & acos\left(\frac{s}{c}\right) & b\\ -acos\left(\frac{s}{c}\right) & -asin\left(\frac{s}{c}\right) & 0\end{bmatrix}=0$$ $$(z_1-acos (\frac{s}{c} ))(basin (\frac{s}{c} ))-(z_2-asin (\frac{s}{c} ))(bacos (\frac{s}{c} ))+(z_3-\frac{bs}{c})a^2=0$$ $$z_1bsin (\frac{s}{c} )-absin (\frac{s}{c} )cos (\frac{s}{c} )-z_2bcos (\frac{s}{c} )+abcos (\frac{s}{c} )sin (\frac{s}{c} )+(z_3-\frac{bs}{c})a=0$$ $$z_1bsin(\frac{s}{c})+z_2bcos(\frac{s}{c})+(z_3-\frac{bs}{c})a=0$$
+        \item Show that the lines containing $n(s)$ and passing through $\alpha(s)$ meet the $z$ axis under a constant angle equal to $\frac{\pi}{2}$. *Not sure
+        \item Show that the tangent lines to $\alpha$ make a constant angle with the $z$ axis. $$\theta=arccos\left(\frac{t(s)\cdot (0,0,1)}{|t(s)||(0,0,1)|}\right)=\frac{(-asin\frac{s}{c},acos\frac{s}{c},b)\cdot(0,0,1)}{|(-asin\frac{s}{c},acos\frac{s}{c},b)||(0,0,1)|}$$ $$=\frac{b}{\sqrt{a^2+b^2}}=\frac{b}{c}$$
+    \end{enumerate}
+    \item Problem 2: Show that the torsion $\tau$ of $\alpha$ is given by $$-\frac{\alpha'(s)\wedge \alpha''(s)\cdot\alpha'''(s)}{|k(s)|^2}$$ \begin{proof} By defintion $\alpha'(s)=t(s)$. Differentiating: $$\alpha''(s)=t'(s)=\kappa(s)n(s)$$ Again: $$\alpha'''(s)=\kappa'(s)n(s)+\kappa(s)n'(s)$$ $$n'=-\kappa t-\tau b$$ Thus: $$\alpha'''(s)=\kappa'(s)n(s)-\kappa(s)^2t(s)-\kappa(s)\tau(s)b(s)$$ Computing the cross product of $\alpha'(s)$ and $\alpha''(s)$: $$\alpha'(s)\times\alpha''(s)=\kappa(s)b(s)$$ So $$(\alpha'(s)\times\alpha''(s))\cdot\alpha'''(s)=-\kappa(s)^2\tau(s)$$ Therefore $$\tau=-\frac{\alpha'(s)\wedge \alpha''(s)\cdot\alpha'''(s)}{|k(s)|^2}$$
+    \end{proof}
+    \item Problem 4: Assume that all normals of a parametrized curve pass through a fixed point. Prove that the trace of the curve is contained in a circle.\begin{proof}Call the fixed point $p$, the curve $a(s)$, and a unit normal vector of the curve $n(s)$. Then $\alpha'(s)\cdot n(s)=0$. Since $n(s)$ passes through $p$, we have $\alpha(s)-p=kn(s)$ for some scalar $k$. So then: 
+    $$\frac{d}{ds}(|\alpha(s)-p|^2)=\frac{d}{ds}(\alpha(s)-p)\cdot(\alpha(s)-p)+(\alpha(s)-p)\cdot\frac{d}{ds}(\alpha(s)-p)$$ $$=2\frac{d}{ds}(\alpha(s)-p)\cdot(\alpha(s)-p)$$ $$=2\alpha'(s)\cdot(\alpha(s)-p)$$ $$=2\alpha'(s)\cdot kn(s)$$ $$=2k\alpha'(s)\cdot n(s)$$ $$=0$$ Therefore, $|\alpha(s)-p|^2$ is constant, thus $|\alpha(s)-p|$ is also constant. In other words, the distance between the curve $\alpha(s)$ and the fixed point $p$ is constant for all $s\in I$. This implies that the trace of $\alpha$ is a circle.
+    \end{proof}
+    \item Problem 6: \begin{enumerate}[label=\alph*.]
+        \item Demonstrate that the norm of a vector and the angle $\theta$ between two vectors, $0\leq\theta\leq\pi$, are invariant under orthogonal transformations with positive determinant.\skip Norm: Orthogonal transformation implies: $\exists\rho:\R^3\to\R^3$ Such that $\rho v\cdot\rho u=v\cdot u$. Need to show that $||v||=||\rho v||$. $$||\rho v||^2=\rho v\cdot\rho v=v\cdot v=||v||^2$$ Therefore norm is preserved.\skip Angle: Recall $cos\theta=\frac{u\cdot v}{||u||||v||}$. $$\cos\theta_{\rho}=\frac{\rho u\cdot \rho v}{||\rho u||||\rho v||}=\frac{u\cdot v}{||u||||v||}=cos\theta$$Therefore the angle is preserved under $\rho$.
+        \item Show that the vector product of two vectors is invariant under orthogonal transformations with positive determinant. Is the assertion still true if we drop the condition on the determinant?\skip $$\rho u\times\rho v=(det\rho)(u\times v)$$ Therefore, the vector product of two vectors is invariant if $det\rho=1$. If, on the other hand, $det\rho=-1$, then $\rho u\times\rho v\neq u\times v$.
+        \item Show that the arc length, the curvature, and the torsion of a parametrized curve are invariant under rigid motions.\skip\begin{proof}Let $\alpha:I\to\R^3$ be a parametrized curve and $T:\R^3\to\R^3$ a rigid motion. Let $\mathcal{L}$ be its length, $\kappa$ its curvature and $\tau$ its torsion. Since translations and orthogonal transformations preserve norm, $T$ preserves norm.\skip Arc length: $$\mathcal{L}_T(\alpha)=\int_{t_0}^t||T\alpha(t)||dt=\int_{t_0}^t||\alpha(t)||=\mathcal{L}(\alpha)$$Curvature, $\kappa(s)=||\alpha''(s)||$. Since $T$ is a linear transformation, it holds that $(T\alpha(s))''=T\alpha''(s)$. Therefore: $$\kappa_T(s)=||(T\alpha(s))''||=||T\alpha''(s)||=||\alpha''(s)||=\kappa(s)$$ For torsion, recall $\tau(s)n(s)=b'(s)$. $$\tau(s)n(s)=b'(s)=(t(s)\wedge n(s))'$$ $$=t'(s)\wedge n(s)+t(s)\wedge n'(s)$$ $$=\kappa(s)n(s)\wedge n(s)+\alpha'(s)\wedge n'(s)$$ $$=\alpha'(s)\wedge n'(s)$$ Then $$\tau_T(s)Tn(s)$$ $$=T\alpha'(s)\wedge Tn'(s)$$ $$=T(\alpha'(s)\wedge n'(s))$$ $$=T(\tau(s)n(s))$$ $$=\tau(s)Tn(s)$$ So $\tau_T(s)=\tau(s)$. (Regretting using T as the rigid motion, $\tau_T$ looks weird.)
+    \end{proof}
+    \end{enumerate}
+    \item Problem 12: Let $\alpha:I\to\R^3$ be a regular parametrized curve and let $\beta:J\to\R^3$ be a reparametrization of $\alpha(I)$ by the arc length $s=s(t)$, measured from $t_0\in I$. Let $t=t(s)$ be the inverse function of $s$ and set $\frac{d\alpha}{dt}=\alpha',\frac{d^2\alpha}{dt^2}=\alpha'',$ etc. Prove that:\begin{enumerate}[label=\alph*.]
+        \item $\frac{dt}{ds}=\frac{1}{|\alpha'|}$, $\frac{d^2t}{ds^2}=-\left(\frac{\alpha'\cdot\alpha''}{|\alpha'|^4}\right)$.\skip$s=s(t)=\int_{t_0}^t|\alpha'(t)|dt$ so we have $\frac{ds}{dt}=|\alpha'|$. Then $\frac{dt}{ds}=\frac{1}{|\alpha'|}$ since they are invertible functions. Now $$\frac{d^2t}{ds^2}=\frac{d}{ds}\frac{dt}{ds}=\frac{d/dt(dt/ds)}{ds/dt}=\frac{d/dt(|\alpha'(t)|^{-1})}{|\alpha'(t)|}$$ $$=\frac{-d/dt(|\alpha'(t)|)}{|\alpha'(t)|^3}=\frac{-1}{|\alpha'(t)|^3}\frac{d}{dt}[(\alpha'\cdot\alpha')^{1/2}]=\frac{2\alpha'\cdot\alpha''}{|\alpha'|^3\cdot2|\alpha'|}$$ $$=-\left(\frac{\alpha'\cdot\alpha''}{|\alpha'|^4}\right)$$
+        \item The curvature of $\alpha$ at $t\in I$ is: $$\kappa(t)=\frac{|\alpha'\wedge\alpha''|}{|\alpha'|^3}$$ We have $\alpha'=|\alpha'|\bar{T}$ where $\bar{T}$ is the unit tangent vector. So $$\alpha''=\frac{d}{dt}\alpha'=\frac{d/ds\alpha'}{dt/ds}=|\alpha'|\frac{d}{ds}(|\alpha'|\bar{T})$$ $$\frac{d}{ds}(|\alpha'|\bar{T})=\frac{d/dt|\alpha'|}{ds/dt}+|\alpha'|\kappa\bar{N}=\frac{\alpha'\cdot\alpha''}{|\alpha'|^2}\bar{T}+|\alpha'|\kappa\bar{N}$$ Now $$\alpha''=\frac{\alpha'\cdot\alpha''}{|\alpha'|}\bar{T}+|\alpha'|^2\kappa\bar{N}$$ and $$\alpha'\wedge\alpha''=|\alpha'|\bar{T}\wedge\left(\frac{\alpha'\cdot\alpha''}{|\alpha'|}\bar{T}+|\alpha'|^2\kappa\bar{N}\right)=|\alpha'|^3\kappa\bar{T}\wedge\bar{N}=|\alpha'|^3\kappa\bar{b}$$ Computing norms: $$|\alpha'\wedge\alpha''|=\kappa|\alpha'|^3$$ As required.
+        \item The torsion of $\alpha$ at $t\in I$ is: $$\tau(t)=-\frac{(\alpha'\wedge\alpha'')\cdot\alpha'''}{|\alpha'\wedge\alpha''|^2}$$ *Not sure
+        \item If $\alpha:I\to\R^3$ is a plane curve $\alpha(t)=(x(t),y(t))$, the signed curvature of $\alpha$ at $t$ is: $$\kappa(t)=\frac{x'y''-x''y'}{((x')^2+(y')^2)^\frac{3}{2}}$$ *Not sure
+    \end{enumerate}
+\end{itemize}
+\end{document}

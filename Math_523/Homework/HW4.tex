@@ -1,0 +1,55 @@
+\documentclass[hidelinks,12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{mathtools}
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{centernot}
+\usepackage{marvosym}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\setcounter{tocdepth}{1}
+\let\marvosymLightning\Lightning
+\renewcommand{\geq}{\geqslant}
+\renewcommand{\leq}{\leqslant}
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}{Corollary}[theorem]
+\newtheorem*{remark}{Remark}
+\renewcommand\qedsymbol{QED}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\divby}{%
+  \mathrel{\text{\vbox{\baselineskip.65ex\lineskiplimit0pt\hbox{.}\hbox{.}\hbox{.}}}}%
+  }
+\newcommand{\notdivby}{\centernot\divby}
+\renewcommand{\epsilon}{\varepsilon}
+\title{\scalebox{2}{Math 523 Homework 4}}
+\author{\scalebox{1.5}{Theo Koss}}
+\date{October 2023}
+
+\begin{document}
+\maketitle
+\begin{enumerate}
+    \item Recall that Cantor's Nested Intervals Theorem states the following: Consider a nested sequence of bounded closed intervals:
+$$
+\left[a_1, b_1\right] \supseteq\left[a_2, b_2\right] \supseteq\left[a_3, b_3\right] \supseteq \cdots \supseteq\left[a_k, b_k\right] \supseteq \cdots
+$$ Then the intersection $\bigcap_{k=1}^{\infty}\left[a_k, b_k\right]$ is not empty.
+Give an example of a nested sequence of bounded open intervals whose intersection is empty. $$\left(0,1\right)\supseteq\left(0,\frac{1}{2}\right)\supseteq\left(0,\frac{1}{4}\right)\supseteq\dots\supseteq\left(0,\frac{1}{2^k}\right)$$ There is no point they all have in common.
+    \item Show directly from the definition that if $\left\{a_n\right\}$ and $\left\{b_n\right\}$ are Cauchy sequences, then so is the sequence $\left\{a_n+b_n\right\}$.\par\null\par If $\{a_n\}$ is Cauchy, then for any $\epsilon>0$, $\exists n^*\in\N$ such that $|a_m-a_n|<\frac{\epsilon}{2}$, $\forall m,n\geq n^*$. And similarly, if $\{b_n\}$ is Cauchy, then for any $\epsilon>0$, $\exists m^*\in\N$ such that $|b_m-b_n|<\frac{\epsilon}{2}$, $\forall m,n\geq m^*$. Then ``$\{a_n+b_n\}$ is Cauchy'' $\iff$ for all $\epsilon>0$, $\exists\ell\in\N$ such that $|(a_m+b_m)-(a_n-b_n)|<\epsilon$, $\forall m,n\geq\ell$. Choose $\ell=\max(n^*,m^*)$, then $$|(a_m+b_m)-(a_n-b_n)|\leq|a_m-a_n|+|b_m-b_n|<\frac{\epsilon}{2}+\frac{\epsilon}{2}=\epsilon$$ For $m,n\geq\ell$.
+    \item Consider a sequence such that $x_1>0$ and $x_{n+1}=1 /\left(2+x_n\right)$ for all $n \in \mathbb{N}$. Show that $x_n>0$ for all $n$. Then show that $\left\{x_n\right\}$ is a contractive sequence. Evaluate the limit: $\lim _{n \rightarrow \infty} x_n$.\begin{proof}
+    The denominator is a positive real $\forall n$, and the numerator is always 1, therefore $x_n>0$ $\forall n$.
+        $$|x_{n+2}-x_{n+1}|=\left|\frac{1}{2+x_{n+1}}-\frac{1}{2+x_n}\right|=\frac{1}{(2+x_{n+1})(2+x_n)}|x_{n+1}-x_n|$$ Since that fraction is always between 0 and 1, $\{x_n\}$ is contractive.\begin{align*}
+            L&=\frac{1}{2+L}\\
+            L^2+2L-1&=0\\
+            L&=-1\pm\sqrt{2}\\
+            L&=-1+\sqrt{2}\tag{\text{This limit must be nonnegative}}
+        \end{align*} 
+    \end{proof}
+    \item Let $\left\{x_n\right\}$ be a bounded sequence, and let $s=\sup \left\{x_n \mid n \in \mathbb{N}\right\}$. Show that if $s \neq x_n$ for all $n$, then there is a subsequence of $\left\{x_n\right\}$ that converges to $s$.\begin{proof}
+        By definition of supremum, and with $s\neq x_n$, $\forall n$, we have that for any $\epsilon>0$, one can find an $n$ such that $s-\epsilon<x_n<s$. There are infinitely many such $n$, so write the increasing sequence $\{n_k\}$, such that $s-\frac{1}{n_k}<x_{n_k}<s$. Then $\{n_k\}$ is a subsequence of $\{x_n\}$, and it is epsilon-close to $s$, so $\{n_k\}$ converges to $s$.
+    \end{proof}
+\end{enumerate}
+\end{document}

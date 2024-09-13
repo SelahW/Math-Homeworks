@@ -1,0 +1,94 @@
+\documentclass[hidelinks,12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{microtype}
+\usepackage{mathtools}
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{centernot}
+\usepackage{marvosym}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\setcounter{tocdepth}{1}
+\let\marvosymLightning\Lightning
+\renewcommand{\geq}{\geqslant}
+\renewcommand{\leq}{\leqslant}
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}{Corollary}[theorem]
+\newtheorem*{remark}{Remark}
+\renewcommand\qedsymbol{QED}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\divby}{%
+  \mathrel{\text{\vbox{\baselineskip.65ex\lineskiplimit0pt\hbox{.}\hbox{.}\hbox{.}}}}%
+  }
+\newcommand{\notdivby}{\centernot\divby}
+\title{\scalebox{2}{Math 524 Homework 3}}
+\author{\scalebox{1.5}{Theo Koss}}
+\date{March 2024}
+
+\begin{document}
+
+\maketitle
+\begin{enumerate}
+    \item Suppose $\sum a_n$ is an absolutely convergent series. Show that the trigonometric series $\sum a_n\sin nx$ is absolutely and uniformly convergent.
+        \begin{proof}[Proof]
+            We have $|\sin nx|\leq1$ for all $n$ and $x$. So, for all $n$ and $x$, \[|a_n\sin(nx)|\leq|a_n|\] By the Weierstrass M-test, since $\sum a_n$ absolutely converges, so does $\sum a_n\sin nx$.
+        \end{proof}
+    \item \[\sum_{n=0}^{\infty}a_nx^n=\frac{1}{2}+\frac{1}{3}x+\frac{1}{2^2}x^2+\frac{1}{3^2}x^3+\dots\]
+        \begin{enumerate}
+            \item Show that the limit $\lim_{n\to\infty}|a_{n+1}/a_n|$ does not exist.
+                \[a_{n+1}/a_n=\begin{cases}
+                    \frac{2}{3} & \text{for n odd}\\
+                    \frac{3}{2} & \text{for n even}\\
+                \end{cases}\]
+                So the limit $\lim_{n\to\infty}|a_{n+1}/a_n|$ does not exist.
+
+            \item Use the Cauchy-Hadamard Thm to determine radius of convergence.
+                \[\frac{1}{R}=\limsup_{n\to\infty}|a_n|^{\frac{1}{n}}=\frac{3}{2}\implies R=\frac{2}{3}\] So the radius of convergence is $\frac{2}{3}$.
+        \end{enumerate}
+    \item If $0<p\leq|a_n|\leq q$ for all $n\in\N$, find the radius of convergence of $\sum a_nx^n$.
+        \par\null\par By Cauchy-Hadamard, \[R=\frac{1}{\limsup_{n\to\infty}|a_n|^{\frac{1}{n}}}\leq\frac{1}{q}\leq\frac{1}{p}\] So \[R\leq\frac{1}{q}\leq\frac{1}{p}\] (I feel like there's more we can say about R)
+    \item Let $f(x)=\sum a_nx^n$ for $|x|<R$. If $f$ is an even function on $(-R,R)$, show that $a_n=0$ for all odd $n$.
+        \begin{proof}[Proof]
+            Since $f$ is even, we have that $f(x)=f(-x)$. So 
+            \begin{align*}
+                f(x)&=\sum a_nx^n=a_0+a_1x+a_2x^2+a_3x^3+\dots\\
+                f(-x)&=\sum a_n(-x)^n=a_0-a_1x+a_2x^2-a_3x^3+\dots\\
+                f\ \mathrm{even}&\implies a_1=-a_1,\ a_3=-a_3,\ \dots\\
+                                &\implies a_{2k+1}=0\\
+            \end{align*} 
+            As required.
+        \end{proof}
+    \item Use Lagrange's Remainder Thm to show that if $f$ is defined for $|x|<r$ and if there exists a constant $B$ such that $|f^{(n)}(x)|\leq B$ for all $|x|<r$ and all $n\in\N$, then the Taylor series \[\sum_{n=0}^{\infty}\frac{f^{(n)}(0)}{n!}x^n\] converges to $f(x)$ for all $|x|<r$.
+        \begin{proof}[Proof]
+           Lagrange's Remainder:
+           \[R_n(x)=\frac{f^{(n+1)}(c)}{(n+1)!}(x-a)^{n+1}\]
+           For some $c$ between $x$ and $a$.\\
+       Let $c=0$, we have $\exists B$ such that $|f^{(n+1)}(0)|\leq B$ so 
+           \[\frac{f^{(n+1)}(0)}{(n+1)!}\leq\frac{B}{(n+1)!}\]
+           Note $\lim\frac{B}{(n+1)!}=0$, so
+           \[\lim_{n\to\infty} R_n(x)=0\]
+           Since the remainder $R_n(x)\to 0$, we have $f(x)=\sum_{n=0}^{\infty}\frac{f^{(n)}(0)}{n!}x^n+0$, so the Taylor series converges to $f(x)$.
+        \end{proof}
+    \item Assume $f(x)=\sum_{n=0}^{\infty}a_nx^n$ converges on $(-R,R)$.\begin{enumerate}
+        \item Show that 
+            \[F(x)=\sum_{n=0}^{\infty}\frac{a_n}{n+1}x^{n+1}\]
+            has radius of converge $R$, and satisfies $F'(x)=f(x)$.
+            \par\null\par
+            By Cauchy-Hadamard, 
+            \[\frac{1}{r}=\limsup_{n\to\infty}\frac{a_n}{n+1}^{\frac{1}{n}}=\frac{\limsup_{n\to\infty}a_n^{\frac{1}{n}}}{\lim_{n\to\infty}(n+1)^{\frac{1}{n}}}=\limsup_{n\to\infty}a_n^{\frac{1}{n}}=\frac{1}{R}\]
+            So the radius of convergence of $F$ is the same as $f$. So, we can differentiate $F$ on $(-R,R)$ to get $F'(x)=(n+1)\sum_{n=0}^{\infty}\frac{a_n}{n+1}x^{n}=\sum_{n=0}^{\infty}a_nx^n=f(x)$.
+            \item If $g$ is an arbitrary function satisfying $g'(x)=f(x)$ on $(-R,R)$, find a power series representation of $g$.
+                \par\null\par A power series representation of $g$ would just be $F$ with an extra constant term added on. Because when you differentiate, the constant goes away, so any $g$ that looks like $F$ with a constant added will have derivative $=f$. For example:
+                \[g(x)=57+\sum_{n=0}^{\infty}\frac{a_n}{n+1}x^{n+1}\ g'(x)=F'(x)=f(x)\]
+            \item Derive a power series representation for $g(x)=-ln(1-x)$
+                \\ Hint: $g'(x)$
+                \par\null\par We have $g'(x)=\frac{1}{1-x}$ which looks like the sum of a geometric series, so we can write \[g'(x)=\frac{1}{1-x}=\sum_{n=0}^{\infty}x^n\]
+                Which has antiderivative \[g(x)=\sum_{n=1}^{\infty}\frac{x^n}{n}\] and radius of convergence $R=1$. (Changed the indexing from n=0 to n=1 to avoid dividing by 0 :) ) 
+    \end{enumerate}
+\end{enumerate}
+\end{document}

@@ -1,0 +1,78 @@
+\documentclass[hidelinks,12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[table,xcdraw]{xcolor}
+\usepackage{mathtools}
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{centernot}
+\usepackage{marvosym}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\setcounter{tocdepth}{1}
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+\let\marvosymLightning\Lightning
+\renewcommand{\Lightning}{\scalebox{1.5}{\marvosymLightning}}
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}{Corollary}[theorem]
+\newtheorem*{remark}{Remark}
+\renewcommand\qedsymbol{QED}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\divby}{%
+  \mathrel{\text{\vbox{\baselineskip.65ex\lineskiplimit0pt\hbox{.}\hbox{.}\hbox{.}}}}%
+  }
+\newcommand{\notdivby}{\centernot\divby}
+\title{\scalebox{2}{Math 551 Homework 1}}
+\author{\scalebox{1.5}{Theo Koss}}
+\date{September 2021}
+\begin{document}
+\maketitle
+\section{Section 2.1}
+\begin{itemize}
+\item Problem 2: Explain why a set of real numbers cannot have more than one least upper bound or more than one greatest lower bound.\newline Consider some set $A\subseteq\R$, where $s\in A$ is the least upper bound. For there to be more than one l.u.b, there would have to be some $a\in A$ such that $a$ is an upper bound, and $a\leq s$. If $a<s$, then $a$ is the least upper bound, and if $e=s$, then there is only 1 l.u.b, and it's $s=a$.
+\newline A similar argument follows for g.l.b. Consider some $l\in A$ where $l$ is a greatest lower bound. Then again, for there to be another g.l.b, there would have to be some $b\in A$ such that $b$ is both a lower bound, and greater than all other lower bounds. If $b>l$, then $b$ is the g.l.b, and if $b=l$, then there is 1 g.l.b, $l=b$.
+\item Problem 3: Prove that a set cannot contain more than one of its upper bounds or more than one of its lower bounds.\begin{proof}
+Assume the contrapositive is true, that is, consider a nonempty set $A$, and 4 elements of $A$, $a,b,c,d\in A$ such that $a\neq b$ are upper bounds, and $c\neq d$ are lower bounds. If $a,b$ are both upper bounds, one of them must be the least upper bound, since they are both in $A$. The only way for them both to be upper bounds and in $A$ is if $a=b$ (See section 2.1, problem 2). \Lightning. Thus, our assumption, the fact that $a\neq b\in A$ were both upper bounds is false. \newline Similarly, if $c,d$ are both lower bounds, one of them must be the greatest lower bound. However, again, the only way for both to be lower bounds and in $A$ is if $c=d$, which is a contradiction. Thus, we have proved that if there are 2 upper or lower bounds in an arbitrary set $A$, then those bounds \emph{must} be equal to each other.
+\end{proof}
+\item Problem 4: Prove the Greatest Lower Bound Property assuming the Least Upper Bound Property as an axiom.\begin{proof}
+N2S: The LUB of the set of lower bounds of a set is the GLB of that set.\newline
+Consider a nonempty set $A$, and suppose that $\exists l\in A$ such that $l$ is a lower bound. Consider the set of all lower bounds of $A$, call it $B$. Then $B$ is nonempty ($l\in B$). Notice that each element of $A$ is an upper bound of $B$. Then, by the LUB property, $B$ has a L.U.B. Call it $\gamma$. \begin{remark} Claim: $\gamma$ is a lower bound of $A$. If not, then there exists some $b\in A$ such that $b<\gamma$. But as noted earlier, each member of $A$ is an upper bound of $B$, and therefore $b$ is an upper bound of $B$ that is smaller than $\gamma$, the LUB of $B$.\Lightning
+\end{remark}
+And since $\gamma=SupB$, $\forall l$ where $l$ is a lower bound of $A$, $l\leq\gamma$. Therefore $\gamma$ must be the GLB of $A$.
+\end{proof}
+\end{itemize}
+\section{Section 2.2}
+\begin{itemize}
+    \item Problem 4: Prove that every subset of a countable set is countable.\begin{proof} \begin{definition}[Countable Sets]A set $S$ is countable when there is an injection $f:S\to\Z^+$.\end{definition} Consider some countable set $A$. Then, by definition, $\exists f:A\to\Z^+$. Where $f$ is an injection. Then for any $B\subset A$, there exists some function $f|_B:B\to\Z^+$, and since $f:S\to\Z^+$ is injective, so is $f|_B:B\to\Z^+$. Therefore, any subset of an arbitrary countable set is countable.
+    \end{proof}
+    \item Problem 5: Prove that any two non-degenerate closed and bounded intervals have the same cardinal number.\begin{proof}\begin{definition}[Cardinality]Two sets $A,B$ have the same \emph{cardinality} or \emph{cardinal number} iff there is a bijection $f:A\to B$.\end{definition}
+    N2S: $f:[0,1]\to[a,b]$ is bijective.\newline For some $a,b\in\R$, where $b\neq0$ (or if $b=0$, then $a<0$ and we would define $f$ to send $x$ to $ax$). \newline Consider $f:[0,1]\to[a,b]$ such that $\forall x\in[0,1]$, $f(x)=bx$. We check:\begin{enumerate}
+        \item \textbf{Injectivity}. $f(x)=f(y)\implies x=y$. \newline Consider some $x,y\in[0,1]$ where $f(x)=f(y)$. By definition of $f$, this means $bx=by$. Remember that $b$ is some nonzero real number, then of course, $$bx=by\implies x=y$$ Thus $f$ is injective.
+        \item \textbf{Surjectivity}. $\forall y\in[a,b]\exists x\in[0,1]$ such that $f(x)=y$.\newline Take some $y\in[a,b]$, we want to show that $y=f(x)$, that is, $y=bx$. Now simply divide by $b$ and now $x=\frac{y}{b}$. Recall again that $b$ is some nonzero real number. (If it were, we would define $f$ to send $x$ to $ax$.) Then $$f(x)=b\cdot\frac{y}{b}=y$$ As required.
+    \end{enumerate}
+    Thus, since $f$ is both injective and surjective, by definition 2.2, $[0,1]$ has the same cardinality as $[a,b]$ where $a,b\in\R$, and $b\neq0$.
+    \end{proof}
+    \item Problem 7: Prove that every (non-degenerate) open inverval is equivalent to $\R$.\begin{proof}Once again, we N2S:$f:\R\to(a,b)$ is bijective. \newline Consider $f:\R\to(a,b)$ where $f(x)=\frac{x}{1+|x|}$. First we check that this ``works'', that is, the denominator never equals 0. Of course, the only way for this to be true is if $|x|=-1$, this is impossible. Now we chek bijectivity:\begin{enumerate}
+        \item \textbf{Injectivity}. $f(x)=f(y)\implies x=y$.\newline Consider some $x,y\in\R$ where $f(x)=f(y)$. Then $$\frac{x}{1+|x|}=\frac{y}{1+|y|}$$ Rearranging, $$y(1+|x|)=x(1+|y|)\Leftrightarrow x+x|y|=y+y|x|$$ This is true iff $x=y$. Thus $f$ is injective.
+        \item \textbf{Surjectivity}. $\forall y\in(a,b)\exists x\in\R$ such that $f(x)=y$.\newline Take some $y\in(a,b)$. We want to show now that $y=f(x)$, that is, $$y=\frac{x}{1+|x|}\Leftrightarrow x=\frac{y}{y+1}$$ This is unique, thus we have found exactly one $x\in\R$ such that $f(x)=y$. As required. 
+    \end{enumerate}
+    \end{proof}
+    \item Problem 8: \begin{enumerate}[label=(\alph*)]
+        \item Prove that any two non degenerate intervals have the same cardinal number.\newline We have proven that any 2 open intervals have the same cardinality, and that any two closed intervals have the same cardinality. Thus we only need to prove $f:(0,1)\to[a,b)$ exists and is bijective, and $g:(0,1)\to(a,b]$ exists and is bijective.\begin{proof}First, we define $f:[a,b)\to[0,1)$ by $x\mapsto\frac{x-a}{b-a}$. This is a bijection. Next, we must find a bijection $\phi:[0,1)\to(0,1)$, this is easy. Let $\phi(x)=a_0$ if $x=0$. Or $\phi(x)=a_{n+1}$ if $x=a_n$. Else $\phi(x)=x$. This function uses the concept of Hilbert's hotel to ``shift'' each element over by 1, and add in 0 at the $a_0$ spot. This is obviously a bijection. Since there is a bijection from $[a,b)\to[0,1)$, and from $[0,1)\to(0,1)$, and from $(0,1)\to(a,b)$ this means they all have the same cardinal number. A similar argument follows for $(a,b]$. We define $f:(a,b]\to[0,1)$ once again by $x\mapsto\frac{x-a}{b-a}$. We have already defined the bijection from $[0,1)$ to $(0,1)$, thus $(a,b]$ has the same cardinality as $(0,1)$.\newline Thus, we have showed there exists a bijection for each of the following:\begin{enumerate}[label=(\roman*)]
+            \item $[a,b]\to(0,1)$
+            \item $(a,b)\to(0,1)$
+            \item $[a,b)\to(0,1)$
+            \item $(a,b]\to(0,1)$
+        \end{enumerate}
+        Thus, any two non degenerate intervals have the same cardinality.
+        \end{proof}
+        \item Prove that every non-degenerate interval is uncountable. \begin{proof}Since we have showed a bijection $(0,1)\to\R$, $(0,1)$ is uncountable, and by our answer to the question above, we have showed a bijection between every non-degenerate interval and $(0,1)$.\end{proof}
+        \item Prove that every non-degenerate interval contains both rational and irrational numbers.\begin{proof} Consider $\frac{1}{\sqrt{2}}$. This is irrational.\newline Recall that the sum \emph{and} product of 1 rational and 1 irrational is always irrational.\newline Now WLOG, to show how this method works, let $(a,b)$ be a non degenerate interval, then if $|b-a|>\frac{1}{\sqrt{2}}$, define $z=a+\frac{1}{\sqrt{2}}$. This is an irrational in the interval. Otherwise, if $|b-a|<\frac{1}{\sqrt{2}}$, define $z=\frac{1}{\sqrt{2}}(b-a)$. This again is an irrational in the interval. This method can be applied for any $a,b\in\R$. 
+        \end{proof}
+    \end{enumerate}
+\end{itemize}
+\end{document}

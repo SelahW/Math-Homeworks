@@ -1,0 +1,125 @@
+\documentclass{article}
+\usepackage{enumitem}
+\usepackage{listings}
+\usepackage{graphicx}
+\usepackage{microtype}
+\usepackage{amsmath}
+\usepackage[utf8]{inputenc}
+\usepackage{listings}
+\usepackage{xcolor}
+
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+\lstdefinestyle{mystyle}{
+    backgroundcolor=\color{backcolour},   
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2
+}
+
+\lstset{style=mystyle}
+\newcommand{\myskip}{\par\null\par}
+\title{Math 305 Homework 5}
+\author{Theodore Koss}
+\date{April 2023}
+\begin{document}
+
+\maketitle
+\section*{Problem 1}
+\begin{enumerate}
+    \item \begin{lstlisting}[language=matlab]
+    % Initialize the game board
+board = [0 0 0 0 0 9 0 9 0 -6 0 0 0 0 0 0 0 -6 0 0];
+
+num_simulations = 500;
+total = 0;
+
+for i=1:num_simulations
+% Initialize the player's position and turn counter
+pos = 1;
+num_turns = 0;
+
+% Play the game until the player reaches square 20 (EXACTLY)
+while pos < 20
+    % Roll the die
+    roll = randi(6);
+    
+    % Update the player's position based on the roll
+    if roll == 1 || roll == 2
+        % Do not move
+    elseif roll == 3 || roll == 4
+        pos = pos + 1;
+    else
+        pos = pos + 2;
+    end
+    
+    % Reset player to square 19 if they roll a 2.
+    if pos == 21
+        pos = 19;
+    end
+
+    % Check for chutes and ladders
+    if board(pos) ~= 0
+        pos = pos + board(pos);
+    end
+    
+    % Increment the turn counter
+    num_turns = num_turns + 1;
+end
+game_lengths(i) = num_turns;
+total = total + num_turns;
+end
+average = total / num_simulations;
+\end{lstlisting}
+\item Average of $500$ games: $23.4260$ turns.
+\item Transition matrix:\begin{lstlisting}
+P = zeros(20, 20);
+
+% Roll a 1 or 2
+P(1:20+1:end) = 1/3;
+
+% Roll a 3 or 4
+P(1:19, 2:20) = 1/3;
+P(20, 20) = 1/3;
+
+% Roll a 5 or 6
+P(1:18, 3:20) = 1/3;
+P(19, 20) = 1/6;
+P(20, 20) = 1/3;
+
+% Chutes and ladders
+P(6, 15) = 1;
+P(8, 17) = 1;
+P(9, 3) = 1;
+P(18, 12) = 1;
+P(19, 20) = 1/3;
+\end{lstlisting}
+\item \begin{itemize}
+    \item As $n$ increases, the probability of being on square 20 increases, and the probability of being on square 1 decreases.
+    \item The absorbing state is square 20 (but idk if that counts because the game instantly ends)
+    \item Minimum length is 6 turns, rolling 2,2,2,1,2,1.
+    \item The number of turns at which you'd be done 50\% of the time is 9 turns.\begin{lstlisting}
+        p50 = prctile(game_lengths, 50)
+    \end{lstlisting} I got around 9 on average.
+    \item The number of turns at which you'd be done 90\% of the time is 
+ 24 turns.\begin{lstlisting}
+     p90 = prctile(game_lengths, 90)
+ \end{lstlisting}
+\end{itemize}
+\end{enumerate}
+\end{document}

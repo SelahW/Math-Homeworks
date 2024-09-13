@@ -1,0 +1,8 @@
+\begin{proof}$a,b,c$ are all pairwise coprime, therefore the following is true:\begin{equation}\label{eqa}\gcd(a,b)=\gcd(a,c)=\gcd(b,c)=1\end{equation} We N2S that $\gcd(ab,ac)=1$. \newline By \href{https://en.wikipedia.org/wiki/B%C3%A9zout%27s_identity}{\color{cyan}Bezout's Identity}, \begin{equation}\label{eqb}ax+by=ax+cz=by+cz=1\end{equation} For some $x,y,z\in\Z$ By multiplying, we obtain:\begin{equation}1=ab(y^2xb+x^2ya+xyzc)+ac(z^2xc+x^2za+xyzb)+bc(y^2zb+z^2yc)\end{equation}
+    \end{proof}Because $(y^2xb+x^2ya+xyzc),(z^2xc+x^2za+xyzb),(y^2zb+z^2yc)\in\Z$, this shows $\gcd(ab,ac,bc)=1$, and therefore $\gcd(ab,ac)=1$.
+\begin{proof}$a,b,c$ are all pairwise coprime, therefore the following is true:\begin{equation}\label{eqa}\gcd(a,b)=\gcd(a,c)=\gcd(b,c)=1\end{equation} We N2S that $\gcd(ab,ac)=1$. Of course, $\gcd(ab,ac)=a$, and therefore, for this to be true, $a=1$. Then $\gcd(ab,ac)=\gcd(b,c)$, which, by definition, is equal to 1. \end{proof}
+        So there are 3 cases for which this is the case, for each, we N2S $k$ must not be prime.\begin{enumerate}[label=(\roman*)]
+            \item Closure fails. This would mean there exists some $a,b\in\Z_k\backslash \{[0]_k\}$ such that $ab\equiv[0]_k\equiv[k]_k$. Thus, $k$ is not prime.
+            \item There is no identity:
+            \item 
+        \end{enumerate}
