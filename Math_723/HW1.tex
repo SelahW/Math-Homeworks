@@ -16,14 +16,13 @@
 \newtheorem{theorem}{Theorem}
 \newtheorem{corollary}{Corollary}[theorem]
 \newtheorem*{remark}{Remark}
-\renewcommand\qedsymbol{QED}
 \newcommand{\R}{\mathbb{R}}
 \newcommand{\N}{\mathbb{N}}
 \newcommand{\Z}{\mathbb{Z}}
 \newcommand{\Q}{\mathbb{Q}}
 \newcommand{\divby}{%
-  \mathrel{\text{\vbox{\baselineskip.65ex\lineskiplimit0pt\hbox{.}\hbox{.}\hbox{.}}}}%
-  }
+    \mathrel{\text{\vbox{\baselineskip.65ex\lineskiplimit0pt\hbox{.}\hbox{.}\hbox{.}}}}%
+}
 \newcommand{\notdivby}{\centernot\divby}
 \title{\scalebox{2}{Math 724 Homework 1}}
 \author{\scalebox{1.5}{Theo Koss}}
@@ -39,8 +38,38 @@
             Let $r\neq0$ be rational and $x$ be irrational.
             \begin{enumerate}[label=(\alph*)]
                 \item Assume, by way of contradiction, that $r+x$ is rational. Then $r+x=\frac{p}{q}$ for $p,q\in\Z$ and $q\neq0$. We have that $r$ is rational, so $r=\frac{a}{b}$ for some $a,b\in\Z$ and $b\neq0$. Then we have \[x=\frac{p}{q}-\frac{a}{b}=\frac{bp-aq}{bq}\] since the ring $(\Z,+,\cdot)$ is closed under addition and multiplication so numerator and denominator are integers, and since $\Z$ is a domain, $b\neq0$ and $q\neq0\implies bq\neq0$. So then we have $x\in\Q$ which is a contradiction.
-    \item Assume, by way of contradiction, that $rx=\frac{p}{q}$ for some $p,q\in\Z$ and $q\neq0$. We have $r=\frac{a}{b}$ for $a,b\in\Z$ and $b\neq0$. Then \[x=\frac{rx}{r}=\frac{\frac{p}{q}}{\frac{a}{b}}=\frac{p}{q}\cdot\frac{b}{a}=\frac{pb}{qa}\] Again since $\Z$ is closed under multiplication and $r\neq0$ by assumption, we have $a\neq0$ and therefore $qa\neq0$, so we are not dividing by 0 and $x\in\Q$ contradiction.
-           \end{enumerate} 
+                \item Assume, by way of contradiction, that $rx=\frac{p}{q}$ for some $p,q\in\Z$ and $q\neq0$. We have $r=\frac{a}{b}$ for $a,b\in\Z$ and $b\neq0$. Then \[x=\frac{rx}{r}=\frac{\frac{p}{q}}{\frac{a}{b}}=\frac{p}{q}\cdot\frac{b}{a}=\frac{pb}{qa}\] Again since $\Z$ is closed under multiplication and $r\neq0$ by assumption, we have $a\neq0$ and therefore $qa\neq0$, so we are not dividing by 0 and $x\in\Q$ contradiction.
+            \end{enumerate} 
         \end{proof}
+    \item[17.] Prove that \[
+        |x+y|^2+|x-y|^2=2|x|^2+2|y|^2 
+    \]
+    if $x\in\R^k$ and $y\in\R^k$.
+    \begin{proof}
+    \[
+        |x+y|^2=|x|^2+2|xy|+|y|^2,\ |x-y|^2=|x|^2-2|xy|+|y|^2 \tag{By FOIL}
+    \]
+    So
+    \[
+        |x+y|^2+|x-y|^2=2|x|^2+2|y|^2
+    \]
+    As required. Geometrically, the LHS is the sum of squares of the diagonals ($x+y$ is the long diag, $x-y$ is the short). RHS is 2 times sum of squares of the side lengths. The parallelogram has corners $0,x,y,\text{ and }x+y$.
+    \end{proof}
+\end{enumerate}
+\section{Chapter 2}
+\begin{enumerate}
+    \item[2.] Prove that the set of all algebraic numbers is countable.
+        \begin{proof}
+            For every positive $N\in\Z$, we have that the set of
+            \[
+                n+|a_0|+|a_1|+\dots+|a_n|=N
+            \]
+            is finite. (compositions of $N$?) By theorem 2.12 in the text,
+            \[
+                S=\bigcup_{n=1}^{\infty}E_n
+            \]
+            is countable if $E_n$ is a sequence of countable sets. For every positive integer $N$, we have a countable (in fact finite) set of terms which satisfy the above sum. Therefore, since the index set $\Z$ is countable, the union of these sets is countable. Then we biject each set of terms to an algebraic number, so the set of algebraic numbers is at most countable.
+        \end{proof}
+    \item[12.]
 \end{enumerate}
 \end{document}
