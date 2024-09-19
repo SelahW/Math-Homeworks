@@ -70,6 +70,9 @@
             \]
             is countable if $E_n$ is a sequence of countable sets. For every positive integer $N$, we have a countable (in fact finite) set of terms which satisfy the above sum. Therefore, since the index set $\Z$ is countable, the union of these sets is countable. Then we biject each set of terms to an algebraic number, so the set of algebraic numbers is at most countable.
         \end{proof}
-    \item[12.]
+    \item[12.] Let \(K\subset R^1\) consist of \(0\) and the numbers \(1/n\), for \(n=1,2,3,\dots\). Prove that \(K\) is compact directly from the definition. (Without the Heine-Borel theorem).  
+        \begin{proof}
+            We must show that every open cover of \(K\) contains a finite subcover. Any open cover \(\{G_{\alpha}\}\) must contain 0, in particular one of the sets of the cover contains 0. Then, we consider a neighboorhood around 0, say \(G_0=(-\varepsilon,\varepsilon)\) for some \(\varepsilon\in\R\). This neighboorhood contains infinitely many points, and outside of the neighboorhood there are only finitely many (the maximum is \(1/1=1\)). So we may enumerate them, say \(x_1,x_2,\dots,x_m\) for some \(m\in\Z\). Then, consider the open set containing \(x_1\), then another open set containing \(x_2\), do this for all \(x_m\). Since there are finitely many, there are finitely many open sets, and clearly their union is \(K\), so \(K\) is compact.  
+        \end{proof}
 \end{enumerate}
 \end{document}
