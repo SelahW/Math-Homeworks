@@ -36,7 +36,7 @@
         \par\null\par The set \[
         \bigcup_{n=1}^{\infty}(0,1-\frac{1}{n})
         \]
-        Is an open cover of \((0,1)\), because for any \(x\in(0,1)\), there is an \(N\) such that \(1-\frac{1}{N}<x\) (So \(x\in(0,1-\frac{1}{N})\)), and clearly the sets are open. There is no finite subcover because assume there is, then there is a maximum \(N\). But then \(\frac{1}{2N}\in(0,1)\) but it is not in the subset.
+        Is an open cover of \((0,1)\), because for any \(x\in(0,1)\), there is an \(N\) such that \(1-\frac{1}{N}>x\) (So \(x\in(0,1-\frac{1}{N})\)), and clearly the sets are open. There is no finite subcover because assume there is, then there is a maximum \(N\). But then \(\frac{1}{2N}\in(0,1)\) but it is not in the subset.
     \item[25.] Prove that every compact metric space \(K\) has a countable base, and that \(K\) is therefore separable.
         \begin{proof}
             Let \(K\) be a compact metric space. For every \(n\in\N\), consider the open ball \(B(x,\frac{1}{n})\) with radius \(\frac{1}{n}\) centered around some \(x\in K\). Clearly, this is an open cover of \(K\). Since we have that \(K\) is compact, there is a finite subcover \(V_{n}=\text{The union of finitely many of the neighborhoods}\). Say \(V_{n}=\bigcup_{i=1}^{N}B(x_{i},\frac{1}{n})\).Now, taking the union of all of these finite subcovers for each \(n\in\N\) is countable, and furthermore, this union is a base of \(K\). \par\null\par To show \(K\) is separable, we must find a coutable, dense subset. Pick one point from each open ball of our base (countably many). Then clearly this subset is countable, and it is dense because \(V_{n}\) covers \(K\).
