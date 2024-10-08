@@ -1,0 +1,72 @@
+\documentclass[hidelinks,12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{mathtools}
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{centernot}
+\usepackage{marvosym}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\usepackage{graphicx}
+\graphicspath{{/home/theo/Documents/GitHub/Math-Homeworks/Images/}}
+\setcounter{tocdepth}{1}
+\let\marvosymLightning\Lightning
+\renewcommand{\geq}{\geqslant}
+\renewcommand{\leq}{\leqslant}
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}{Corollary}[theorem]
+\newtheorem*{remark}{Remark}
+\newcommand{\ch}{\operatorname{ch}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\divby}{%
+  \mathrel{\text{\vbox{\baselineskip.65ex\lineskiplimit0pt\hbox{.}\hbox{.}\hbox{.}}}}%
+  }
+\newcommand{\notdivby}{\centernot\divby}
+\title{\scalebox{1.5}{Math 835 Homework 4}}
+\author{\scalebox{1.5}{Theo Koss}}
+\date{September 2024}
+
+\begin{document}
+\maketitle
+\section*{Chapter 13}
+\subsection*{Section 4}
+\begin{enumerate}
+    \item Determine the splitting field and its degree over \(\Q\) for \(x^{4}-2\). 
+        \[
+    4 \text{ roots: }x=\{\pm\sqrt[4]{2},\pm i\sqrt[4]{2}\} 
+        \]
+        Field: \(\Q(\sqrt[4]{2},i)\) has degree
+        \[
+            [\Q(\sqrt[4]{2},i):\Q]=[\Q(\sqrt[4]{2},i):\Q(\sqrt[4]{2})]\cdot[\Q(\sqrt[4]{2}):\Q]=4\cdot2=8
+        \]
+        Minimal polynomial of \(\sqrt[4]{2}\) is \(x^{4}-2\), minimal polynomial of \(i\) is \(x^{2}+1\).
+        
+    \item Determine the splitting field and its degree over \(\Q\) for \(x^{4}+2\). 
+        \[
+            4 \text{ roots: }x=\{\pm\sqrt[4]{-2},\pm i\sqrt[4]{-2}\}
+        \]
+        Field: \(\Q(\sqrt[4]{-2},i)\) has degree \[
+            [\Q(\sqrt[4]{-2},i):\Q]=[\Q(\sqrt[4]{-2},i):\Q(\sqrt[4]{-2})]\cdot[\Q(\sqrt[4]{-2}):\Q]=4\cdot2=8
+        \]
+        Minimal polynomial of \(\sqrt[4]{-2}\) is \(x^{4}+2\), minimal polynomial of \(i\) is \(x^{2}+1\).
+    \item Determine the splitting field and its degree over \(\Q\) for \(x^{4}+x^{2}+1\). 
+        \[
+            \text{Let }t=x^{2},\ t^{2}+t+1=0\text{ Quadratic formula: }t=\frac{-1\pm\sqrt{-3}}{2}
+        \]
+        Notice \(y=-(x^{2})\) also has \(x^{4}+x^{2}+1=0\iff y^{2}-y+1=0\). So quadratic formula again, \[
+            y^{2}-y+1=0\implies y=\frac{1\pm\sqrt{-3}}{2}
+        \]
+         So the 4 roots are
+         \[
+             x=\{t,y\}=\left\{\frac{-1\pm\sqrt{-3}}{2}
+             ,\frac{1\pm\sqrt{-3}}{2}\right\}
+         \]
+         So we only need to adjoin \(\sqrt{-3}\), which has minimal polynomial \(x^{2}+3\), so \([\Q(\sqrt{-3}):\Q]=2\), need only a quadratic extension.
+\end{enumerate}
+\end{document}

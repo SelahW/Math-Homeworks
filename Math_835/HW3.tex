@@ -1,0 +1,61 @@
+\documentclass[hidelinks,12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{mathtools}
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{centernot}
+\usepackage{marvosym}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\usepackage{graphicx}
+\graphicspath{{/home/theo/Documents/GitHub/Math-Homeworks/Images/}}
+\setcounter{tocdepth}{1}
+\let\marvosymLightning\Lightning
+\renewcommand{\geq}{\geqslant}
+\renewcommand{\leq}{\leqslant}
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}{Corollary}[theorem]
+\newtheorem*{remark}{Remark}
+\newcommand{\ch}{\operatorname{ch}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\divby}{%
+  \mathrel{\text{\vbox{\baselineskip.65ex\lineskiplimit0pt\hbox{.}\hbox{.}\hbox{.}}}}%
+  }
+\newcommand{\notdivby}{\centernot\divby}
+\title{\scalebox{1.5}{Math 835 Homework 3}}
+\author{\scalebox{1.5}{Theo Koss}}
+\date{September 2024}
+
+\begin{document}
+
+\maketitle
+\section*{Chapter 13}
+\subsection*{Section 3}
+\begin{enumerate}
+    \item Prove that it is impossible to construct the regular 9-gon.
+        \begin{proof}
+            If the 9-gon were constructable, so would \(\cos(\frac{2\pi}{9})\), but that has minimal polynomial \(8x^{3}-6x+1\), which is degree 3. Therefore the field extension is degree 3 (not a power of 2), so the 9-gon is not constructable. (Equivalently, note that 140 degrees is not divisible by 3.)
+        \end{proof}
+    \item Prove that Archimedes' construction (With \underline{Ruler}, not straightedge) actually trisects \(\theta\).
+        \begin{proof}
+            We wish to show that \(3\alpha=\theta\). Labelling the points from left to right, \(A,B,C,\text{ and }D\). We have that \(180-\theta\) is the measure of angle \(ACD\), because it is a supplementary angle (they lie on a straight line). We also have that the measure of angle \(BCD\) is \(180-2\beta\), because the angles of a triangle add to 180, and \(\beta=\gamma\). And the measure of angle \(ACB\) is \(\alpha\) because the triangle is isosceles. So now we have
+            \[
+                180-\theta=(180-2\beta)+(\alpha)
+            \]
+            Furthermore, the problem gives us \(\beta=\gamma=2 \alpha\), so \[
+            180-\theta=180-3 \alpha
+            \]
+            Therefore, \(\theta=3 \alpha\), as required. 
+        \end{proof}
+    \item[5.] Use the fact that \(\alpha=2\cos(\frac{2\pi}{5})\) satisfies the equation \(x^{2}+x-1\) to conlude that the regular 5-gon is constructable by straightedge and compass.
+        \begin{proof}
+            Since \(\alpha\) is a root of \(x^{2}+x-1\), and that polynomial is irred. over \(\Q\), we have that adjoining \(\alpha\) to \(\Q\) is a degree 2 (quadratic) extension. From class, all extensions which have degree power of 2 are constructable. Therefore \(\alpha\) is constructable, which gives us the central angle of a regular pentagon. To complete the construction, simply draw 5 angles which connect to eachother (so that they all share 1 point), then draw a circle of radius 1 around all of them. Where the angles connect to the circle are the vertices of the regular pentagon, so connect them with straight lines and you're done :) (I guess actually we just have that the cosine of the angle is constructable, so construct the adjacent sides and the hypotenuses. But this is the same as constructing the \( 72^{\circ}\) angle ).
+        \end{proof}
+\end{enumerate}
+\end{document}
