@@ -1,0 +1,82 @@
+\documentclass[hidelinks,12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{mathtools}
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{centernot}
+\usepackage{marvosym}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\usepackage{graphicx}
+\graphicspath{{/home/theo/Documents/GitHub/Math-Homeworks/Images/}}
+\setcounter{tocdepth}{1}
+\let\marvosymLightning\Lightning
+\renewcommand{\geq}{\geqslant}
+\renewcommand{\leq}{\leqslant}
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}{Corollary}[theorem]
+\newtheorem*{remark}{Remark}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\divby}{%
+  \mathrel{\text{\vbox{\baselineskip.65ex\lineskiplimit0pt\hbox{.}\hbox{.}\hbox{.}}}}%
+  }
+\newcommand{\notdivby}{\centernot\divby}
+\title{\scalebox{1.45}{Arithmetic Geometry Problems}}
+\author{\scalebox{1.5}{Theo Koss}}
+\date{October 2024}
+
+\begin{document}
+
+\maketitle
+\section{Chapter 1}
+\begin{enumerate}
+    \item Let \(d\in\Q\setminus\Z\), prove \(\Z[\sqrt{d}]\) is not a finitely generated abelian group.
+        \begin{proof}
+            Let \(d=\frac{p}{q}\) with \(p\neq q\in\Z,\ q\neq0,1\)  and \(\gcd(p,q)=1\). Note that subgroups of finitely generated \emph{abelian} groups are themselves finitely generated. So consider \(\Z[d]<\Z[\sqrt{d}]\). Assume BWOC that \(\Z[d]\) is finitely generated, say \(n\) generators. Then we can write any element of \(\Z[d]\) as a linear combination of these elements. Consider 
+            \begin{align*}
+                \frac{1}{q^{n+1}}&=b_{0}+b_{1}d+b_{2}d^{2}+\dots+b_{n}d^{n}\tag{For integers \(b_{i}\) }\\
+                                 &=b_{0}+b_{1}\frac{p}{q}+\dots+b_{n}\frac{p^{n}}{q^{n}}\\
+                \implies 1&=b_{0}\cdot q^{n+1}+b_{1}p\cdot q^{n}+\dots+b_{n}p^{n}\cdot q\\
+                          &=q\underbrace{(b_{0}\cdot q^{n}+b_{1}p\cdot q^{n-1}+\dots+b_{n}p^{n})}_{\in\Z}\\
+                \implies \frac{1}{q}&\in\Z\\
+            \end{align*}
+            Contradiction because we have \(q\neq1\).
+        \end{proof}
+        \begin{proof}[Alternate Proof:]
+            Due to a theorem (not in the book :/ ), the ring \(\Z[x]\) is finitely generated iff \(x\) is algebraic over \(\Z\). We have \[
+                m_{\sqrt{d},\Z}(x)=x^{2}-d=qx^{2}-p
+            \]
+            Which is not monic in \(\Z\) because we have \(q\neq1\) and \(q\) does not divide \(p\).
+        \end{proof}
+    \item Prove \(\Z[\frac{2+i}{5}]\cap\Q=\Z\) and \(\Z[\frac{2-i}{5}]\cap\Q=\Z\).
+        \begin{proof}
+            Assume, BWOC, that we have some element \(k\in\Z[\frac{2+i}{5}]\) such that \(k\in\Q\setminus\Z\). Then \(k=\frac{p}{q}\) with \(p,q\in\Z\), \(q\neq0,1\) and \(\gcd(p,q)=1\). We also have
+            \[
+                k=a+b\cdot \frac{2+i}{5}=a+\frac{2b}{5}+\frac{bi}{5}
+            \]
+            for some \(a,b\in\Z\). Since \(k=\frac{p}{q}\) is strictly real, we must have
+            \[
+                \frac{bi}{5}=0\implies b=0
+            \]
+             But then \(k=a+0\in\Z\) contradiction.\\
+            Similarly, write \(k=a+b\cdot \frac{2-i}{5}=a+\frac{2b}{5}-\frac{bi}{5}\) so \(\frac{bi}{5}=0\implies b=0\) so \(k\in\Z\).
+        \end{proof}
+    \item Let \(A\) be a ring, and let \(I,J\) be two coprime ideals of \(A\). Show that, \(\forall a,b\in\N,\ I^{a}\) is coprime to \(J^{b}\).
+        \begin{proof}
+            Since \(I\) and \(J\) are coprime, by definition we have \(I+J=A\). Base case: \(I^{1}+J^{1}=A\) obviously. Fix some \(b\in\N\), assume \(I^{k}\) is coprime to \(J^{n}\), for some \(a\in\N\). Then
+            \[
+                I^{a}+J^{b}=A
+            \]
+            Multiply both sides by \(I\), \[
+            I^{a+1}+J^{b}=IA=A
+            \]
+            Thus \(I^{a+1}\) is coprime to \(J^{b}\). Therefore the statement is true for all pairs \(a,b\in\N\).
+        \end{proof}
+\end{enumerate}
+\end{document}
