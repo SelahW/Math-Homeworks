@@ -1,0 +1,74 @@
+\documentclass[hidelinks,12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{mathtools}
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{centernot}
+\usepackage{marvosym}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\setcounter{tocdepth}{1}
+\let\marvosymLightning\Lightning
+\renewcommand{\geq}{\geqslant}
+\renewcommand{\leq}{\leqslant}
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}{Corollary}[theorem]
+\newtheorem*{remark}{Remark}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\divby}{%
+    \mathrel{\text{\vbox{\baselineskip.65ex\lineskiplimit0pt\hbox{.}\hbox{.}\hbox{.}}}}%
+}
+\newcommand{\notdivby}{\centernot\divby}
+\title{\scalebox{1.5}{Math 724 Homework 2}}
+\author{\scalebox{1.5}{Theo Koss}}
+\date{September 2024}
+
+\begin{document}
+\maketitle
+\section*{Chapter 2}
+\begin{enumerate}
+    \item[14.] Give an example of an open cover of \((0,1)\) which has no finite subcover.
+        \par\null\par The set \[
+        \bigcup_{n=1}^{\infty}(0,1-\frac{1}{n})
+        \]
+        Is an open cover of \((0,1)\), because for any \(x\in(0,1)\), there is an \(N\) such that \(1-\frac{1}{N}>x\) (So \(x\in(0,1-\frac{1}{N})\)), and clearly the sets are open. There is no finite subcover because assume there is, then there is a maximum \(N\). But then \(\frac{1}{2N}\in(0,1)\) but it is not in the subset.
+    \item[25.] Prove that every compact metric space \(K\) has a countable base, and that \(K\) is therefore separable.
+        \begin{proof}
+            Let \(K\) be a compact metric space. For every \(n\in\N\), consider the open ball \(B(x,\frac{1}{n})\) with radius \(\frac{1}{n}\) centered around some \(x\in K\). Clearly, this is an open cover of \(K\). Since we have that \(K\) is compact, there is a finite subcover \(V_{n}=\text{The union of finitely many of the neighborhoods}\). Say \(V_{n}=\bigcup_{i=1}^{N}B(x_{i},\frac{1}{n})\).Now, taking the union of all of these finite subcovers for each \(n\in\N\) is countable, and furthermore, this union is a base of \(K\). \par\null\par To show \(K\) is separable, we must find a coutable, dense subset. Pick one point from each open ball of our base (countably many). Then clearly this subset is countable, and it is dense because \(V_{n}\) covers \(K\).
+        \end{proof}
+\end{enumerate}
+\section*{Chapter 3}
+\begin{enumerate}
+    \item[6.] Investigate the behavior (convergence or divergence) of \(\sum a_{n}\) if: \begin{enumerate}[label=(\alph*).]
+            \item \(a_{n}=\sqrt{n+1}-\sqrt{n}\) The k-th partial sum: \[
+                    S_{k}=\sqrt{k+1}-1\tag{Everything less than k cancels out!}
+            \]
+             Diverges as \(k\to\infty\), so the series diverges. 
+         \item \(a_{n}=\frac{\sqrt{n+1}-\sqrt{n}}{n}\) Similar to above, the k-th partial sum:
+             \[
+                 S_{k}=\frac{\sqrt{k+1}-1}{k}\to0\text{ As }k\to\infty
+             \]
+            So the series converges. 
+        \item \(a_{n}=(\sqrt[n]{n}-1)^{n}\) \(\limsup_{n\to\infty}(\sqrt[n]{n}-1)=0\) (By theorem 3.20 (c), \(\lim_{n\to\infty}\sqrt[n]{n}=1\)). So it converges by the root test.
+        \item \(a_{n}=\frac{1}{1+z^{n}}\) For complex \(z\).\par\null\par
+            If \(|z|\leq1\), the series diverges because the terms will always be at least \(\frac{1}{2}\), so the limit of partial sums does not converge to 0.\\
+            For \(|z|>1\), we can compare to the geometric series \(\sum \frac{1}{|z|^{n}}\) which converges by theorem 3.26. Therefore our series converges.
+    \end{enumerate}
+\item[7.] Prove that the convergence of \(\sum a_{n}\) implies the convergence of \(\sum \frac{\sqrt{a_{n}}}{n}\).
+    \begin{proof}
+    By theorem 1.35, the Schwarz inequality, we have,
+    \[
+        \left(\sum a_{i}b_{i}\right)^{2}\leq\left(\sum a^{2}_{i}\right)\left(\sum b^{2}_{i}\right)
+    \]
+    In our case, \(a_{i}\coloneqq \sqrt{a_{n}}\) and \(b_{i}\coloneqq\frac{1}{n}\). So, \[
+        \left(\sum\frac{\sqrt{a_{n}}}{n}\right)^{2}\leq(\sum a_{n})(\sum \frac{1}{n^{2}})
+   \]
+   \(\sum a_{n}\) converges by assumption, and \(\sum \frac{1}{n^{2}}\) converges by theorem 3.28. Therefore \(\left(\sum\frac{\sqrt{a_{n}}}{n}\right)^{2}\) converges and so \(\sum\frac{\sqrt{a_{n}}}{n}\) also converges.
+    \end{proof}
+\end{enumerate}
+\end{document}
