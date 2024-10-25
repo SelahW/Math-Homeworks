@@ -1,0 +1,93 @@
+\documentclass[hidelinks,12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{mathtools}
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{centernot}
+\usepackage{marvosym}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\usepackage{graphicx}
+\graphicspath{{/home/theo/Documents/GitHub/Math-Homeworks/Images/}}
+\setcounter{tocdepth}{1}
+\let\marvosymLightning\Lightning
+\renewcommand{\geq}{\geqslant}
+\renewcommand{\leq}{\leqslant}
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}{Corollary}[theorem]
+\newtheorem*{remark}{Remark}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\divby}{%
+  \mathrel{\text{\vbox{\baselineskip.65ex\lineskiplimit0pt\hbox{.}\hbox{.}\hbox{.}}}}%
+  }
+\newcommand{\notdivby}{\centernot\divby}
+\title{\scalebox{2}{Math 835 Homework 5}}
+\author{\scalebox{1.5}{Theo Koss}}
+\date{October 2024}
+
+\begin{document}
+
+\maketitle
+\section*{Chapter 13}
+\subsection*{Section 5}
+\begin{enumerate}
+    \item[2.] Find all irred. polynomials of degree 1, 2, and 4 over \(\F_{2}\) and prove their product is \(x^{16}-x\)\begin{itemize}
+        \item Degree 1: \(x\) and \(x+1\).
+        \item Degree 2: \(x^{2}+x+1\).
+        \item Degree 4: \(x^{4}+x^{3}+x^{2}+x+1\), \(x^{4}+x^{3}+1\), \(x^{4}+x+1\).
+    \end{itemize} 
+    Product:\[
+        x(x+1)(x^{2}+x+1)(x^{4}+x^{3}+x^{2}+x+1)(x^{4}+x^{3}+1)(x^{4}+x+1)
+    \]
+    \[
+    =(x^{4}+x)(x^{4}+x^{3}+x^{2}+x+1)(x^{4}+x^{3}+1)(x^{4}+x+1)
+    \]
+    \[
+    =(x^{8}+x^{7}+x^{6}+x^{3}+x^{2}+x+1)(x^{4}+x^{3}+1)(x^{4}+x+1)
+    \]
+   \[
+   =(x^{8}+x^{7}+x^{6}+x^{3}+x^{2}+x+1)(x^{8}+x^{7}+x^{5}+x^{4}+x^{3}+x+1)
+   \]
+   \[
+   =(x^{16}+x)=(x^{16}-x)
+   \] 
+    \item[3.] Prove that \(d\) divides \(n\) iff \(x^{d}-1\) divides \(x^{n}-1\). Note that if \(n=qd+r\) then \(x^{n}-1=(x^{qd+r}-x^{r})+(x^{r}-1)\) 
+        \begin{proof}
+        \((\implies)\) Let \(d\mid n\). Then \(n=kd\) for some \(k\in\Z\). We then have \(x^{n}-1=x^{kd}-1\). Let \(y=x^{d}\) and substitute,
+        \[
+        y^{q}-1=(y-1)(y^{q-1}+\dots+y+1)
+        \]
+       So \[
+       x^{n}-1=(x^{d}-1)(x^{dq-d}+x^{dq-2d}+\dots+x^{d}+1)
+       \]
+        \((\impliedby)\) Assume \(d\) does not divide \(n\). \[
+        n=qd+r,\ r<d,\ r\neq0
+        \]
+       \[
+       x^{n}-1=(x^{qd+r}-x^{r})+(x^{r}-1)
+       \]
+       \[
+       =x^{r}(x^{qd}-1)+(x^{r}-1)
+       \]
+       But \(x^{d}\) divides the first part, and not the second part. So we have \(x^{d}-1\) does not divide \(x^{n}-1\) contradiction. 
+        \end{proof}
+    \item[4.] Let \(a>1\) be an integer. Prove for any positive integers \(n,d\) that \(d\) divides \(n\) if and only if \(a^{d}-1\mid a^{n}-1\) (cf. the previous exercise). Conclude in particular that \(\F_{p^{d}}\subseteq\F_{p^{n}}\) if and only if \(d\mid n\).
+        \begin{proof}
+        By above, the polynomial \(x^{d}-1\mid x^{n}-1\) iff \(d\mid n\). So \\
+        \((\implies)\) Let \(\F_{p^{d}}\subseteq\F_{p^{n}}\) and \(k\in\F_{p^{d}}\), then we have \(k\in\F_{p^{n}}\).
+    Then, the finite fields are determined by roots of \(x^{p^{d}}-x\) and \(x^{p^{n}}-x\) respectively. So \(k\) is a root of both \(x^{p^{d}}-x\) and \(x^{p^{n}}-x\), therefore \[
+    x^{p^{d}}-x\mid x^{p^{n}}-x\implies p^{d}\mid p^{n}\implies d\mid n
+    \]
+   \((\impliedby)\) Let \(d\mid n\), then \(n=dq\) for some \(q\in\Z^{+}\). So
+   \[
+       x^{p^{d}}-x\mid x^{p^{dq}}-x=x^{p^{n}}-x\implies\F_{p^{d}}\subseteq\F_{p^{n}}
+   \]
+        \end{proof}
+\end{enumerate}
+\end{document}
