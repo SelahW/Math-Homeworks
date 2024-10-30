@@ -1,0 +1,57 @@
+\documentclass[hidelinks,12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{mathtools}
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{centernot}
+\usepackage{marvosym}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\usepackage{graphicx}
+\graphicspath{{/home/theo/Documents/GitHub/Math-Homeworks/Images/}}
+\setcounter{tocdepth}{1}
+\let\marvosymLightning\Lightning
+\renewcommand{\geq}{\geqslant}
+\renewcommand{\leq}{\leqslant}
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}{Corollary}[theorem]
+\newtheorem*{remark}{Remark}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\divby}{%
+  \mathrel{\text{\vbox{\baselineskip.65ex\lineskiplimit0pt\hbox{.}\hbox{.}\hbox{.}}}}%
+  }
+\newcommand{\notdivby}{\centernot\divby}
+\title{\scalebox{1.5}{Math 835 Homework 6}}
+\author{\scalebox{1.5}{Theo Koss}}
+\date{October 2024}
+
+\begin{document}
+
+\maketitle
+\section*{Chapter 13}
+\subsection*{Section 6}
+\begin{enumerate}
+    \item Suppose \(m\) and \(n\) are coprime positive integers. Let \(\zeta_{m}\) be a primitive \(m\)-th root of unity and let \(\zeta_{n}\) be a primitive \(n\)-th root of unity. Prove that \(\zeta_{m}\zeta_{n}\) is a primitive \(mn\)-th root of unity.
+        \begin{proof}
+        \(\zeta_{m}\) and \(\zeta_{n}\) are primitive resp. \(m\) and \(n\)-th roots of unity, so we have \(\zeta_{m}^{m}=1\) and \(\zeta^{n}_{n}=1\) and \(\zeta_{m}^{k}\neq1\), and \(\zeta_{n}^{l}\neq1\) for any \(1\leq k\leq m-1\) and \(1\leq l\leq n-1\). Then \[
+            (\zeta_{m}\zeta_{n})^{mn}=1
+        \]
+        And because \(m\) and \(n\) are coprime \(\operatorname{lcm}(m,n)=mn\), so we do not have a smaller \(i\) for which \((\zeta_{m}\zeta_{n})^{i}=1\). Therefore \(\zeta_{m}\zeta_{n}\) is a primitive \(mn\)-th root of unity.
+        \end{proof}
+    \item Let \(\zeta_{n}\) be a primitive \(n-\)th root of unity and let \(d\) be a divisor of \(n\). Prove that \(\zeta_{n}^{d}\) is a primitive \(n/d\)-th root of unity.
+        \begin{proof}
+            Let \(q=n/d\), we have
+            \[
+                (\zeta_{n}^{d})^{q}=\zeta_{n}^{dq}=\zeta_{n}^{n}=1
+            \]
+            So \(\zeta_{n}^{d}\) is clearly a \(q-\)th root of unity. Now it remains to show that \(\zeta_{n}^{d}\) is primitive in \(\mu_{q}\). We have \(\zeta_{n}^{d}=\zeta_{q}\) and since 1 is coprime to \(q\), \(\zeta_{q}^{1}\) is primitive in \(\mu_{q}\).
+        \end{proof}
+    \item[13.] 
+\end{enumerate}
+\end{document}

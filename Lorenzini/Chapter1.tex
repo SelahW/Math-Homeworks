@@ -23,6 +23,8 @@
 \newcommand{\Z}{\mathbb{Z}}
 \newcommand{\Q}{\mathbb{Q}}
 \newcommand{\F}{\mathbb{F}}
+\newcommand{\gothp}{\mathfrak{P}}
+\newcommand{\gothq}{\mathfrak{Q}}
 \newcommand{\divby}{%
   \mathrel{\text{\vbox{\baselineskip.65ex\lineskiplimit0pt\hbox{.}\hbox{.}\hbox{.}}}}%
   }
@@ -77,6 +79,23 @@
             I^{a+1}+J^{b}=IA=A
             \]
             Thus \(I^{a+1}\) is coprime to \(J^{b}\). Therefore the statement is true for all pairs \(a,b\in\N\).
+        \end{proof}
+    \item Show that in the ring \(\Z[\sqrt{-5}]\), the elements \(2,3,1+\sqrt{-5},1-\sqrt{-5}\) are irreducible, and that they are not associates.
+    \item Let \(p\) be a prime number. Let \(\bar{g}(x)\in(\Z/p\Z)[x]\) be any irreducible polynomial. Let \(g(x)\in\Z[x]\) be such that its image under the natural reduction map \(\Z[x]\to(\Z/p\Z)[x]\) is \(\bar{g}(x)\). Show that the ideal \((p,g(x))\) is a maximal ideal of \(\Z[x]\).
+        \begin{proof}
+            We have that \[
+                \Z[x]/(p,g(x))\cong(\Z[x]/p)/(g(x))\cong(\Z/p\Z)[x]/(g(x))
+            \]
+            Then, consider the natural reduction map
+            \[
+                \pi:\Z[x]\to(\Z/p\Z)[x]
+            \]
+            And we have \(\pi(g(x))=\bar{g}(x)\), so \((\Z/p\Z)[x]/(g(x))\cong(\Z/p\Z)[x]/(\bar{g}(x))\). We know \(\bar{g}(x)\) is irreducible, and the ring \((\Z/p\Z)[x]\) is a PID, so the ideal \((\bar{g}(x))\) is maximal, and therefore \((\Z/p\Z)[x]/(\bar{g}(x))\)is a field, (finite field \(\F_{p^{\deg(\bar{g}(x))}}\)). So the ideal \((p,g(x))\) is maximal in \(\Z[x]\)\\
+            (Because modding by it gave a field.)
+        \end{proof}
+    \item Show that a prinicpal ideal domain has the property of unique factorization of ideals.
+        \begin{proof}
+        Let \(A\) be a PID, then obviously \(A\) is Noetherian. Let \((g)\) be a nontrivial ideal of \(A\). If \((g)\) is itself prime, we have \((g)=\gothp\) is a unique factorization.
         \end{proof}
 \end{enumerate}
 \end{document}
