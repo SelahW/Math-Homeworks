@@ -1,0 +1,148 @@
+\documentclass[hidelinks,12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{mathtools}
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{centernot}
+\usepackage{marvosym}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\setcounter{tocdepth}{1}
+\let\marvosymLightning\Lightning
+\renewcommand{\geq}{\geqslant}
+\renewcommand{\leq}{\leqslant}
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}{Corollary}[theorem]
+\newtheorem*{remark}{Remark}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\divby}{%
+    \mathrel{\text{\vbox{\baselineskip.65ex\lineskiplimit0pt\hbox{.}\hbox{.}\hbox{.}}}}%
+}
+\newcommand{\notdivby}{\centernot\divby}
+\title{\scalebox{1.5}{Math 723 Homework 4}}
+\author{\scalebox{1.5}{Theo Koss}}
+\date{October 2024}
+
+\begin{document}
+\maketitle
+\section*{Assignment 4}
+\subsection*{Chapter 3}
+\begin{enumerate}
+    \item[16.] Fix a positive number \(\alpha\). Choose \(x_{1}>\sqrt{\alpha}\), and defined \(x_{2},x_{3},x_{4}\dots,\) by the recursion formula: \[
+    x_{n+1}=\frac{1}{2}\left(x_{n}+\frac{\alpha}{x_{n}}\right)
+    \]
+    \begin{enumerate}[label=(\alph*).]
+        \item Prove that \(\{x_{n}\}\) decreases monotonically and that \(\lim x_{n}=\sqrt{\alpha}\).
+            \begin{proof}
+                By induction on \(\{x_{n}\}\).
+                \[
+                    x_{1}-x_{2}=\frac{x_{1}^{2}-\alpha}{2x_{1}}
+                \]
+                We have \(x_{1}>\sqrt{\alpha}\) by assumption, so this is positive, so \(x_{1}>x_{2}\). This calculation holds for all \(x_{n}\), because \(x_{n}^{2}>\alpha\) for all \(n\in\N\), so the difference is always positive. It is also bounded below so therefore the limit exists. Letting \(L=\lim x_{n}\), we have \[
+                L=\frac{1}{2}\left(L+\frac{\alpha}{L}\right)\implies L^{2}=\alpha
+                \]
+                And so \(L=\lim x_{n}=\sqrt{\alpha}\).
+            \end{proof}
+        \item Put \(\varepsilon_{n}=x_{n}-\sqrt{\alpha}\), and show that \[
+                \varepsilon_{n+1}=\frac{\varepsilon_{n}^{2}}{2x_{n}}<\frac{\varepsilon_{n}^{2}}{2\sqrt{\alpha}}
+        \]
+        So that, setting \(\beta=2\sqrt{\alpha}\), \[
+        \varepsilon_{n+1}<\beta\left(\frac{\varepsilon_{1}}{\beta}\right)^{2^{n}}
+        \]
+        \begin{proof}
+            \[
+                \varepsilon_{n+1}=x_{n+1}-\sqrt{\alpha}=\frac{1}{2}\left(x_{n}+\frac{\alpha}{x_{n}}\right)-\sqrt{\alpha}
+            \]
+            We have \(\varepsilon_{n}^{2}=x^{2}_{n}-2x_{n}\sqrt{\alpha}+\alpha\), and \(\varepsilon_{n+1}=\frac{x_{n}}{2}+\frac{\alpha}{2x_{n}}-\sqrt{\alpha}\). Clearing denominators: \[
+            2x_{n}\varepsilon_{n+1}=x^{2}_{n}-2x_{n}\sqrt{\alpha}+\alpha=\varepsilon_{n}^{2}
+            \]
+            So \(\varepsilon_{n+1}=\frac{\varepsilon_{n}^{2}}{2x_{n}}\). By above, we always have \(x_{n}>\sqrt{\alpha}\), so the denominator is bigger, and therefore \[
+                \varepsilon_{n+1}=\frac{\varepsilon_{n}^{2}}{2x_{n}}<\frac{\varepsilon_{n}^{2}}{2\sqrt{\alpha}}
+            \]
+           Then, we must show for all \(n\) that,
+           \[
+        \varepsilon_{n+1}<\beta\left(\frac{\varepsilon_{1}}{\beta}\right)^{2^{n}}
+       \]
+       Let \(n=1\), we have
+       \[
+           \varepsilon_{2}<\frac{\varepsilon_{1}^{2}}{\beta}=\beta\left(\frac{\varepsilon_{1}}{\beta}\right)^{2}
+       \]
+       Assume for some \(k\in\N\),\[
+        \varepsilon_{k+1}<\beta\left(\frac{\varepsilon_{1}}{\beta}\right)^{2^{k}}
+       \]
+       Then, \[
+           \varepsilon_{k+2}<\beta\left(\frac{\varepsilon_{k+1}}{\beta}\right)^{2}<\beta\left[\frac{\beta\left(\frac{\varepsilon_{1}}{\beta}\right)^{2^{k}}}{\beta}\right]^{2}=\beta\left(\frac{\varepsilon_{1}}{\beta}\right)^{2^{k+1}}
+       \]
+       As required. 
+           \end{proof}
+       \item If \(\alpha=3\) and \(x_{1}=2\), show that \(\frac{\varepsilon_{1}}{\beta}<\frac{1}{10}\) and therefore \[
+        \varepsilon_{5}<4\cdot10^{-16},\ \varepsilon_{5}<4\cdot10^{-32}
+        \]
+        \begin{proof}
+            We have \(\varepsilon_{1}=2-\sqrt{3}\), and \(\beta=2\sqrt{3}<4\). So \[
+                \frac{\varepsilon_{1}}{\beta}=\frac{2-\sqrt{3}}{2\sqrt{3}}=\frac{1}{2\sqrt{3}(2+\sqrt{3})}<\frac{1}{10}
+            \]
+            Because \(2\sqrt{3}(2+\sqrt{3})=6+4\sqrt{3}>10\). Therefore\[
+                \varepsilon_{5}<\beta\left(\frac{\varepsilon_{1}}{\beta}\right)^{2^{4}}<4\left(\frac{1}{10}\right)^{16}\tag{By above}
+            \]
+           Similarly \[
+               \varepsilon_{6}<\beta\left(\frac{\varepsilon_{1}}{\beta}\right)^{2^{5}}<4\left(\frac{1}{10}\right)^{32}
+           \]
+        \end{proof}
+    \end{enumerate}
+\end{enumerate}
+\subsection*{Chapter 4}
+\begin{enumerate}
+    \item Suppose \(f\) is a real function defined on \(\R^{1}\) which satisfies \[
+            \lim_{h\to0}\left[f(x+h)-f(x-h)\right]=0
+    \]
+   For every \(x\in\R\). Does this imply that \(f\) is continuous? 
+   \begin{proof}
+   Yes, because this limit gives \(f(x+h)=f(x-h)\), for small \(h\), which is as we have defined \(f(x+)\) and \(f(x-)\). Since we have that they are equal always, there are no discontinuities and therefore \(f\) is continuous.
+   \end{proof}
+    \item[18.] Consider the function \(f\) on \(\R\) defined by: \[
+    f(x)=\begin{cases}
+    0 & \text{if }x\text{ irrational}\\
+    \frac{1}{n} & \text{if }x=\frac{m}{n}\\
+    \end{cases}
+    \]
+    Prove that \(f\) is continuous at irrational points, and that \(f\) has a simple discontinuity at every rational point.
+    \begin{proof}
+        Let \(k\in\R\setminus\Q\), then \(f(k)=0\). We also have
+        \[
+            \lim_{t\to k}f(t)=\text{Limit of sequences of rationals converging to k}
+        \]
+        By density of the reals in \(\Q\), we have that the denominators in each sequence \(\{t_{n}\}\) grow, so \(\lim_{t\to k}f(t)=0=f(k)\), so \(f\) is continuous at irrationals.\\
+        Let \(k=\frac{m}{n}\in\Q\). We have \(f(k)=\frac{1}{n}\), select a sequence of irrationals \(\{t_{n}\}\) which converge to \(k\) as \(n\to\infty\). Then the limit
+        \[
+            \lim_{t\to k}f(t)=0\neq \frac{1}{n}=f(k)
+        \]
+        Therefore there is a discontinuity of the first kind, because \(f(k+)\) and \(f(k-)\) both exist, they are just not equal to \(\lim_{t\to k}f(t)\).
+    \end{proof}
+\end{enumerate}
+\subsection*{Chapter 5}
+\begin{enumerate}
+    \item[2.] Suppose \(f'(x)>0\) in \((a,b)\). Prove that \(f\) is strictly increasing in \((a,b)\), and let \(g\) be its inverse function. Prove \(g\) is differentiable, and \[
+            g'(f(x))=\frac{1}{f'(x)}\quad (a<x<b)
+    \]
+   \begin{proof}
+   We have \(f'(x)>0\) in \((a,b)\), so \[
+   \lim_{t\to x}\frac{f(t)-f(x)}{t-x}>0
+   \]
+  Approaching from the left, we have that \(t<x\) so the denominator is negative, and since the limit is \(>0\), the numerator is also negative, then \(f(t)<f(x)\) as required. Approaching from the right we get the denominator is positive, so the numerator must also be positive, giving \(f(t)>f(x)\), as required.\\
+  Let \(g\) be the inverse of \(f\), then \[
+  g'(f(x))=\lim_{t\to x}\frac{g(f(t))-g(f(x))}{f(t)-f(x)}
+  \]
+  But we have \(g(f(k))=k\) for all \(k\), so \[
+  g'(f(x))=\lim_{t\to x}\frac{t-x}{f(t)-f(x)} =\frac{1}{f'(x)}
+  \]
+  And so \(g\) is differentiable
+   \end{proof} 
+\end{enumerate}
+\end{document}
