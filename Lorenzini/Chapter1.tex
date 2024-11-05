@@ -23,6 +23,7 @@
 \newcommand{\Z}{\mathbb{Z}}
 \newcommand{\Q}{\mathbb{Q}}
 \newcommand{\F}{\mathbb{F}}
+\renewcommand{\O}{\mathcal{O}}
 \newcommand{\gothp}{\mathfrak{P}}
 \newcommand{\gothq}{\mathfrak{Q}}
 \newcommand{\divby}{%
@@ -116,6 +117,27 @@
            \end{proof} 
             \item 
         \end{enumerate}
-    \item Let \(k\) be any field. Let \(A\coloneqq k[x_{1},\dots,x_{n},\dots]\) be the polynomial ring in countably many variables. Show that \(A\) is not Noetherian.
+    \item \begin{enumerate}[label=(\alph*).]
+        \item Let \(k\) be any field. Let \(A\coloneqq k[x_{1},\dots,x_{n},\dots]\) be the polynomial ring in countably many variables. Show that \(A\) is not Noetherian.
+        \begin{proof}
+            By way of contradiction, assume \(A\) is Noetherian, so every increasing chain of ideals \[
+            I_{0}\subset I_{1}\subset I_{2}\subset\dots\subset I_{n}=I_{n+1}
+            \]
+            Stabilizes at some point. We have the ideals
+            \[
+                (x_{1})\subset(x_{1},x_{2})\subset\dots(x_{1},\dots,x_{n})=(x_{1},\dots,x_{n},x_{n+1})
+            \]
+            That gives \(x_{n+1}\in I_{n}=(x_{1},\dots,x_{n})\). So we can write \(x_{n+1}\) as a linear combination of the elements of that ideal,
+            \[
+                x_{n+1}=\sum_{i=1}^{n} c_{i}x_{i}
+            \]
+            But, consider the evaluation mapping \(\phi:A\to k\) by evaluating \(x_{1},\dots,x_{n}=0\) and \(x_{n+1}=1\). Applying this evaluation mapping to above gives \[
+            1=\phi(x_{n+1})=\phi(\sum_{i=1}^{n} c_{i}x_{i})=\sum c_{i}\phi(x_{i})=\sum c_{i}\cdot0=0
+            \]
+           Contradiction. 
+        \end{proof}
+    \item Let \(\bar{\Q}\) denote an algebraic closure of \(\Q\). Let \(\O\) denote the integral closure of \(\Z\) in \(\bar{\Q}\). Show that \(\O\) is not a Noetherian ring. (Hint: find a nonstationary sequence of ideals in \(\O\) by taking successive roots of an integer.)
+    \end{enumerate}
+\item Let \(k\) be a field, and \(A\coloneqq k[x_{1},\dots,x_{n}]\). Let \(\bar{k}\) denote an algebraic closure of \(k\), and let \(B\coloneqq \bar{k}[x_{1},\dots,x_{n}]\). Show that the extension \(B/A\) is integral. Note that in general, \(B\) is not a finitely generated \(A\)-module.
 \end{enumerate}
 \end{document}
