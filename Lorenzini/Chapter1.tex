@@ -146,5 +146,22 @@
         \end{proof}
     \end{enumerate}
 \item Let \(k\) be a field, and \(A\coloneqq k[x_{1},\dots,x_{n}]\). Let \(\bar{k}\) denote an algebraic closure of \(k\), and let \(B\coloneqq \bar{k}[x_{1},\dots,x_{n}]\). Show that the extension \(B/A\) is integral. Note that in general, \(B\) is not a finitely generated \(A\)-module.
+    \begin{proof}
+        \(B/A\) is integral iff every element of \(B\) is integral over \(A\) (is the root of a monic polynomial in \(k[x_{1},\dots,x_{n}]\)). So, choose an arbitrary element \(\alpha\in B\). There are two cases:
+        \begin{enumerate}
+            \item If \(\alpha\in A\), then we are done because \(x_{i}-\alpha\) is a polynomial with coefficients in \(A\) that is satisfied by \(\alpha\).
+            \item So, assume \(\alpha\in B-A\). Then, since \(\bar{k}\) is an algebraic closure of \(k\), for all \(\beta\in\bar{k}\), we have \(f(\beta)=0\) where \(f\) is a monic polynomial with coefficients in \(k\). So, let \(\alpha\in B\), then \[
+                    \alpha=\sum_{i=1}^{n} c_{i}x_{i}^{a_{i}}
+            \]
+            Where \(c_{i}\in\bar{k}\). Since \(\bar{k}\) is an algebraic closure, for each coefficient \(c_{i}\), there exists a monic polynomial \(p_{i}\in A\) such that \(p_{i}(c_{i})=0\). Then, the product of all of these \(p_{i}\) kills each coefficient, so let \[
+            A\ni P(x_{1},\dots,x_{n})=\prod_{i=1}^{n}p_{i}(x_{i})
+            \]
+            Then
+             \[
+                 P\left(\alpha\right)=P\left(\sum_{i=1}^{n}c_{i}x_{i}^{a_{i}}\right)=\prod_{i=1}^{n}p_{i}\left(\sum_{i=1}^{n}c_{i}x_{i}^{a_{i}}\right)=0
+            \]
+           And, a product of monic polynomials is monic, so \(P(x_{1},\dots,x_{n})\) is a monic polynomial in \(A\) which is satisfied by \(\alpha\) as required.
+        \end{enumerate}
+    \end{proof}
 \end{enumerate}
 \end{document}
