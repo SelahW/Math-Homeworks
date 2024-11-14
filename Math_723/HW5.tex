@@ -1,0 +1,192 @@
+\documentclass[hidelinks,12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{mathtools}
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{centernot}
+\usepackage{marvosym}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\setcounter{tocdepth}{1}
+\let\marvosymLightning\Lightning
+\renewcommand{\geq}{\geqslant}
+\renewcommand{\leq}{\leqslant}
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}{Corollary}[theorem]
+\newtheorem*{remark}{Remark}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\divby}{%
+    \mathrel{\text{\vbox{\baselineskip.65ex\lineskiplimit0pt\hbox{.}\hbox{.}\hbox{.}}}}%
+}
+\newcommand{\notdivby}{\centernot\divby}
+\title{\scalebox{1.5}{Math 723 Homework 4}}
+\author{\scalebox{1.5}{Theo Koss}}
+\date{October 2024}
+
+\begin{document}
+\maketitle
+\section*{Assignment 5}
+\subsection*{Chapter 5}
+\begin{enumerate}
+    \item[15.] Suppose \(a\in\R\), \(f\) is a twice differentiable real function on \((a,\infty)\), and \(M_{0},M_{1},M_{2}\) are least upper bounds of \(|f(x)|,|f'(x)|,|f''(x)|\), respectively on \((a,\infty)\). 
+        \begin{enumerate}[label=(\alph*).]
+            \item Prove that \[
+    M_{1}^{2}\leq 4M_{0}M_{2}
+    \]
+    \begin{proof}
+   By Taylor's theorem, for \(h>0\) we have the approximation: \[
+       f'(x)=\frac{1}{2h}\left[f(x+2h)-f(x)\right]-hf''(\zeta) 
+   \]
+  For some \(\zeta\in(x,x+2h)\). Therefore, \[
+  M_{1}=|f'(x)|\leq hM_{2}+\frac{M_{0}}{h}
+  \]
+Taking the derivative of the right (w.r.t. \(h\)) gives \(M_{2}-\frac{M_{0}}{h^{2}}\). Since we want to minimize RHS, we let the derivative equal 0. Then \[
+    M_{2}=\frac{M_{0}}{h^{2}}\implies h^{2}=\frac{M_{0}}{M_{2}}\implies h=\sqrt{\frac{M_{0}}{M_{2}}}
+\]
+Plugging this value for \(h\) above gives 
+\[
+    M_{1}=\sqrt{\frac{M_{0}}{M_{2}}}\cdot M_{2}+\frac{M_{0}}{\sqrt{\frac{M_{0}}{M_{2}}}}=2\sqrt{M_{0}M_{2}}
+\]
+Squaring both sides:\[
+M_{1}^{2}=4M_{0}M_{2}
+\]
+   \end{proof}
+            \item Show that equality can actually happen. Define \[
+            f(x)=\begin{cases}
+            2x^{2}-1 & \text{if }(-1<x<0)\\
+             \frac{x^{2}-1}{x^{2}+1}& \text{if }(0\leq x<\infty)\\
+            \end{cases}
+            \]
+           We have \(M_{0}=1\) because \(|\lim_{x\to-1}f(x)|=1\). Therefore least upper bound is 1. \(M_{1}=4\) because \(|\lim_{x\to-1}4x|=4\), and similarly, \(M_{2}=4\) because \(f''(x)=4\) for \(-1<x<0\). (and second derivative of the other piece is never greater than 4). Therefore
+           \[
+               M_{1}^{2}=16=4M_{0}M_{2}
+           \]
+            \item Does this inequality hold for vector valued functions? Not necessarily, because the mean value theorem need not hold for vector valued functions. (Remark 5.16)
+        \end{enumerate}   
+    \item[22.] Suppose \(f\) is a real function on \((-\infty,\infty)\). Call \(x\) a \underline{fixed point} if \(f(x)=x\).
+        \begin{enumerate}[label=(\alph*).]
+            \item If \(f\) is differentiable and \(f'(t)\neq1\) for all real \(t\), prove that \(f\) has at most one fixed point.
+                \begin{proof}
+                Let \(f\) be differentiable and \(f'(t)\neq1\) for all real \(t\). Then define \(g(x)=f(x)-x\), then we have roots of \(g\) are fixed points of \(f\). To find roots of \(g\), we can look at the derivative \(g'(x)=f'(x)-1\) (it is differentiable because \(f\) is, and clearly \(x\) is.) However we have that \(f'(x)\neq1\) for all real \(x\), so the derivative is never equal to 0. This means the function \(g\) is monotonic, so it never crosses the \(x\) axis more than once, giving at most one fixed point of \(f\).
+                \end{proof}
+            \item Show that \[
+            f(t)=t+(1+e^{t})^{-1}
+            \]
+           Has no fixed point, although \(0<f'(t)<1\) for all real \(t\).
+           \begin{proof}
+           Fixed point of \(f\) implies \(f(t)=t\) which gives \((1+e^{t})^{-1}=0\). However, \(\frac{1}{1+e^{t}}\) is never 0. So there are no fixed points of \(f\), but the derivative is 
+           \[
+           f'(t)=1-\frac{1+e^{t}}{(1+e^{t})^{2}}
+           \]
+          Which is between 0 and 1. 
+           \end{proof}
+       \item If there is a constant \(A<1\) such that \(|f'(t)|\leq A\) for all real \(t\), prove that a fixed point of \(f\) exists, and that \(x=\lim x_{n}\), where \(x_{1}\) is an arbitrary real, and \[
+       x_{n+1}=f(x_{n})
+       \]
+      \begin{proof}
+          Again define \(g(x)=f(x)-x\). We again never have \(g'(x)=0\) because \(|f'(x)|<1\). However, \(\exists a,\ g(a)>0\) and \(\exists b,\ g(b)<0\). Therefore, by the intermediate value theorem, there is a point \(c\) with \(g(c)=0\), which gives a fixed point \(x^{*}\) of \(f\).\\
+      Now, considering the sequence \(\{x_{n}\}\), with \[
+      x_{n+1}=f(x_{n})
+      \]
+     and \(x_{1}\in\R\). We have \(x_{n+1}-x^{*}=f(x_{n})-f(x^{*})\). Then, by the mean value theorem, there exists some \(\zeta\) such that \(x_{n+1}-x^{*}=f'(\zeta)(x_{n}-x^{*})\). This gives \[
+     |x_{n+1}-x^{*}|\leq A|x_{n}-x^{*}|\leq A^{2}|x_{n-1}-x^{*}|\leq\dots
+     \]
+     And, since \(|A|<1\), this sequence converges to 0, so
+     \[
+         \{x_{n}\}\to x^{*}
+     \]
+      \end{proof} 
+  \item I'm not sure what is meant by the zig-zag path.
+        \end{enumerate}
+\end{enumerate}
+\subsection*{Chapter 6}
+\begin{enumerate}
+    \item[3.] Define three functions \(\beta_{1},\beta_{2},\beta_{3}\) as follows: \(\beta_{j}(x)=0\) if \(x<0\), \(\beta_{j}=1\) if \(x>0\) for \(j=1,2,3\); and \(\beta_{1}(0)=0,\ \beta_{2}(0)=1,\ \beta_{3}(0)=\frac{1}{2}\). Let \(f\) be a bounded function on \([-1,1]\).
+        \begin{enumerate}[label=(\alph*).]
+            \item Prove that \(f\in R(\beta_{1})\) iff \(f(x+)=f(0)\) and that then \[
+            \int f d \beta_{1}=f(0)
+            \]
+            \begin{proof}
+            \((\implies)\) Let \(f\in R(\beta_{1})\) and pick a \(\varepsilon>0\). Then, by theorem 6.6, we have for every \(\varepsilon>0\), there exists a partition \(P\) such that \[
+           U(P,f,\beta_{1})-L(P,f,\beta_{1})<\varepsilon
+            \]
+            So, choose a parition \(P=\{x_{1},x_{2},\dots,x_{n}\}\) containing 0, say \(x_{k}=0\). Because \(\Delta \beta_{i}=0\) everywhere \emph{except} when \(\beta_{1}\) jumps to 1, we have:
+            \[
+                U(P,f,\beta_{1})=M_{k}=\sup f(x)\text{  For }(0=x_{k}<x<x_{k+1})
+        \]
+            And\[
+                L(P,f,\beta_{1})=m_{k}=\inf f(x)\text{  For }(0=x_{k}<x<x_{k+1})
+            \]
+           Are epsilon-close when \(x\) is between \(x_{k}\) and \(x_{k+1}\). We also have that \(M_{k}\) and \(m_{k}\) are respectively the supremum and infimum of \(f(x)\), so
+\[
+m_{k}\leq f(x)\leq M_{k}\implies |f(x)-f(0)|<\varepsilon
+\]
+
+            and so \(f(x+)=f(0)\).\\
+           \((\impliedby)\) Let \(f(x+)=f(0)\). Then we have for any \(\varepsilon>0\), there exists a \(\delta>0\) with \(|f(x)-f(0)|<\varepsilon\) when \(0<x<\delta\). Now consider a partition \(Q\) of \([-1,1]\) which contains a point \(x_{k}=0\). By the equality above, we have for \(x\in(0,\delta)\), that
+\begin{align*}
+|f(x)-f(0)|&\leq M_{k}-m_{k}\\
+&=U(Q,f,\beta_{1})-L(Q,f,\beta_{1})\\
+&<\varepsilon\\
+\end{align*}
+          And so the Riemann-Stieltjes sums are epsilon-close, which gives  
+            \[
+            \int f d \beta_{1}
+            \]
+            Exists, and equals \(f(0)\).
+            \end{proof}
+            \item State and prove a similar result for \(\beta_{2}\).\\
+                Similarly, we have \(f\in R(\beta_{2})\iff f(x-)=f(0)\).
+                \begin{proof}
+                    Same as above!
+                \end{proof}
+            \item Prove that \(f\in R(\beta_{3})\) iff \(f\) is continuous at 0.
+                \begin{proof}
+                \((\implies)\) Let \(f\in R(\beta_{3})\). Then there is a partition \(P\) for which the Riemann-Stieltjes sums are epsilon-close, \[
+                U(P,f,\beta_{3})-L(P,f,\beta_{3})<\varepsilon
+                \]
+               In this case, because \(\beta_{3}=\frac{1}{2}\) for \(x=0\). We have that at the point in the partition where \(x_{k}=0\), \(\Delta \beta_{3}=\frac{1}{2}\) from above and below, so
+               \[
+                   \Delta\beta_{3}(x_{k})=\frac{1}{2},\ \Delta\beta_{3}(x_{k-1})=\frac{1}{2}
+               \]
+               And \(\Delta \beta_{3}=0\) everywhere else. Thus, \[
+               U(P,f,\beta_{3})=\frac{M_{k-1}-M_{k}}{2}
+               \]
+              And 
+              \[
+              L(P,f,\beta_{3})=\frac{m_{k-1}-m_{k}}{2}
+              \]
+             So then \[
+                 U(P,f,\beta_{3})-L(P,f,\beta_{3})=\frac{(M_{k-1}-M_{k})-(m_{k-1}-m_{k})}{2}<\varepsilon
+             \]
+             But \(|f(x)-f(0)|\) is at most the max of \(M_{k}-m_{k}\) or \(M_{k-1}-m_{k-1}\). This gives \[
+             |f(x)-f(0)|\leq (M_{k}-m_{k})+(M_{k-1}-m_{k-1})<\varepsilon
+             \]
+             As required.\\
+             \((\impliedby)\) Let \(\varepsilon>0\) be given and \(|f(x)-f(0)|<\varepsilon\) for \(x\in (0,\delta)\). Then, \[
+             |f(x)-f(0)|\leq (M_{k}-m_{k})+(M_{k-1}-m_{k-1})<\varepsilon
+             \]
+             Gives that the Riemann-Stieltjes sums are epsilon-close, so \(f\in R(\beta_{3})\).
+                \end{proof}
+            \item If \(f\) is continuous at 0, prove that \[
+            \int f d \beta_{1}=\int f d \beta_{2}=\int f d \beta_{3}=f(0)
+            \]
+           \begin{proof}
+           Let \(f\) be continuous at 0, then clearly
+           \[
+           f(x+)=f(x-)=\lim_{x\to 0}f(x)=f(0)
+           \]
+          Gives  \[
+            \int f d \beta_{1}=\int f d \beta_{2}=\int f d \beta_{3}=f(0)
+        \] 
+        By (a), (b), and (c).
+           \end{proof} 
+        \end{enumerate}
+\end{enumerate}
+\end{document}
