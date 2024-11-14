@@ -51,10 +51,10 @@ Taking the derivative of the right (w.r.t. \(h\)) gives \(M_{2}-\frac{M_{0}}{h^{
 \]
 Plugging this value for \(h\) above gives 
 \[
-    M_{1}=\sqrt{\frac{M_{0}}{M_{2}}}\cdot M_{2}+\frac{M_{0}}{\sqrt{\frac{M_{0}}{M_{2}}}}=2\sqrt{M_{0}M_{2}}
+    M_{1}\leq\sqrt{\frac{M_{0}}{M_{2}}}\cdot M_{2}+\frac{M_{0}}{\sqrt{\frac{M_{0}}{M_{2}}}}=2\sqrt{M_{0}M_{2}}
 \]
 Squaring both sides:\[
-M_{1}^{2}=4M_{0}M_{2}
+M_{1}^{2}\leq4M_{0}M_{2}
 \]
    \end{proof}
             \item Show that equality can actually happen. Define \[
@@ -67,7 +67,7 @@ M_{1}^{2}=4M_{0}M_{2}
            \[
                M_{1}^{2}=16=4M_{0}M_{2}
            \]
-            \item Does this inequality hold for vector valued functions? Not necessarily, because the mean value theorem need not hold for vector valued functions. (Remark 5.16)
+            \item Does this inequality hold for vector valued functions? Not necessarily, because the mean value theorem need not hold for vector valued functions, and Taylor's theorem depends on the MVT. (Remark 5.16)
         \end{enumerate}   
     \item[22.] Suppose \(f\) is a real function on \((-\infty,\infty)\). Call \(x\) a \underline{fixed point} if \(f(x)=x\).
         \begin{enumerate}[label=(\alph*).]
