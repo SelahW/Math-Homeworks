@@ -1,0 +1,130 @@
+\documentclass[hidelinks,12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{mathtools}
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{centernot}
+\usepackage{marvosym}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\setcounter{tocdepth}{1}
+\let\marvosymLightning\Lightning
+\renewcommand{\geq}{\geqslant}
+\renewcommand{\leq}{\leqslant}
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}{Corollary}[theorem]
+\newtheorem*{remark}{Remark}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\divby}{%
+    \mathrel{\text{\vbox{\baselineskip.65ex\lineskiplimit0pt\hbox{.}\hbox{.}\hbox{.}}}}%
+}
+\newcommand{\notdivby}{\centernot\divby}
+\title{\scalebox{1.5}{Math 723 Homework 6}}
+\author{\scalebox{1.5}{Theo Koss}}
+\date{December 2024}
+
+\begin{document}
+\maketitle
+\section*{Assignment 6}
+\subsection*{Chapter 6}
+\begin{enumerate}
+    \item[8.] Suppose \(f\) is Riemann integrable on \([a,b]\) for every \(b>a\) with \(a\) fixed. Define \[
+    \int_{a}^{\infty}f(x)dx=\lim_{b\to\infty}\int_{a}^{b}f(x)dx
+    \]
+    if this limit exists and is finite. Then the integral is said to \underline{converge}. Assume that \(f(x)\geq0\) and that \(f\) decreases monotonically on \([1,\infty]\). Prove that \[
+    \int_{1}^{\infty}f(x)dx
+    \]
+   Converges iff \[
+   \sum_{n=1}^{\infty}f(n)
+   \]
+   Converges. 
+   \begin{proof}
+       \((\implies)\) Assume \(\int_{1}^{\infty}f(x)dx\) converges to some \(L<\infty\). Consider a partition \(\{x_{0},\dots,x_{k}\}\) of \([1,N]\) with length 1. The upper Riemann sum is then \[
+   \sum_{k=1}^{N}f(k)
+   \]
+  And the lower sum is \[
+  \sum_{k=2}^{N}f(k)
+  \]
+  And we have the inequality \[
+  \sum_{k=1}^{N}f(k)\leq\int_{1}^{N}f(x)dx\leq\sum_{k=2}^{N}f(k)
+  \]
+Taking the limit as \(N\to\infty\) gives \[
+\sum_{n=1}^{\infty}f(k)\leq\int_{1}^{\infty}f(x)dx=L
+\]
+And so \(\sum f(k)\) is bounded above and increasing, so it converges.
+ \par\null\par \((\impliedby)\) Let \(\sum_{n=1}^{\infty}f(n)\) converge to some \(L<\infty\). We then have the same inequality
+\[
+  \sum_{k=1}^{N}f(k)\leq\int_{1}^{N}f(x)dx\leq\sum_{k=2}^{N}f(k)
+\]
+Which, when passed to the limit, gives \[
+L\leq \int_{1}^{\infty}f(x)dx\leq L+f(1)
+\]
+And so \(\int_{1}^{\infty}f(x)dx\) converges. 
+   \end{proof}
+    \item[16.] For \(1<s<\infty\), defined \[
+    \zeta(s)=\sum_{n=1}^{\infty}\frac{1}{n^{s}}
+    \]
+   Prove: \begin{enumerate}[label=(\alph*).]
+       \item \(\zeta(s)=s\int_{1}^{\infty}\frac{\lfloor x\rfloor}{x^{s+1}}dx\)
+       \item \(\zeta(s)=\frac{s}{s-1}-s\int_{1}^{\infty}\frac{x-\lfloor x\rfloor}{x^{s+1}}dx\)
+   \end{enumerate} 
+   \begin{proof}
+   Let \(N\in\Z^{+}\), then we have
+   \begin{align*}
+       s\int_{1}^{N}\frac{\lfloor x\rfloor}{x^{s+1}}dx&=s\sum_{k=1}^{N}k\int_{k}^{k+1}\frac{1}{x^{s+1}}dx\\
+                                                      &=\sum_{k=1}^{N}k\left[\frac{1}{k^{s}}-\frac{1}{(k+1)^{s}}\right]\\
+                                                      &=\left[\frac{1}{1}-\frac{1}{2^{s}}\right]+2\left[\frac{1}{2^{s}}-\frac{1}{3^{s}}\right]+\dots+N\left[\frac{1}{N^{s}}-\frac{1}{(N+1)^{s}}\right]\\
+                                                      &=\sum_{k=1}^{N}\frac{1}{k^{s}}\\
+                                                      &=S_{N}\tag{N-th partial sum}
+   \end{align*}
+   And since \(N\) was arbitrary, we have that \(\zeta(s)=s\int_{1}^{\infty}\frac{\lfloor x\rfloor}{x^{s+1}}dx\). Then, for part b, we have that \(\frac{s}{s-1}=\int_{1}^{\infty}\frac{x}{x^{s+1}}\), so \begin{align*}
+       \zeta(s)&=s\int_{1}^{\infty}\frac{\lfloor x\rfloor}{x^{s+1}}dx\\
+       &=\int_{1}^{\infty}\frac{x}{x^{s+1}}-s\int_{1}^{\infty}\frac{x-\lfloor x\rfloor}{x^{s+1}}dx\\
+       &=\frac{s}{s-1}-s\int_{1}^{\infty}\frac{x-\lfloor x\rfloor}{x^{s+1}}dx\\
+   \end{align*}
+   \end{proof}
+\end{enumerate}
+\subsection*{Chapter 7}
+\begin{enumerate}
+    \item[10.] Letting \((x)\) denote the fractional part of a real number, consider \[
+    f(x)=\sum_{n=1}^{\infty}\frac{(nx)}{n^{2}}
+    \]
+   Find all discontinuities of \(f\), and prove that they form a countable dense set. Show that \(f\) is nevertheless Riemann integrable on every bounded interval. 
+   \begin{proof}
+       Let \(k\) be a fixed integer. A near-integer value of \(kx\) will give a positive real number, however when
+       \[
+           kx\in\Z\implies(kx)=0
+       \]
+       So we have a discontinuity for
+       \[
+           kx\in\Z\implies x=\frac{a}{k}\in\Q
+       \]
+       Specifically, the \(k\)-th term in the series
+       \[
+           f_{k}(x)=\frac{(kx)}{k^{2}}
+       \]
+       has a discontinuity at \(x=\frac{a}{k}\) for each \(a\in\Z\).
+       We also see that if we consider \(z\in\R\setminus\Q\), there exists \emph{no} term in the series \(f_{k}(x)\) for which \((kz)=0\), that is, there is no number you can multiply \(z\) by to get an integer (from assignment 1, rational times irrational is irrational). Therefore, the discontinuities of \(f\) are \(\Q\), a countable dense subset of \(\R\).\par\null\par Nevertheless, each term of the series is still Riemann integrable, since there are only countably many discontinuities. Then because each term is integrable, by Theorem 7.16, \(f\) is also Riemann integrable.
+   \end{proof}
+\item[20.] If \(f\) is continuous on \([0,1]\) and if \[
+        \int_{0}^{1}f(x)x^{n}dx=0\tag{n=1,2,3,\dots}
+\]
+Prove that \(f(x)=0\) on \([0,1]\).
+\begin{proof}
+    Because \(f\) is a continuous function, by the Stone-Weierstrass Theorem (7.26), there exist a sequence of polynomials \(P_{n}\) such that
+    \[
+        \lim_{n\to\infty}P_{n}=f(x)
+    \]
+    Uniformly. Then consider the integral \[
+    \lim_{n\to\infty}\int_{0}^{1}P_{n}f(x)dx=\int_{0}^{1}f^{2}(x)dx
+    \]
+    But the integral of each product \(P_{n}f(x)\) is 0, so \(\int_{0}^{1}f^{2}(x)dx=0\). This implies that \(f(x)=0\) on \([0,1]\) as required.
+\end{proof}
+\end{enumerate}
+\end{document}
