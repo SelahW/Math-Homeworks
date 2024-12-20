@@ -91,8 +91,7 @@
             \[
                 \pi:\Z[x]\to(\Z/p\Z)[x]
             \]
-            And we have \(\pi(g(x))=\bar{g}(x)\), so \((\Z/p\Z)[x]/(g(x))\cong(\Z/p\Z)[x]/(\bar{g}(x))\). We know \(\bar{g}(x)\) is irreducible, and the ring \((\Z/p\Z)[x]\) is a PID, so the ideal \((\bar{g}(x))\) is maximal, and therefore \((\Z/p\Z)[x]/(\bar{g}(x))\)is a field, (finite field \(\F_{p^{\deg(\bar{g}(x))}}\)). So the ideal \((p,g(x))\) is maximal in \(\Z[x]\)\\
-            (Because modding by it gave a field.)
+            And we have \(\pi(g(x))=\bar{g}(x)\), so \((\Z/p\Z)[x]/(g(x))\cong(\Z/p\Z)[x]/(\bar{g}(x))\). We know \(\bar{g}(x)\) is irreducible, and the ring \((\Z/p\Z)[x]\) is a PID, so the ideal \((\bar{g}(x))\) is maximal, and therefore \((\Z/p\Z)[x]/(\bar{g}(x))\)is a field, (finite field \(\F_{p^{\deg(\bar{g}(x))}}\)). So the ideal \((p,g(x))\) is maximal in \(\Z[x]\)
         \end{proof}
     \item Show that a prinicpal ideal domain has the property of unique factorization of ideals.
         \begin{proof}
@@ -147,9 +146,9 @@
     \end{enumerate}
 \item Let \(k\) be a field, and \(A\coloneqq k[x_{1},\dots,x_{n}]\). Let \(\bar{k}\) denote an algebraic closure of \(k\), and let \(B\coloneqq \bar{k}[x_{1},\dots,x_{n}]\). Show that the extension \(B/A\) is integral. Note that in general, \(B\) is not a finitely generated \(A\)-module.
     \begin{proof}
-        \(B/A\) is integral iff every element of \(B\) is integral over \(A\) (is the root of a monic polynomial in \(k[x_{1},\dots,x_{n}]\)). So, choose an arbitrary element \(\alpha\in B\). There are two cases:
+        \(B/A\) is integral iff every element of \(B\) is integral over \(A\) (is the root of a monic polynomial in \(A[y]\)). So, choose an arbitrary element \(\alpha\in B\). There are two cases:
         \begin{enumerate}
-            \item If \(\alpha\in A\), then we are done because \(x_{i}-\alpha\) is a polynomial with coefficients in \(A\) that is satisfied by \(\alpha\).
+            \item If \(\alpha\in A\), then we are done because \(y-\alpha\) is a polynomial in \(A[y]\) that is satisfied by \(\alpha\).
             \item So, assume \(\alpha\in B-A\). Then, since \(\bar{k}\) is an algebraic closure of \(k\), for all \(\beta\in\bar{k}\), we have \(f(\beta)=0\) where \(f\) is a monic polynomial with coefficients in \(k\). So, let \(\alpha\in B\), then \[
                     \alpha=\sum_{i=1}^{n} c_{i}x_{i}^{a_{i}}
             \]
@@ -162,6 +161,10 @@
             \]
            And, a product of monic polynomials is monic, so \(P(x_{1},\dots,x_{n})\) is a monic polynomial in \(A\) which is satisfied by \(\alpha\) as required.
         \end{enumerate}
+    \end{proof}
+\item Let \(B/A\) be an integral extension. Show that \(B\) is a field iff \(A\) is a field.
+    \begin{proof}
+        \((\implies)\) Let \(B/A\) be an integral extension and \(B\) be a field. Then we have \(\forall \beta\in B\), \(\exists f_{\beta}\in A\) with \(f_{\beta}(\beta)=0\) and \(f_{\beta}\) is monic. We also have that \(\forall \beta\in B,\ \beta^{-1}\in B\). So the minimal polynomial of both \(\beta\) and \(\beta^{-1}\) are in the ring \(A[y]\). COME BACK!
     \end{proof}
 \end{enumerate}
 \end{document}
