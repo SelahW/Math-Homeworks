@@ -1,0 +1,137 @@
+\documentclass[hidelinks,12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{mathtools}
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{centernot}
+\usepackage{marvosym}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\setcounter{tocdepth}{1}
+\let\marvosymLightning\Lightning
+\renewcommand{\geq}{\geqslant}
+\renewcommand{\leq}{\leqslant}
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}{Corollary}[theorem]
+\newtheorem*{remark}{Remark}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\divby}{%
+    \mathrel{\text{\vbox{\baselineskip.65ex\lineskiplimit0pt\hbox{.}\hbox{.}\hbox{.}}}}%
+}
+\newcommand{\notdivby}{\centernot\divby}
+\title{\scalebox{1.5}{Math 723 Final Exam}}
+\author{\scalebox{1.5}{Theo Koss}}
+\date{December 2024}
+
+\begin{document}
+
+\maketitle
+\begin{enumerate}
+    \item Let  \(s_{1}=\sqrt{2}\) and \(s_{n+1}=\sqrt{2+\sqrt{s_{n}}}\). Prove that \((s_{n})\) converges.
+        \begin{proof}
+        We must show that the sequence is:
+        \begin{enumerate}
+            \item Bounded above
+            \item Increasing.
+        \end{enumerate}
+        The sequence is bounded above by 2, by induction, \(\sqrt{2}\leq2\). Assume \(s_{n}\leq2\) for some \(n\). Then
+        \begin{align*}
+            s_{n+1}&=\sqrt{2+\sqrt{s_{n}}}\\
+                   &\leq\sqrt{2+\sqrt{2}}\\
+                   &\leq\sqrt{4}=2\tag{\(2+\sqrt{2}\leq4\)}
+        \end{align*}
+        The sequence is increasing again by induction. Clearly \(\sqrt{2}<\sqrt{2+\sqrt{2}}\), because \(2\leq2+\sqrt{2}\). Assume \(s_{n}\geq s_{n-1}\) for some \(n\). Then \begin{align*}
+            s_{n+1}&=\sqrt{2+\sqrt{s_{n}}}\\
+                   &\geq\sqrt{2+\sqrt{s_{n-1}}}\tag{Assumption}\\
+                   &=s_{n}
+        \end{align*}
+        Therefore \((s_{n})\) is bounded above and increasing, therefore converges.
+        \end{proof}
+    \item For a complex sequence \((s_{n})\) define the sequence of \emph{arithmetic means} by \(\sigma_{n}=\frac{1}{n+1}\sum_{k=0}^{n}s_{k}\). Show that if \(\lim_{n\to\infty}s_{n}=s\), then \(\lim_{n\to\infty}\sigma_{n}=s\). Give an example that the converse is not true.
+        \begin{proof}
+        Let \(\lim_{n\to\infty}s_{n}=s\), then there exists some \(N\) such that when \(n\geq N\), \(|s_{n}-s|<\varepsilon\). Then, we can split the sum based on \(N\), \[
+        \sigma_{n}=\frac{1}{n+1}\left(\sum_{k=0}^{N-1}s_{k}+\sum_{k=N}^{n}s_{k}\right)
+        \]
+       Then since \(\sum_{k=N}^{n}s_{k}=(n-N+1)\cdot s+\sum_{k=N}^{n}(s_{k}-s)\), we have\[
+           \sigma_{n}=\frac{1}{n+1}\left(\sum_{k=0}^{N-1}s_{k}+(n-N+1)\cdot s+\sum_{k=N}^{n}(s_{k}-s)\right)
+       \]
+       Then, as \(n\to\infty\), the first sum is finite so it is negligible. The second sum tends to 0 because past \(N\), \(s_{k}\) is epsilon-close to \(s\). Therefore, in passing to the limit, we get:
+       \[
+       \lim_{n\to\infty}\sigma_{n}=\lim_{n\to\infty}\frac{(n-N+1)\cdot s}{n+1}=s
+       \]
+        \end{proof}
+        An example when the converse is not true is the sequence \((s_{n})\) where \[
+        s_{n}=\begin{cases}
+         0& \text{if n even}\\
+         1& \text{if n odd}\\
+        \end{cases}
+        \]
+       Has arithmetic mean \(\frac{1}{2}\), but the limit of \(s_{n}\) does not exist. 
+    \item A map \(f:X\to Y\) between metric spaces is open if \(f(V)\) is open in \(Y\) for every open \(V\subset X\). Show that every continuous open map from \(\R\) to \(\R\) is monotonic.
+        \begin{proof}
+        Assume, BWOC, that \(f\) is a continuous open map from \(\R\) to \(\R\) which is not monotonic. That is, there exist 3 points \(x_{1}<x_{2}<x_{3}\) such that \(f(x_{1})<f(x_{2})\) but \(f(x_{2})>f(x_{3})\). But since \(f\) is continuous and open, we have that the image of every interval is an open interval. So we should have \[
+            f((x_{1},x_{3}))\text{ open interval in }\R
+        \]
+       But \(f(x_{2})>f(x_{3})\) so this is not an open interval. Contradiction, so \(f\) must be monotonic.
+        \end{proof}
+    \item Suppose that \(f:[0,\infty)\to\R\) is continuous and differentiable for \(x>0\). Assume further that \(f(0)=0\) and that \(f'\) is monotone increasing. Let \(g(x)=\frac{f(x)}{x}\), \(x>0\), and show that \(g\) is monotone increasing.
+        \begin{proof}
+        We have for \(x_{1}<x_{2}\), \(f'(x_{1})\leq f'(x_{2})\). And \(g\) is differentiable because it is the quotient of two differentiable functions, so
+        \[
+        g'(x)=\frac{xf'(x)-f(x)}{x^{2}}
+        \]
+       We want to show that \(xf'(x)\geq f(x)\) for all \(x\), which would give a nonnegative derivative and therefore an increasing function. At \(x=0\), we have \(0\geq0\) indeed. Assume \(x_{n}f'(x_{n})\geq f(x_{n})\) for some \(n\).
+       \begin{align*}
+       x_{n+1}f'(x_{n+1})&\geq x_{n+1}f'(x_{n})\\
+                       &\geq x_{n}f'(x_{n})\tag{\(x_{n}\leq x_{n+1}\) and \(f'\) monotonic}\\
+       &\geq f(x_{n})\tag{Assumption}\\
+       &\geq f(x_{n+1})\tag{\(f\) nondecreasing}
+       \end{align*}
+       So \(xf'(x)\geq f(x)\) for all \(x\) therefore \(g'\) is nonnegative, so \(g\) is monotone increasing.
+        \end{proof}
+    \item Define two curves in \(\mathbb{C}\) by
+        \[
+            \gamma_{1}(t)=e^{2it},\quad\gamma_{2}(t)=e^{2\pi it\sin\left( \frac{1}{t} \right)},\quad t\in[0,2\pi).
+        \]
+        Determine whether these curves are rectifiable and if so, find their length.
+        \begin{proof}
+       The curves are rectifiable if \[
+       L=\int_{a}^{b}|\gamma'(t)|dt
+       \]
+       is finite. For \(\gamma_{1}(t)\), we have \(\gamma_{1}'(t)=2ie^{2it}\), so \(|\gamma_{1}'|=2\). Therefore \[
+       L=\int_{a}^{b}|\gamma'(t)|dt=\int_{0}^{2\pi}2dt=4\pi
+       \]
+      So \(\gamma_{1}\) is rectifiable, with length \(4\pi\).\\
+      For \(\gamma_{2}\), we have \[
+      \gamma_{2}'(t)=2\pi i\left(\sin\left(\frac{1}{t}\right)+t\cos\left(\frac{1}{t}\right)\cdot\left(-\frac{1}{t^{2}}\right)\right)e^{2\pi it\sin(\frac{1}{t})}
+      \]
+     By the chain rule. This has magnitude:
+     \[
+     |\gamma_{2}'(t)|=2\pi\left|\sin\left(\frac{1}{t}\right)-\frac{\cos\left(\frac{1}{t}\right)}{t}\right|
+     \]
+    Since \(\sin\) and \(\cos\) are bounded by 1, we have \[
+    |\gamma_{2}'(t)|\leq2\pi\left|1-\frac{1}{t}\right|
+    \]
+    But as \(t\to0\), this gets infinitely large, so the curve is not rectifiable as \(|\gamma_{2}'(t)|\) is unbounded.
+        \end{proof}
+    \item Let \(f(x)=\sum_{n=1}^{\infty}\frac{1}{1+n^2x}\). On what intervals does the series converge uniformly?
+        \begin{proof}
+            \begin{itemize}
+                \item For \(x=0\), we have \(f(0)=\sum_{n=1}^{\infty}1=\infty\) diverges.
+                \item Fix \(x>0\), we have \(1+n^{2}x\geq n^{2}x\) so \[
+                \sum_{n=1}^{\infty}\frac{1}{n^{2}x}\geq f(x)
+                \]
+                And since \(x\) is fixed, we can pull out a constant \(\frac{1}{x}\)\[
+                    \sum_{n=1}^{\infty}\frac{1}{n^{2}x}=\frac{1}{x}\cdot\sum_{n=1}^{\infty}\frac{1}{n^{2}}=\frac{1}{x}\cdot\frac{\pi^{2}}{6}
+                \]
+                Converges by comparison to \(\zeta(2)\). Since \(\sum_{n=1}^{\infty}\frac{1}{n^{2}x}\) converges and is greater than \(f(x)\), \(f(x)\) converges for \(x>0\).
+            \end{itemize}
+            Since we have examined \(x=0\) and \(x>0\), we don't even need to examine \(x<0\), because any interval containing a negative number and a positive one contains 0, and the series does not converge for \(x=0\). Therefore the interval of convergence is \(I=(0,\infty)\).
+        \end{proof}
+\end{enumerate}
+\end{document}
