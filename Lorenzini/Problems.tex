@@ -1,0 +1,246 @@
+\documentclass[hidelinks,12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{mathtools}
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{centernot}
+\usepackage{marvosym}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\usepackage{graphicx}
+\usepackage{tikz-cd}
+\graphicspath{{/home/theo/Documents/GitHub/Math-Homeworks/Images/}}
+\setcounter{tocdepth}{1}
+\let\marvosymLightning\Lightning
+\renewcommand{\geq}{\geqslant}
+\renewcommand{\leq}{\leqslant}
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}{Corollary}[theorem]
+\newtheorem*{remark}{Remark}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\F}{\mathbb{F}}
+\renewcommand{\O}{\mathcal{O}}
+\newcommand{\gothp}{\mathfrak{P}}
+\newcommand{\gothq}{\mathfrak{Q}}
+\newcommand{\rk}{\operatorname{rank}}
+\title{\scalebox{1.45}{Arithmetic Geometry Problems}}
+\author{\scalebox{1.5}{Theo Koss}}
+\date{October 2024}
+
+\begin{document}
+
+\maketitle
+\section{Chapter 1}
+\begin{enumerate}
+    \item Let \(d\in\Q\setminus\Z\), prove \(\Z[\sqrt{d}]\) is not a finitely generated abelian group.
+        \begin{proof}
+            Let \(d=\frac{p}{q}\) with \(p\neq q\in\Z,\ q\neq0,1\)  and \(\gcd(p,q)=1\). Note that subgroups of finitely generated \emph{abelian} groups are themselves finitely generated. So consider \(\Z[d]<\Z[\sqrt{d}]\). Assume BWOC that \(\Z[d]\) is finitely generated, say \(n\) generators. Then we can write any element of \(\Z[d]\) as a linear combination of these elements. Consider 
+            \begin{align*}
+                \frac{1}{q^{n+1}}&=b_{0}+b_{1}d+b_{2}d^{2}+\dots+b_{n}d^{n}\tag{For integers \(b_{i}\) }\\
+                                 &=b_{0}+b_{1}\frac{p}{q}+\dots+b_{n}\frac{p^{n}}{q^{n}}\\
+                \implies 1&=b_{0}\cdot q^{n+1}+b_{1}p\cdot q^{n}+\dots+b_{n}p^{n}\cdot q\\
+                          &=q\underbrace{(b_{0}\cdot q^{n}+b_{1}p\cdot q^{n-1}+\dots+b_{n}p^{n})}_{\in\Z}\\
+                \implies \frac{1}{q}&\in\Z\\
+            \end{align*}
+            Contradiction because we have \(q\neq1\).
+        \end{proof}
+        \begin{proof}[Alternate Proof:]
+            Proposition 2.10 in the book, the \(\Z\)-module \(\Z[x]\) is finitely generated iff \(x\) is algebraic over \(\Z\). We have minimal polynomial: \[
+                m_{\sqrt{d},\Z}(x)=x^{2}-d=qx^{2}-p
+            \]
+            Which is not monic in \(\Z\) because we have \(q\neq1\) and \(q\) does not divide \(p\).
+        \end{proof}
+    \item Prove \(\Z[\frac{2+i}{5}]\cap\Q=\Z\) and \(\Z[\frac{2-i}{5}]\cap\Q=\Z\).
+        \begin{proof}
+            Assume, BWOC, that we have some element \(k\in\Z[\frac{2+i}{5}]\) such that \(k\in\Q\setminus\Z\). Then \(k=\frac{p}{q}\) with \(p,q\in\Z\), \(q\neq0,1\) and \(\gcd(p,q)=1\). We also have
+            \[
+                k=a+b\cdot \frac{2+i}{5}=a+\frac{2b}{5}+\frac{bi}{5}
+            \]
+            for some \(a,b\in\Z\). Since \(k=\frac{p}{q}\) is strictly real, we must have
+            \[
+                \frac{bi}{5}=0\implies b=0
+            \]
+            But then \(k=a+0\in\Z\) contradiction.\\
+            Similarly, write \(k=a+b\cdot \frac{2-i}{5}=a+\frac{2b}{5}-\frac{bi}{5}\) so \(\frac{bi}{5}=0\implies b=0\) so \(k\in\Z\).
+        \end{proof}
+    \item Let \(A\) be a ring, and let \(I,J\) be two coprime ideals of \(A\). Show that, \(\forall a,b\in\N,\ I^{a}\) is coprime to \(J^{b}\).
+        \begin{proof}
+            Since \(I\) and \(J\) are coprime, by definition we have \(I+J=A\). Base case: \(I^{1}+J^{1}=A\) obviously. Fix some \(b\in\N\), assume \(I^{k}\) is coprime to \(J^{n}\), for some \(a\in\N\). Then
+            \[
+                I^{a}+J^{b}=A
+            \]
+            Multiply both sides by \(I\) (on the left), \[
+                I^{a+1}+J^{b}=IA=A
+            \]
+            Thus \(I^{a+1}\) is coprime to \(J^{b}\). Therefore the statement is true for all pairs \(a,b\in\N\).
+        \end{proof}
+    \item Show that in the ring \(\Z[\sqrt{-5}]\), the elements \(2,3,1+\sqrt{-5},1-\sqrt{-5}\) are irreducible, and that they are not associates.
+    \item Let \(p\) be a prime number. Let \(\bar{g}(x)\in(\Z/p\Z)[x]\) be any irreducible polynomial. Let \(g(x)\in\Z[x]\) be such that its image under the natural reduction map \(\Z[x]\to(\Z/p\Z)[x]\) is \(\bar{g}(x)\). Show that the ideal \((p,g(x))\) is a maximal ideal of \(\Z[x]\).
+        \begin{proof}
+            We have that \[
+                \Z[x]/(p,g(x))\cong(\Z[x]/p)/(g(x))\cong(\Z/p\Z)[x]/(g(x))
+            \]
+            Then, consider the natural reduction map
+            \[
+                \pi:\Z[x]\to(\Z/p\Z)[x]
+            \]
+            And we have \(\pi(g(x))=\bar{g}(x)\), so \((\Z/p\Z)[x]/(g(x))\cong(\Z/p\Z)[x]/(\bar{g}(x))\). We know \(\bar{g}(x)\) is irreducible, and the ring \((\Z/p\Z)[x]\) is a PID, so the ideal \((\bar{g}(x))\) is maximal, and therefore \((\Z/p\Z)[x]/(\bar{g}(x))\)is a field, (finite field \(\F_{p^{\deg(\bar{g}(x))}}\)). So the ideal \((p,g(x))\) is maximal in \(\Z[x]\)
+        \end{proof}
+    \item Show that a prinicpal ideal domain has the property of unique factorization of ideals.
+        \begin{proof}
+            Let \(A\) be a PID, then it is also a UFD. Consider an arbitrary ideal \(I=(a)\subset A\), then, by UFD, \(a\) can be written uniquely as a product of irreducibles, \(a=p_{1}\cdots p_{n}\). But, since every ideal is principal, and every element is contained in the ideal generated by it, we have \[
+                I=(a)=(p_{1})\cdots(p_{n})
+            \]
+            And in a PID, ideals generated by irreducibles are maximal, and maximal = prime. So we have a unique factorization of the ideal \(I\) into prime ideals. 
+        \end{proof}
+    \item Let \(A\) be a commutative ring and \(I\subset A\) be an ideal.
+        \begin{enumerate}[label=(\alph*).]
+            \item Let \(a_{1},\dots,a_{s}\in A\) and let \(J\) denote the ideal of \(A/I\) generated by the images of \(a_{1},\dots,a_{s}\) under the map \(A\to A/I\). Show that \[
+                    (A/I)/J\overset{\sim}{\to} A/(I,a_{1},\dots,a_{s})
+                \]
+                \begin{proof}
+                    We have the natural homomorphism \(\pi:A\to A/I\), and we have another homomorphism \(\psi:A/I\to (A/I)/J\) which has \(\ker(\psi)=J=(\pi(a_{1}),\dots,\pi(a_{s}))\). COME BACK!
+                \end{proof}
+            \item Let \(J\) be any ideal of \(A\). Show that \[
+                    (A/I)/(J+I/I)\cong(A/J)/(I+J/J)
+                \]
+                \begin{proof}
+
+                \end{proof} 
+            \item 
+        \end{enumerate}
+    \item \begin{enumerate}[label=(\alph*).]
+            \item Let \(k\) be any field. Let \(A\coloneqq k[x_{1},\dots,x_{n},\dots]\) be the polynomial ring in countably many variables. Show that \(A\) is not Noetherian.
+                \begin{proof}
+                    By way of contradiction, assume \(A\) is Noetherian, so every increasing chain of ideals \[
+                        I_{0}\subset I_{1}\subset I_{2}\subset\dots\subset I_{n}=I_{n+1}
+                    \]
+                    Stabilizes at some point. We have the ideals
+                    \[
+                        (x_{1})\subset(x_{1},x_{2})\subset\dots(x_{1},\dots,x_{n})=(x_{1},\dots,x_{n},x_{n+1})
+                    \]
+                    That gives \(x_{n+1}\in I_{n}=(x_{1},\dots,x_{n})\). So we can write \(x_{n+1}\) as a linear combination of the elements of that ideal,
+                    \[
+                        x_{n+1}=\sum_{i=1}^{n} c_{i}x_{i}
+                    \]
+                    But, consider the evaluation mapping \(\phi:A\to k\) by evaluating \(x_{1},\dots,x_{n}=0\) and \(x_{n+1}=1\). Applying this evaluation mapping to above gives \[
+                        1=\phi(x_{n+1})=\phi(\sum_{i=1}^{n} c_{i}x_{i})=\sum c_{i}\phi(x_{i})=\sum c_{i}\cdot0=0
+                    \]
+                    Contradiction. 
+                \end{proof}
+            \item Let \(\bar{\Q}\) denote an algebraic closure of \(\Q\). Let \(\O\) denote the integral closure of \(\Z\) in \(\bar{\Q}\). Show that \(\O\) is not a Noetherian ring. (Hint: find a nonstationary sequence of ideals in \(\O\) by taking successive roots of an integer.)
+                \begin{proof}
+                    Let \(\O\) be the integral closure of \(\Z\) in \(\bar{\Q}\). Then in particular, \(\Z\subset\O\), so consider \(2\in\O\). Let \(I=(2)\). Then consider the increasing chain of ideals:
+                    \[
+                        I=(2)\subset(\sqrt{2})\subset(\sqrt[3]{2})\subset\dots\subset\sqrt{I}
+                    \]
+                    Each ideal strictly contains the next, so this is a nonstationary increasing chain of ideals. (Equivalently the radical is not finitely generated)
+                \end{proof}
+        \end{enumerate}
+    \item Let \(k\) be a field, and \(A\coloneqq k[x_{1},\dots,x_{n}]\). Let \(\bar{k}\) denote an algebraic closure of \(k\), and let \(B\coloneqq \bar{k}[x_{1},\dots,x_{n}]\). Show that the extension \(B/A\) is integral. Note that in general, \(B\) is not a finitely generated \(A\)-module.
+        \begin{proof}
+            \(B/A\) is integral iff every element of \(B\) is integral over \(A\) (is the root of a monic polynomial in \(A[y]\)). So, choose an arbitrary element \(\alpha\in B\). There are two cases:
+            \begin{enumerate}
+                \item If \(\alpha\in A\), then we are done because \(y-\alpha\) is a polynomial in \(A[y]\) that is satisfied by \(\alpha\).
+                \item So, assume \(\alpha\in B-A\). Then, since \(\bar{k}\) is an algebraic closure of \(k\), for all \(\beta\in\bar{k}\), we have \(f(\beta)=0\) where \(f\) is a monic polynomial with coefficients in \(k\). So, let \(\alpha\in B\), then \[
+                        \alpha=\sum_{i=1}^{n} c_{i}x_{i}^{a_{i}}
+                    \]
+                    Where \(c_{i}\in\bar{k}\). Since \(\bar{k}\) is an algebraic closure, for each coefficient \(c_{i}\), there exists a monic polynomial \(p_{i}\in A\) such that \(p_{i}(c_{i})=0\). Then, the product of all of these \(p_{i}\) kills each coefficient, so let \[
+                        A\ni P(x_{1},\dots,x_{n})=\prod_{i=1}^{n}p_{i}(x_{i})
+                    \]
+                    Then
+                    \[
+                        P\left(\alpha\right)=P\left(\sum_{i=1}^{n}c_{i}x_{i}^{a_{i}}\right)=\prod_{i=1}^{n}p_{i}\left(\sum_{i=1}^{n}c_{i}x_{i}^{a_{i}}\right)=0
+                    \]
+                    And, a product of monic polynomials is monic, so \(P(x_{1},\dots,x_{n})\) is a monic polynomial in \(A\) which is satisfied by \(\alpha\) as required.
+            \end{enumerate}
+        \end{proof}
+    \item Let \(B/A\) be an integral extension. Show that \(B\) is a field iff \(A\) is a field.
+        \begin{proof}
+            \((\implies)\) Let \(B/A\) be an integral extension and \(B\) be a field. Let \(a\in A-\{0\}\), then by definition of extension, \(a\in B\) and \(a^{-1}\in B\) since \(B\) is a field. Since \(B\) is integral over \(A\), \(\exists g(y)\in A[y]\) with \(g(a^{-1})=0\), and \(g(y)\) monic. Multiply \[g(a^{-1})=(a^{-1})^{n}+a_{n-1}(a^{-1})^{n-1}+\dots+a_{1}(a^{-1})+a_{0}=0\] by \(a^{n}\), so \[1+a_{n-1}a+\dots+a_{1}a^{n-1}+a_{0}a^{n}=0\] which gives \[a_{n-1}a+\dots+a_{1}a^{n-1}+a_{0}a^{n}=-1\] as a polynomial in \(A[a]\). Since we have a linear combination in \(A[a]\) which equals \(-1\), we also have a linear combination in \(A[a]\) which equals \(1\), and so \(a^{-1}\in A\) so \(A\) is a field.
+            \par\null\par
+            \((\impliedby)\) Let \(B/A\) be an integral extension and \(A\) a field. Then \(B/A\) is a field extension, and so \(B\) is a field.
+        \end{proof}
+    \item Let \(B/A\) be an integral extension. Let \(M\subset B\) be a prime ideal. Let \(P\coloneqq M\cap A\). Show that \(M\) is maximal in \(B\) iff \(P\) is maximal in \(A\).
+        \begin{proof}
+            \((\implies)\) Let \(M\) be maximal in \(B\). Then \(B/M\) is a field and \((B/M)/(A/P)\) an integral extension obtained by restricting the extension \(B/A\). So by the problem above, \(A/P\) is a field, so that \(P\subset A\) is a maximal ideal of \(A\).\par\null\par
+            \((\impliedby)\) Let \(P=M\cap A\) be a maximal ideal of \(A\). Then \(A/P\) is a field and then by above, \(B/M\) is also a field so \(M\subset B\) is a maximal ideal.
+        \end{proof}
+    \item[13.] Let \(A\) be a PID with field of fractions \(K\). Let \(L/K\) be an extension of degree 2. Assume that the integral closure \(B\) of \(A\) in \(L\) is a finitely generated \(A\)-module. Show that there exists \(b\in B\) such that \(\{1,b\}\) is a basis for \(B\) over \(A\).
+        \begin{proof}
+            Consider an element \(z\in B\). We want to show that there exists a \(b\in B\) so that \(z=1a_{0}+ba_{1}\) for some \(a_{i}\in A\). Since \(B\) is the integral closure of \(A\), \(z\) satisfies a monic polynomial \(g(y)\in A[y]\). And since \(L/K\) is a degree 2 extension, \(g\) has degree at most 2. If the degree of \(g\) is 1, then \(z\in A\) and so \(z=1\cdot z\) is its linear combination. So assume \(\deg(g)=2\),
+            \[
+                g(y)=y^{2}+c_{1}y+c_{0}
+            \]
+            With \(c_{i}\in A\). By definition, \[
+                g(z)=0=z^{2}+c_{1}z+c_{0}
+            \]
+            Since \(z\in B\subset L\), we have \(z=\frac{r}{s}\), \(r,s\in B\) and \(s\neq 0\). \[
+                0=\left(\frac{r}{s}\right)^{2}+\frac{c_{1}r}{s}+c_{0}
+            \]
+            Multiplying by \(s^{2}\):
+            \[
+                0=r^{2}+c_{1}rs+c_{0}s^{2}
+            \]
+            (COME BACK)
+        \end{proof}
+\end{enumerate}
+\section{Chapter 2}
+\begin{enumerate}
+    \item Let \(A\) be a local ring with maximal ideal \(M\). Let \(m\in M\) and \(a\in A-M\). Show that \(a+m\) is a unit in \(A\).
+        \begin{proof}
+            Assume \(a+m\) is a non-unit, then by Zorn's lemma, \(a+m\) is contained in a maximal ideal, but there is only one maximal ideal, so \(a+m\in M\implies a\in M\) contradiction, so \(a+m\) must be a unit.
+        \end{proof}
+    \item Show that a ring \(A\) is a local ring iff the complement in \(A\) of the set of units \(A^{*}\) is an ideal of \(A\). 
+        \begin{proof}
+            \((\implies)\) Let \(A\) be a local ring, and \(M\) its unique maximal ideal. Then by Zorn's lemma, \(\forall x\in A-A^{*},\ x\in M\) so \(A-A^{*}=M\) is a (maximal) ideal of \(A\).
+            \par\null\par
+            \((\impliedby)\) Let \(A\) be a ring such that \(M\coloneqq A-A^{*}\) is an ideal of \(A\). Let \(I\) be an ideal, then \(I\) contains no units, otherwise \(I=A\), so then  \(I\subseteq A-A^{*}=M\). Then each ideal \(I\) is contained in \(M\), so \(M\) is the unique maximal ideal of \(A\), which means \(A\) is local.
+        \end{proof}
+    \item Let \(A\) be a local ring with maximal ideal \(\mathcal{M}\). If \(M\) is any \(A\)-module, let \(\mathcal{M}M\coloneqq\left\{\sum_{i=1}^{n}\mu_{i}m_{i}\mid \mu_{i}\in\mathcal{M},\ m_{i}\in M,\ n\in\N\right\}\). \(\mathcal{M}M\) is an \(A\)-submodule of \(M\). Assume now that \(M\) is a finitely generated \(A\)-module. Show that if \(\mathcal{M}M=M\), then \(M=(0)\). Hint: Let \(\{m_{1},\dots,m_{n}\}\) be a system of generators for \(M\). Express that \(m_{i}\in\mathcal{M}M\) and use problem 1.
+        \begin{proof}
+            Let \(M\) be a finitely generated \(A\)-module and assume \(\mathcal{M}M=M\), so \begin{align*}
+                \mathcal{M}M&\coloneqq\left\{\sum_{i=1}^{n}\mu_{i}m_{i}\mid \mu_{i}\in\mathcal{M},\ m_{i}\in M,\ n\in\N\right\}\\ 
+                            &=\left\{\sum_{j=1}^{n}a_{j}m_{j}\mid a_{j}\in A,\ m_{j}\in M,\ n\in N\right\}
+            \end{align*}
+            Let \(x\in M\), then \(x\) is a linear combination of the basis \(\{m_{1},\dots,m_{n}\}\) with coefficients from \(\mathcal{M}\) and with coefficients from \(A\):
+            \begin{align*}
+                x&=\mu_{1}m_{1}+\mu_{2}m_{2}+\dots+\mu_{n}m_{n}\\
+            x&=a_{1}m_{1}+a_{2}m_{2}+\dots+a_{n}m_{n}\\
+           \implies 0&=(a_{1}-\mu_{1})m_{1}+\dots+(a_{n}-\mu_{n})m_{n}\\
+            \end{align*}
+            Since \(\{m_{1},\dots,m_{n}\}\) is a basis, we have either \((a_{i}-\mu_{i})=0\) or \(m_{i}=0\) for all \(i\in\{1,\dots,n\}\). However, by problem 1, any element of the form \(a+m\) for \(a\in A\) and \(m\in\mathcal{M}\) is a unit, so \(a_{i}-\mu_{i}\neq0\) which means \(m_{i}=0\) for all \(i\), and so \(M=(0)\).
+        \end{proof}
+    \item Let \(A\) and \(B\) be two local principal ideal domains with the same field of fractions. Show that if \(A\subseteq B\), then \(A=B\). (Maybe have to assume \(B\) is not the field of fractions)
+        \begin{proof}
+           Let \(A\) be a local PID and \(M\subset A\) its unique maximal (therefore prime) ideal. Let \(K\) be the field of fractions of both \(A\) and \(B\). We have \(A\subseteq B\subseteq K\).\par \textbf{claim:} Every ring between a PID \(A\) and its field of fractions \(K\) is a localization of \(A\). \begin{proof}[Proof of claim]
+          See proposition 6.4 (Universal property of rings of fractions)  
+            \end{proof}
+            So now because \(A\subseteq B\subseteq K\) and \(A\) is a PID, the choices for \(B\) are all the localizations of \(A\). If we choose \(T=A-\{0\}\), then \(T^{-1}A=B=K\) contradiction. So we must choose the only other multiplicative set, \(S=A-M\), then \(B=S^{-1}A\). The units in \(B\) are then just elements of the form \(b=1/s\) so \(s\in B\) is also a unit, but \(s\in A\) is a unit because it is in \(A-M\) (problem 1). So \(A=B\).
+        \end{proof}
+    \item Let \(A\) be a domain with field of fractions \(K=A_{(0)}\). Let \(M\) be any \(A\)-module. The rank of \(M\) over \(K\), denoted by \(\operatorname{rank}_{A}(M)\), is the dimension of the \(K\)-vector space \(M_{(0)}\).
+        \begin{enumerate}[label=(\alph*).]
+            \item Show that \(M\) is a torsion \(A\)-module iff \(\rk_{A}(M)=0\).
+            \item Let \[
+                    \begin{tikzcd}
+                        0\arrow[r] & M' \arrow[r] & M\arrow[r] & M''\arrow[r] & 0
+                    \end{tikzcd}
+                \] be an exact sequence of \(A\)-modules. Show that \(\rk_{A}(M)<\infty\) iff \(\rk_{A}(M')<\infty\) and \(\rk_{A}(M'')<\infty\). Show that if \(\rk_{A}(M)<\infty\), then \(\rk_{A}(M)=\rk_{A}(M')+\rk_{A}(M'')\). In particular, show that \(\rk_{A}(M_{1}\oplus M_{2})=\rk_{A}(M_{1})+\rk_{A}(M_{2})\).
+        \end{enumerate}
+        \begin{proof}
+        \begin{enumerate}[label=(\alph*).]
+            \item \((\implies)\) Let \(M\) be a torsion \(A\)-module, so that \(\forall m\in M\), \(\exists a\neq0\in A\) with \(am=0\). Note that \(M_{(0)}\) is the \(K\)-vector space obtained by extending scalars from \(A\) to \(K\), so \(M_{(0)}=K\otimes_{A} M\) then consider \(\mathfrak{m}\in M\)
+                \[
+                    \mathfrak{m}=k\otimes m=\frac{1}{a}\otimes am=\frac{1}{a}\otimes 0=0
+                \]
+                So \(M_{(0)}=\{0\}\) and thus is a 0 dimensional \(K\)-vector space.
+            \item 
+        \end{enumerate}
+        \end{proof}
+\end{enumerate}
+\end{document}
