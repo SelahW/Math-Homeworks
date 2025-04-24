@@ -239,8 +239,64 @@
                     \mathfrak{m}=k\otimes m=\frac{1}{a}\otimes am=\frac{1}{a}\otimes 0=0
                 \]
                 So \(M_{(0)}=\{0\}\) and thus is a 0 dimensional \(K\)-vector space.
-            \item 
+                \par\null\par
+                \((\impliedby)\) Let \(M\) be an \(A\)-module with rank 0. So \[M_{(0)}=\{0\}=K\otimes_{A} M\] Therefore we have some nonzero \(k\in K\) which annihilates \(M\). Let \(k=\frac{a}{b}\) be such that \(\frac{a}{b}\otimes m=0\) for all \(m\in M\). \[
+                0=\frac{a}{b}\otimes m=\frac{1}{b}\otimes am
+                \]
+                Clearly \(\frac{1}{b}\neq0\), so \(am=0\), we also have that \(k=\frac{a}{b}\) was nonzero so that \(a\) is not 0. Therefore we have a nonzero \(a\in A\) such that \(\forall m\in M\), \(am=0\). Thus \(M\) is a torsion \(A\)-module.
+            \item Let \[
+                    \begin{tikzcd}
+                        0\arrow[r] & M' \arrow[r, "f"] & M\arrow[r, "g"] & M''\arrow[r] & 0
+                    \end{tikzcd}
+            \]
+           Be an exact sequence of \(A\)-modules, then (since field of fractions is a flat module) \[
+                    \begin{tikzcd}
+                        0\arrow[r] & K\otimes_{A} M' \arrow[r, "1\otimes f"] & K\otimes_{A} M\arrow[r, "1\otimes g"] & K\otimes_{A} M''\arrow[r] & 0
+                    \end{tikzcd}
+           \]
+           is exact. Let \(M_{(0)}\coloneqq K\otimes_{A} M\) and \(\bar{h}\coloneqq 1\otimes h\). By the first isomorphism theorem for modules (in this case \(K\)-vector spaces), \(M_{(0)}/\ker(\bar{g})\cong M_{(0)}''\). Since \(\ker(\bar{g})=\operatorname{im}(\bar{f})=M_{(0)}'\) by exactness, \[M_{(0)}/M_{(0)}'\cong M_{(0)}''\] Then \[
+           \rk_{A}(M)=\rk_A(M')+\rk_A(M'')
+           \]
+            \begin{enumerate}[label=(\roman*)]
+           \item \((\implies)\) Let \(\rk(M)\) be finite. Then neither \(\rk(M')\) nor \(\rk(M'')\) can be infinite.
+           \item \((\impliedby)\) Let \(\rk(M'')\) and \(\rk(M'')\) be finite, then their sum is finite so \(\rk(M)<\infty\).
+           \item Let \(M_1\) and \(M_2\) be \(A\)-modules. Then \(M_1\oplus M_2\) is an \(A\)-module and we have a natural short (split) exact sequence
+               \[
+                    \begin{tikzcd}
+                        0\arrow[r] & M_1 \arrow[r, "\imath"] & M_1\oplus M_2\arrow[r, "\phi"] & M_2\arrow[r] & 0
+                    \end{tikzcd}
+               \]
+               Where \(\imath:M_1\hookrightarrow M_1\oplus M_2\) is the inclusion map, and \(\phi:M_1\oplus M_2\to M_2\) is the projection. Clearly \(\operatorname{im}(\imath)=M_1\) as it is an injection, and \(\ker(\phi)=\{(m_1,0)\mid m_1\in M_1\}=M_1\). Then, we can tensor this sequence with the flat module \(K\) to see \[
+               \rk(M_1\oplus M_2)=\rk(M_1)+\rk(M_2)
+               \]
+       \end{enumerate}
         \end{enumerate}
         \end{proof}
+    \item Let \(A\) be a commutative domain. Let \(M\) be an \(A\)-module. Let \((0)=M_0\subseteq M_1\subseteq M_2\subseteq\dots\subseteq M_{s-1}\subseteq M_s=M\) be a chain of \(A\)-submodules. Assume that \(\rk(M_i/M_{i-1})\) is finite, \(\forall i=1,2,\dots,s\). Show that \[
+            \rk(M)=\sum_{i=1}^s\rk(M_i/M_{i-1})
+    \]
+   \begin{proof}
+       This chain of \(A\)-submodules gives natural injections \(\imath_{n}:M_n\to M_{n+1}\). Each injection defines a short exact sequence:
+       \[
+           \begin{tikzcd}
+               0\arrow[r] & M_{n}\arrow[r, "\imath"] & M_{n+1}\arrow[r] & M_{n+1}/M_n\arrow[r]& 0
+   \end{tikzcd}
+       \]
+       Tensoring each sequence with the field of fractions of \(A\). Gives exact sequences
+\[
+           \begin{tikzcd}
+               0\arrow[r] & \mathcal{M}_{n}\arrow[r, "\imath"] & \mathcal{M}_{n+1}\arrow[r] & \mathcal{M}_{n+1}/\mathcal{M}_n\arrow[r]& 0
+   \end{tikzcd}
+       \]
+       Then since this is an exact sequence of vector spaces, it splits and so for each \(n\), \(\mathcal{M}_{n+1}\cong\mathcal{M}_{n}\oplus\mathcal{M}_{n+1}/\mathcal{M}_{n}\). In particular,
+       \begin{align*}
+           \mathcal{M}_{s}&\cong\left[\mathcal{M}_{s-1}\oplus\mathcal{M}_{s}/\mathcal{M}_{s-1}\right]\\
+           &\cong\left[\left(\mathcal{M}_{s-2}\oplus\mathcal{M}_{s-1}/\mathcal{M}_{s-2}\right)\oplus\mathcal{M}_{s}/\mathcal{M}_{s-1}\right]\\
+           &\cong\left[\left(\mathcal{M}_{s-3}\oplus\mathcal{M}_{s-2}/\mathcal{M}_{s-3}\right)\oplus\left(\mathcal{M}_{s-1}/\mathcal{M}_{s-2}\right)\oplus\mathcal{M}_{s}/\mathcal{M}_{s-1}\right]\\
+           &\vdots\\
+           &\cong\bigoplus_{i=1}^{s}(\mathcal{M}_{i}/\mathcal{M}_{i-1})
+       \end{align*}
+       Each term has \(\dim_K(\mathcal{M}_i/\mathcal{M}_{i-1})=\rk_A(M_i/M_{i-1})\) so \[\rk_A(M)=\sum_{i=1}^s\rk_A(M_i/M_{i-1})\]
+\end{proof} 
 \end{enumerate}
 \end{document}
