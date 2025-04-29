@@ -28,6 +28,7 @@
 \newcommand{\gothp}{\mathfrak{P}}
 \newcommand{\gothq}{\mathfrak{Q}}
 \newcommand{\rk}{\operatorname{rank}}
+\renewcommand{\sp}{\operatorname{Spec}}
 \title{\scalebox{1.45}{Arithmetic Geometry Problems}}
 \author{\scalebox{1.5}{Theo Koss}}
 \date{October 2024}
@@ -211,15 +212,15 @@
             Let \(x\in M\), then \(x\) is a linear combination of the basis \(\{m_{1},\dots,m_{n}\}\) with coefficients from \(\mathcal{M}\) and with coefficients from \(A\):
             \begin{align*}
                 x&=\mu_{1}m_{1}+\mu_{2}m_{2}+\dots+\mu_{n}m_{n}\\
-            x&=a_{1}m_{1}+a_{2}m_{2}+\dots+a_{n}m_{n}\\
-           \implies 0&=(a_{1}-\mu_{1})m_{1}+\dots+(a_{n}-\mu_{n})m_{n}\\
+                x&=a_{1}m_{1}+a_{2}m_{2}+\dots+a_{n}m_{n}\\
+                \implies 0&=(a_{1}-\mu_{1})m_{1}+\dots+(a_{n}-\mu_{n})m_{n}\\
             \end{align*}
             Since \(\{m_{1},\dots,m_{n}\}\) is a basis, we have either \((a_{i}-\mu_{i})=0\) or \(m_{i}=0\) for all \(i\in\{1,\dots,n\}\). However, by problem 1, any element of the form \(a+m\) for \(a\in A\) and \(m\in\mathcal{M}\) is a unit, so \(a_{i}-\mu_{i}\neq0\) which means \(m_{i}=0\) for all \(i\), and so \(M=(0)\).
         \end{proof}
     \item Let \(A\) and \(B\) be two local principal ideal domains with the same field of fractions. Show that if \(A\subseteq B\), then \(A=B\). (Maybe have to assume \(B\) is not the field of fractions)
         \begin{proof}
-           Let \(A\) be a local PID and \(M\subset A\) its unique maximal (therefore prime) ideal. Let \(K\) be the field of fractions of both \(A\) and \(B\). We have \(A\subseteq B\subseteq K\).\par \textbf{claim:} Every ring between a PID \(A\) and its field of fractions \(K\) is a localization of \(A\). \begin{proof}[Proof of claim]
-          See proposition 6.4 (Universal property of rings of fractions)  
+            Let \(A\) be a local PID and \(M\subset A\) its unique maximal (therefore prime) ideal. Let \(K\) be the field of fractions of both \(A\) and \(B\). We have \(A\subseteq B\subseteq K\).\par \textbf{claim:} Every ring between a PID \(A\) and its field of fractions \(K\) is a localization of \(A\). \begin{proof}[Proof of claim]
+                See proposition 6.4 (Universal property of rings of fractions)  
             \end{proof}
             So now because \(A\subseteq B\subseteq K\) and \(A\) is a PID, the choices for \(B\) are all the localizations of \(A\). If we choose \(T=A-\{0\}\), then \(T^{-1}A=B=K\) contradiction. So we must choose the only other multiplicative set, \(S=A-M\), then \(B=S^{-1}A\). The units in \(B\) are then just elements of the form \(b=1/s\) so \(s\in B\) is also a unit, but \(s\in A\) is a unit because it is in \(A-M\) (problem 1). So \(A=B\).
         \end{proof}
@@ -233,70 +234,218 @@
                 \] be an exact sequence of \(A\)-modules. Show that \(\rk_{A}(M)<\infty\) iff \(\rk_{A}(M')<\infty\) and \(\rk_{A}(M'')<\infty\). Show that if \(\rk_{A}(M)<\infty\), then \(\rk_{A}(M)=\rk_{A}(M')+\rk_{A}(M'')\). In particular, show that \(\rk_{A}(M_{1}\oplus M_{2})=\rk_{A}(M_{1})+\rk_{A}(M_{2})\).
         \end{enumerate}
         \begin{proof}
-        \begin{enumerate}[label=(\alph*).]
-            \item \((\implies)\) Let \(M\) be a torsion \(A\)-module, so that \(\forall m\in M\), \(\exists a\neq0\in A\) with \(am=0\). Note that \(M_{(0)}\) is the \(K\)-vector space obtained by extending scalars from \(A\) to \(K\), so \(M_{(0)}=K\otimes_{A} M\) then consider \(\mathfrak{m}\in M\)
-                \[
-                    \mathfrak{m}=k\otimes m=\frac{1}{a}\otimes am=\frac{1}{a}\otimes 0=0
-                \]
-                So \(M_{(0)}=\{0\}\) and thus is a 0 dimensional \(K\)-vector space.
-                \par\null\par
-                \((\impliedby)\) Let \(M\) be an \(A\)-module with rank 0. So \[M_{(0)}=\{0\}=K\otimes_{A} M\] Therefore we have some nonzero \(k\in K\) which annihilates \(M\). Let \(k=\frac{a}{b}\) be such that \(\frac{a}{b}\otimes m=0\) for all \(m\in M\). \[
-                0=\frac{a}{b}\otimes m=\frac{1}{b}\otimes am
+            \begin{enumerate}[label=(\alph*).]
+                \item \((\implies)\) Let \(M\) be a torsion \(A\)-module, so that \(\forall m\in M\), \(\exists a\neq0\in A\) with \(am=0\). Note that \(M_{(0)}\) is the \(K\)-vector space obtained by extending scalars from \(A\) to \(K\), so \(M_{(0)}=K\otimes_{A} M\) then consider \(\mathfrak{m}\in M\)
+                    \[
+                        \mathfrak{m}=k\otimes m=\frac{1}{a}\otimes am=\frac{1}{a}\otimes 0=0
+                    \]
+                    So \(M_{(0)}=\{0\}\) and thus is a 0 dimensional \(K\)-vector space.
+                    \par\null\par
+                    \((\impliedby)\) Let \(M\) be an \(A\)-module with rank 0. So \[M_{(0)}=\{0\}=K\otimes_{A} M\] Therefore we have some nonzero \(k\in K\) which annihilates \(M\). Let \(k=\frac{a}{b}\) be such that \(\frac{a}{b}\otimes m=0\) for all \(m\in M\). \[
+                    0=\frac{a}{b}\otimes m=\frac{1}{b}\otimes am
                 \]
                 Clearly \(\frac{1}{b}\neq0\), so \(am=0\), we also have that \(k=\frac{a}{b}\) was nonzero so that \(a\) is not 0. Therefore we have a nonzero \(a\in A\) such that \(\forall m\in M\), \(am=0\). Thus \(M\) is a torsion \(A\)-module.
             \item Let \[
                     \begin{tikzcd}
                         0\arrow[r] & M' \arrow[r, "f"] & M\arrow[r, "g"] & M''\arrow[r] & 0
                     \end{tikzcd}
-            \]
-           Be an exact sequence of \(A\)-modules, then (since field of fractions is a flat module) \[
+                \]
+                Be an exact sequence of \(A\)-modules, then (since field of fractions is a flat module) \[
                     \begin{tikzcd}
                         0\arrow[r] & K\otimes_{A} M' \arrow[r, "1\otimes f"] & K\otimes_{A} M\arrow[r, "1\otimes g"] & K\otimes_{A} M''\arrow[r] & 0
                     \end{tikzcd}
-           \]
-           is exact. Let \(M_{(0)}\coloneqq K\otimes_{A} M\) and \(\bar{h}\coloneqq 1\otimes h\). By the first isomorphism theorem for modules (in this case \(K\)-vector spaces), \(M_{(0)}/\ker(\bar{g})\cong M_{(0)}''\). Since \(\ker(\bar{g})=\operatorname{im}(\bar{f})=M_{(0)}'\) by exactness, \[M_{(0)}/M_{(0)}'\cong M_{(0)}''\] Then \[
-           \rk_{A}(M)=\rk_A(M')+\rk_A(M'')
-           \]
+                \]
+                is exact. Let \(M_{(0)}\coloneqq K\otimes_{A} M\) and \(\bar{h}\coloneqq 1\otimes h\). By the first isomorphism theorem for modules (in this case \(K\)-vector spaces), \(M_{(0)}/\ker(\bar{g})\cong M_{(0)}''\). Since \(\ker(\bar{g})=\operatorname{im}(\bar{f})=M_{(0)}'\) by exactness, \[M_{(0)}/M_{(0)}'\cong M_{(0)}''\] Then \[
+                \rk_{A}(M)=\rk_A(M')+\rk_A(M'')
+            \]
             \begin{enumerate}[label=(\roman*)]
-           \item \((\implies)\) Let \(\rk(M)\) be finite. Then neither \(\rk(M')\) nor \(\rk(M'')\) can be infinite.
-           \item \((\impliedby)\) Let \(\rk(M'')\) and \(\rk(M'')\) be finite, then their sum is finite so \(\rk(M)<\infty\).
-           \item Let \(M_1\) and \(M_2\) be \(A\)-modules. Then \(M_1\oplus M_2\) is an \(A\)-module and we have a natural short (split) exact sequence
-               \[
-                    \begin{tikzcd}
-                        0\arrow[r] & M_1 \arrow[r, "\imath"] & M_1\oplus M_2\arrow[r, "\phi"] & M_2\arrow[r] & 0
-                    \end{tikzcd}
-               \]
-               Where \(\imath:M_1\hookrightarrow M_1\oplus M_2\) is the inclusion map, and \(\phi:M_1\oplus M_2\to M_2\) is the projection. Clearly \(\operatorname{im}(\imath)=M_1\) as it is an injection, and \(\ker(\phi)=\{(m_1,0)\mid m_1\in M_1\}=M_1\). Then, we can tensor this sequence with the flat module \(K\) to see \[
-               \rk(M_1\oplus M_2)=\rk(M_1)+\rk(M_2)
-               \]
-       \end{enumerate}
-        \end{enumerate}
-        \end{proof}
-    \item Let \(A\) be a commutative domain. Let \(M\) be an \(A\)-module. Let \((0)=M_0\subseteq M_1\subseteq M_2\subseteq\dots\subseteq M_{s-1}\subseteq M_s=M\) be a chain of \(A\)-submodules. Assume that \(\rk(M_i/M_{i-1})\) is finite, \(\forall i=1,2,\dots,s\). Show that \[
-            \rk(M)=\sum_{i=1}^s\rk(M_i/M_{i-1})
+                \item \((\implies)\) Let \(\rk(M)\) be finite. Then neither \(\rk(M')\) nor \(\rk(M'')\) can be infinite.
+                \item \((\impliedby)\) Let \(\rk(M'')\) and \(\rk(M'')\) be finite, then their sum is finite so \(\rk(M)<\infty\).
+                \item Let \(M_1\) and \(M_2\) be \(A\)-modules. Then \(M_1\oplus M_2\) is an \(A\)-module and we have a natural short (split) exact sequence
+                    \[
+                        \begin{tikzcd}
+                            0\arrow[r] & M_1 \arrow[r, "\imath"] & M_1\oplus M_2\arrow[r, "\phi"] & M_2\arrow[r] & 0
+                        \end{tikzcd}
+                    \]
+                    Where \(\imath:M_1\hookrightarrow M_1\oplus M_2\) is the inclusion map, and \(\phi:M_1\oplus M_2\to M_2\) is the projection. Clearly \(\operatorname{im}(\imath)=M_1\) as it is an injection, and \(\ker(\phi)=\{(m_1,0)\mid m_1\in M_1\}=M_1\). Then, we can tensor this sequence with the flat module \(K\) to see \[
+                        \rk(M_1\oplus M_2)=\rk(M_1)+\rk(M_2)
+                    \]
+            \end{enumerate}
+    \end{enumerate}
+\end{proof}
+\item Let \(A\) be a commutative domain. Let \(M\) be an \(A\)-module. Let \((0)=M_0\subseteq M_1\subseteq M_2\subseteq\dots\subseteq M_{s-1}\subseteq M_s=M\) be a chain of \(A\)-submodules. Assume that \(\rk(M_i/M_{i-1})\) is finite, \(\forall i=1,2,\dots,s\). Show that \[
+        \rk(M)=\sum_{i=1}^s\rk(M_i/M_{i-1})
     \]
-   \begin{proof}
-       This chain of \(A\)-submodules gives natural injections \(\imath_{n}:M_n\to M_{n+1}\). Each injection defines a short exact sequence:
-       \[
-           \begin{tikzcd}
-               0\arrow[r] & M_{n}\arrow[r, "\imath"] & M_{n+1}\arrow[r] & M_{n+1}/M_n\arrow[r]& 0
-   \end{tikzcd}
+    \begin{proof}
+        This chain of \(A\)-submodules gives natural injections \(\imath_{n}:M_n\to M_{n+1}\). Each injection defines a short exact sequence:
+        \[
+            \begin{tikzcd}
+                0\arrow[r] & M_{n}\arrow[r, "\imath"] & M_{n+1}\arrow[r] & M_{n+1}/M_n\arrow[r]& 0
+            \end{tikzcd}
+        \]
+        Tensoring each sequence with the field of fractions of \(A\). Gives exact sequences
+        \[
+            \begin{tikzcd}
+                0\arrow[r] & \mathcal{M}_{n}\arrow[r, "\imath"] & \mathcal{M}_{n+1}\arrow[r] & \mathcal{M}_{n+1}/\mathcal{M}_n\arrow[r]& 0
+            \end{tikzcd}
+        \]
+        Then since this is an exact sequence of vector spaces, it splits and so for each \(n\), \(\mathcal{M}_{n+1}\cong\mathcal{M}_{n}\oplus\mathcal{M}_{n+1}/\mathcal{M}_{n}\). In particular,
+        \begin{align*}
+            \mathcal{M}_{s}&\cong\left[\mathcal{M}_{s-1}\oplus\mathcal{M}_{s}/\mathcal{M}_{s-1}\right]\\
+                           &\cong\left[\left(\mathcal{M}_{s-2}\oplus\mathcal{M}_{s-1}/\mathcal{M}_{s-2}\right)\oplus\mathcal{M}_{s}/\mathcal{M}_{s-1}\right]\\
+                           &\cong\left[\left(\mathcal{M}_{s-3}\oplus\mathcal{M}_{s-2}/\mathcal{M}_{s-3}\right)\oplus\left(\mathcal{M}_{s-1}/\mathcal{M}_{s-2}\right)\oplus\mathcal{M}_{s}/\mathcal{M}_{s-1}\right]\\
+                           &\vdots\\
+                           &\cong\bigoplus_{i=1}^{s}(\mathcal{M}_{i}/\mathcal{M}_{i-1})
+        \end{align*}
+        Each term has \(\dim_K(\mathcal{M}_i/\mathcal{M}_{i-1})=\rk_A(M_i/M_{i-1})\) so \[\rk_A(M)=\sum_{i=1}^s\rk_A(M_i/M_{i-1})\]
+    \end{proof} 
+\item Let \(A\) be a Noetherian domain with field of fractions \(K\). Let \(I\neq(0)\) be an ideal. Let \(I^{-1}\coloneqq\{\alpha\in K\mid \alpha i\in A,\ \forall i\in I\}\). Show that \(I^{-1}\) is a finitely generated torsion free \(A\)-module of rank 1.
+    \begin{proof}
+        First we will show that \(I^{-1}\coloneqq\{\alpha\in K\mid \alpha i\in A,\ forall i\in I\}\) is indeed an \(A\)-module. \begin{itemize}
+            \item Let \(\alpha,\beta\in I^{-1}\), then \[
+                    (\alpha+\beta)i=\alpha i+\beta i\in A\implies \alpha+\beta\in I^{-1}
+                \]
+            \item Let \(\alpha\in I^{-1}\), and \(a\in A\) then \[
+                    (\alpha a)i=a(\alpha i)\in A
+                \]
+                So \(\alpha a\in I^{-1}\)
+        \end{itemize}
+        So \(I^{-1}\) is an \(A\)-module. Then it defines a natural exact sequence of \(A\)-modules:
+        \[
+            \begin{tikzcd}
+                0\arrow[r] & I^{-1} \arrow[r] & A \arrow[r] & A/(I^{-1})\arrow[r] & 0
+            \end{tikzcd}
+        \]
+        Notice that if \(I\neq(0)\), then \(I^{-1}\neq(0)\) and \(A/I^{-1}\) is torsion. Indeed, choose any \(\alpha\in I^{-1}\), then \(\alpha\neq0\in\operatorname{Ann}_{A}(A/I^{-1})\). So \(A/I^{-1}\) has a nonzero annihilator, and thus it is torsion. Now, tensoring the exact sequence with \(K\), gives another exact sequence
+        \[
+            \begin{tikzcd}
+                0\arrow[r] & K\otimes_{A} I^{-1} \arrow[r] & K \arrow[r] & K\otimes_{A} A/I^{-1}\arrow[r] & 0
+            \end{tikzcd}
+        \]
+        So we have \(\dim_{K}(K)=\dim_{K}(K\otimes_{A}I^{-1})+\dim_{K}(K\otimes_{A}A/I^{-1})\). Clearly \(\dim_{K}(K)=1\), and by problem 5, \(\rk_{A}(A/I^{-1})=0\) as \(A/I^{-1}\) is torsion. Therefore \(K\otimes I^{-1}\cong K\) so \(I^{-1}\) is a torsion free \(A\)-module of rank 1. Notice if \(I=(i)\) is the generator of \(I\) in \(A\), then \(I^{-1}=(\frac{1}{i})\) is the generator of \(I^{-1}\) in \(K\), so \(I^{-1}\) is indeed finitely generated.
+    \end{proof}
+\item
+    \begin{enumerate}[label=(\alph*).]
+        \item Show that if \(a,b\in\Z\), and \(\gcd(a,b)=1\), then \(\Z[\frac{a}{b}]=\Z[\frac{1}{b}]\).
+        \item Show that any subring of \(\Q\) that contains \(1\) is Noetherian.
+    \end{enumerate}
+    \begin{enumerate}[label=(\alph*).]
+        \item \begin{proof}
+                Let \(a,b\in\Z\) with \(\gcd(a,b)=1\). \begin{itemize}
+                    \item \textbf{Claim:} \(\Z[\frac{1}{b}]\subseteq\Z[\frac{a}{b}]\)\par
+                        By Bezout's lemma, since \(\gcd(a,b)=1\), \(\exists x,y\in\Z\) with \(ax+by=1\). Let \(\frac{1}{b}\in\Z[\frac{1}{b}]\), then \[
+                            \frac{1}{b}=\frac{(ax+by)}{b}=\frac{a}{b}x+y\in\Z[\frac{a}{b}]
+                        \]
+                    \item \textbf{Claim:} \(\Z[\frac{1}{b}]\supseteq\Z[\frac{a}{b}]\)\par
+                        Let \(\frac{a}{b}\in\Z[\frac{a}{b}]\) then \[
+                            \frac{a}{b}=a\frac{1}{b}\in\Z[\frac{1}{b}]
+                        \]
+                \end{itemize}
+                So \(\Z[\frac{1}{b}]=\Z[\frac{a}{b}]\).
+            \end{proof}
+        \item \begin{proof}
+        Let \(A\subseteq\Q\) be a subring of \(\Q\) such that \(1\in A\). Recall intermediate rings \[
+        \Z\subseteq A\subseteq\Q
+        \]
+        Are identified with localizations of \(\Z\). Prime ideals of \(\Z\) are exactly \(p\Z\) for \(p\in\Z\) prime. For each ideal \(P=p\Z\), the localization \(P^{-1}\Z\) is isomorphic to \(\Z[\frac{1}{p}]\) (by the universal property). So let \(A=P^{-1}\Z\cong\Z[\frac{1}{p}]\) be some localization. By proposition 6.17, \(\Z\) Noetherian implies \(P^{-1}\Z\cong\Z[\frac{1}{p}]\) Noetherian. Therefore \(A\) is Noetherian.
+    \end{proof}
+    \end{enumerate}
+\item Let \(p\in\Z\) be prime, and let \(A\coloneqq\Z_{(p)}\). Show that the ideal \((px-1)\) is maximal in \(A[x]\), and has height 1. Show that \((p,x)\) is maximal in \(A[x]\) and has height 2.
+    \begin{proof}
+        Note that \(\Z\) has dimension 1 (it is Noetherian), and localizations of Noetherian domains are themselves Noetherian, so \(\dim(A)=1\). Then, \(\dim(A[x])=1+1=2\). So every maximal ideal has height at most 2.
+\begin{itemize}
+    \item Consider the quotient ring
+        \[
+            A[x]/(px-1)
+        \]
+        This sets \(px=1\implies x=\frac{1}{p}\in A[x]/(px-1)\) there are no polynomials (they have degree at most 0). And, by localization at \((p)\), every nonzero \(a\in A-(p)\) is a unit, and by setting \(x=\frac{1}{p}\), every nonzero \(q\in(p)\) is a unit. Therefore all nonzero elements are units, so \(A[x]/(px-1)\cong\Q\) is a field, so \((px-1)\) is maximal in \(A[x]\). The only possible prime ideal between \((0)\) and \((px-1)\) is a degree 0 polynomial, i.e. a constant. By locality of \(A\), \((p)\) is its unique prime ideal, so we check if \((p)\subseteq(px-1)\). Assume \[
+        p\in(px-1)\implies p=a(px-1)
+        \]
+        But LHS is degree 0 and RHS has degree at least 1. So \((p)\not\subset(px-1)\), then the chain \((0)\subset(px-1)\) gives \(\operatorname{ht}((px-1))=1\).
+    \item Consider the quotient ring \[
+            A[x]/(p,x)\cong (A[x]/(p))/(x)\cong A/(p)[x]/(x)\cong\Q
+    \]
+    Because \(A/(p)\cong\Q\) as \(A\) is a local Noetherian domain with maximal ideal \((p)\), and \(Q[x]/(x)\cong\Q\). So \((p,x)\) is maximal in \(A[x]\). It has a chain \[
+        (0)\subset(p)\subset(p,x)
+    \]
+    Because \((p)\subset(p,x)\) by definition, so \((p,x)\) has height 2.
+    \end{itemize}
+    \end{proof}
+\item Describe \(\sp(\Z[x])\). \par\null\par For all prime \(p\), \((p)\in\sp(\Z)\) so \((p)\in\sp(\Z[x])\). By problem 1.5, for any irreducible polynomial \(\bar{g}(x)\in(\Z/p\Z)[x]\), we have \((p,g(x))\in\sp(\Z[x])\), where \(g(x)\) is the preimage of \(\bar{g}(x)\) under the natural reduction map. As described in the previous problem, all ideals of \(\Z[x]\) have height 1 or 2, so this is every prime ideal of \(\Z[x]\).
+\item Let \(A\) be a commutative ring. Let \(I\) be any subset of \(A\). Let \(V(I)\coloneqq\{P\in\sp(A)\mid I\subseteq P\}\). Now let \(I_{1}\) and \(I_{2}\) be two ideals of \(A\).
+    \begin{enumerate}[label=(\alph*).]
+        \item Show that \(V(I_{1}\cap I_{2})=V(I_{1}I_{2})=V(I_{1})\cup V(I_{2})\).
+        \item Show that \(V(I_{1}+I_{2})=V(I_{1})\cap V(I_{2})\).
+        \item Show that the sets \(V(I)\), \(I\) an ideal in \(A\), satisfy the axioms for closed sets in a topological space. The resulting topology on \(\sp(A)\) is called the \emph{Zariski topology}.
+    \end{enumerate}
+    \begin{proof}
+    \begin{enumerate}[label=(\alph*).]
+        \item Let \(P\in V(I_{1}I_{2})\). Then \(I_{1}I_{2}\subseteq P\), but \(P\in\sp(A)\) so either \(I_{1}\subseteq P\) or \(I_{2}\subseteq P\). So
+            \[
+                V(I_{1}I_{2})=V(I_{1})\cup V(I_{2})
+            \]
+            We always have \(I_{1}I_{2}\subseteq I_{1}\cap I_{2}\).So
+            \[
+                V(I_{1}\cap I_{2})\subseteq V(I_{1}I_{2})
+            \]
+            But if \(P\) is a prime ideal containing \(I_{1}\), it also contains all subsets of \(I_{1}\), so it must contain \(I_{1}\cap I_{2}\subseteq I_{1}\). Similarly if \(P\) contains \(I_{2}\), it must also contain the intersection. So we have \[
+           V(I_{1}I_{2})\subseteq V(I_{1}\cap I_{2})
+            \]
+           So \[
+           V(I_{1}I_{2})=V(I_{1}\cap I_{2})
+           \]
+           Combining, we get 
+           \[
+               V(I_{1}\cap I_{2})=V(I_{1}I_{2})=V(I_{1})\cup V(I_{2})
+           \]
+       \item Let \(P\in V(I_{1}+I_{2})\). So \(I_{1}+I_{2}=\{a+b\mid a\in I_{1},b\in I_{2}\}\subseteq P\). So clearly \(I_{1}\subseteq P\) and \(I_{2}\subseteq P\). Then \[
+               V(I_{1}+I_{2})\subseteq V(I_{1})\cap V(I_{2})
        \]
-       Tensoring each sequence with the field of fractions of \(A\). Gives exact sequences
-\[
-           \begin{tikzcd}
-               0\arrow[r] & \mathcal{M}_{n}\arrow[r, "\imath"] & \mathcal{M}_{n+1}\arrow[r] & \mathcal{M}_{n+1}/\mathcal{M}_n\arrow[r]& 0
-   \end{tikzcd}
-       \]
-       Then since this is an exact sequence of vector spaces, it splits and so for each \(n\), \(\mathcal{M}_{n+1}\cong\mathcal{M}_{n}\oplus\mathcal{M}_{n+1}/\mathcal{M}_{n}\). In particular,
-       \begin{align*}
-           \mathcal{M}_{s}&\cong\left[\mathcal{M}_{s-1}\oplus\mathcal{M}_{s}/\mathcal{M}_{s-1}\right]\\
-           &\cong\left[\left(\mathcal{M}_{s-2}\oplus\mathcal{M}_{s-1}/\mathcal{M}_{s-2}\right)\oplus\mathcal{M}_{s}/\mathcal{M}_{s-1}\right]\\
-           &\cong\left[\left(\mathcal{M}_{s-3}\oplus\mathcal{M}_{s-2}/\mathcal{M}_{s-3}\right)\oplus\left(\mathcal{M}_{s-1}/\mathcal{M}_{s-2}\right)\oplus\mathcal{M}_{s}/\mathcal{M}_{s-1}\right]\\
-           &\vdots\\
-           &\cong\bigoplus_{i=1}^{s}(\mathcal{M}_{i}/\mathcal{M}_{i-1})
-       \end{align*}
-       Each term has \(\dim_K(\mathcal{M}_i/\mathcal{M}_{i-1})=\rk_A(M_i/M_{i-1})\) so \[\rk_A(M)=\sum_{i=1}^s\rk_A(M_i/M_{i-1})\]
-\end{proof} 
+      Let \(P\in V(I_{1})\cap V(I_{2})\), then both \(I_{1}\) and \(I_{2}\) are subsets of \(P\), and so \(I_{1}+I_{2}\subseteq P\). So
+      \[
+               V(I_{1})\cap V(I_{2})\subseteq V(I_{1}+I_{2})
+      \]
+     Combining, \[
+      V(I_{1}+I_{2})=V(I_{1})\cap V(I_{2})
+     \]
+ \item Let \(V(I)\) for \(I\) an ideal be a closed set. Then we have shown:
+     \begin{enumerate}
+         \item Finite union,
+             \[
+                 V(I_{1})\cup V(I_{2})=V(I_{1}I_{2})
+             \]
+             is a closed set.
+         \item Finite intersection
+             \[
+                 V(I_{1})\cap V(I_{2})=V(I_{1}+I_{2})
+             \]
+             is a closed set.
+         \item Finally, consider the ideals \((0)\) and \(A\), clearly,
+             \[
+                 V((0))=\sp(A)
+             \]
+             as \((0)\subseteq P\) for all prime ideals \(P\). Similarly, \[
+             V(A)=\emptyset
+             \]
+            Because no prime ideal contains all of \(A\). So the empty set and the whole space are closed sets.
+     \end{enumerate}
+     So the sets \(V(I)\) form a topology on \(\sp(A)\).
+\end{enumerate}
+\end{proof}
+\item Let \(\psi:A\to B\) be a ring homomorphism. Endow \(\sp(B)\) and \(\sp(A)\) with the Zariski topology. Show that \(\sp(\psi)\) is a continuous map. Spec is a contravariant functor from the category of commutative rings to the category of topological spaces.
+    \begin{proof}
+        Let \(\psi:A\to B\) be a ring homomorphism and endow \(\sp(B)\) and \(\sp(A)\) with the Zariski topology. Let \(J\subset B\) be an ideal. Then \(V(J)\subset\sp(B)\) is a closed set. We must show that
+        \[
+            \sp(\psi)^{-1}(V(J))\subset\sp(A)
+        \]
+        is closed. By definition, \(V(J)=\{P\in\sp(B)\mid J\subseteq P\}\). Then,
+    \[
+        \sp(\psi)^{-1}(V(J))=\{Q\in\sp(A)\mid \psi(Q)\in V(J)\}
+    \]
+   And \(\psi(Q)\in V(J)\implies \psi(Q)\subseteq J\). So \[
+        \sp(\psi)^{-1}(V(J))=\{Q\in\sp(A)\mid \psi(Q)\subseteq J\}=V(\psi^{-1}(J))
+   \]
+  Is the set of prime ideals \(Q\in\sp(A)\) which contain the preimage \(\psi^{-1}(J)\). By definition of the Zariski topology, \(V(\psi^{-1}(J))\) is closed, so \(\sp(\psi)\) is a continuous map.
+    \end{proof}
 \end{enumerate}
 \end{document}
