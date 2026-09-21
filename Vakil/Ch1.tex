@@ -1,0 +1,378 @@
+\documentclass[hidelinks,12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{mathtools}
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{enumitem}
+\usepackage{centernot}
+\usepackage{hyperref}
+\usepackage{graphicx}
+\usepackage{tikz-cd}
+\usepackage{microtype}
+\graphicspath{{/home/theo/Documents/GitHub/Math-Homeworks/Images/}}
+\setcounter{tocdepth}{1}
+\renewcommand{\geq}{\geqslant}
+\renewcommand{\leq}{\leqslant}
+\newcommand{\ul}{\underline}
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}{Corollary}[theorem]
+\newtheorem{defintion}{Definition}
+\newtheorem*{answer}{Answer}
+\newtheorem*{remark}{Remark}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\F}{\mathbb{F}}
+\renewcommand{\O}{\mathcal{O}}
+\newcommand{\gothp}{\mathfrak{P}}
+\newcommand{\gothq}{\mathfrak{Q}}
+\newcommand{\rk}{\operatorname{rank}}
+\newcommand{\aut}{\operatorname{Aut}}
+\newcommand{\End}{\operatorname{End}}
+\renewcommand{\sp}{\operatorname{Spec}}
+\newcommand{\obj}{\operatorname{Obj}}
+\newcommand{\mor}{\operatorname{Mor}}
+\tikzcdset{
+    every diagram/.style={
+        row sep=large,
+        column sep=large
+    }
+}
+\title{\scalebox{1.45}{Algebraic Geometry Problems}}
+\author{\scalebox{1.5}{Theo Koss}}
+\date{September 2026}
+
+\begin{document}
+
+\maketitle
+\section{Chapter 1}
+\subsection*{1.1.A:}
+\begin{enumerate}[label=(\alph*)]
+    \item Make sense of: ``A group is a groupoid with one object''. \begin{answer}\end{answer}
+        Note that morphism composition is associative, that \(id_{G}\in\mor(G,G)\), and that \(\mor(G,G)\) is closed.
+        Since \(G\), (as a category) is a groupoid, every morphism in \(\mor(G,G)\) is an isomorphism. Therefore for every \(\phi\in\mor(G,G)\), \(\exists!\phi^{-1}\in\mor(G,G)\), so that \[ \phi\circ\phi^{-1}=\phi^{-1}\circ\phi=id_{G} \]
+        Then the set \(\mor(G,G)\) with the operation
+        \[
+            \circ:\mor(G,G)\times\mor(G,G)\to\mor(G,G)
+        \]
+        admits group structure. (Dropping the condition that \(G\) is a groupoid gives \(\mor(G,G)\) the structure of a monoid.)
+    \item Describe a groupoid that is not a group. \begin{answer} \end{answer}
+        Let \(\mathcal{C}\) be a groupoid with two objects \(A,B\). Note that in a group, composition of any two elements is defined, however in our category \(\mathcal{C}\), we have things like \(\phi,\psi\in\mor(A,B)\) which you can not compose because the sources and targets do not match.
+\end{enumerate} 
+\subsection*{1.1.B} Let \(A\in\obj(\mathcal{C})\). Show that the invertible elements of \(\mor(A,A)\) form a group. (Called the \ul{automorphism group} \(\aut(A)\)). What are the automorphism groups for \textbf{Sets} and \(\textbf{Vec}_{k}\)? Prove that isomorphic objects have isomorphic automorphism groups. \begin{answer} \end{answer}
+Let \(A\in\obj(\mathcal{C})\) and consider the subset \(\aut(A)\subseteq\mor(A,A)\) with the property \(f\in\aut(A)\iff f\) is invertible. Then notes \(id_{A}\in\aut(A)\), which serves as the identity of the group. As before, morphism composition is associative, and \(\forall f\in\aut(A)\), since \(f\) is invertible, \(\exists f^{-1}\in\aut(A)\) such that \(f\circ f^{-1}=f^{-1}\circ f=id_{A}\). Therefore, \(\aut(A)\) satisfies the group axioms.
+\par If \(X\in\obj(\textbf{Sets})\), \(\aut(X)\) consists of permutations of the elements of \(X\). These are functions \(f:X\to X\) which are invertible (bijections). If \(V\in\obj(\textbf{Vec}_{k})\) is a vector space, \(Aut(V)\) consists of invertible matrices with entries from \(k\).
+\begin{proof}
+    Let \(A\) and \(B\) be isomorphic objects, so \(\exists f:A\to B\) and \(g:B\to A\) such that \(g\circ f=id_{A}\) and \(f\circ g=id_{B}\). We know \(\aut(A)\) and \(\aut(B)\) are groups. Define the maps
+    \[
+        \pi:\aut(A)\to\aut(B)
+    \]
+    by \[
+        \pi:\phi\mapsto f\circ\phi
+    \]
+    and \[
+        \pi^{-1}:\aut(B)\to\aut(A)
+    \]
+    \[
+        \pi^{-1}:\psi\mapsto g\circ\psi
+    \]
+    and then
+    \[
+        \pi^{-1}(\pi(\phi))=g\circ(f\circ\phi)=(g\circ f)\circ\phi=id_{A}\circ\phi=\phi
+    \]
+
+    \[
+        \pi(\pi^{-1}(\psi))=f\circ (g\circ \psi)=(f\circ g)\circ\psi=id_{B}\circ\psi=\psi
+    \]
+    So \(\pi^{-1}\circ\pi=id_{\aut(A)}\) and \(\pi\circ\pi^{-1}=id_{\aut(B)}\). Therefore \(\aut(A)\cong\aut(B)\).
+\end{proof}
+\subsection*{1.2.A:}\begin{defintion}
+    An object in a category \(\mathcal{C}\) is \ul{initial} if it has exactly 1 map to each object in \(\mathcal{C}\). An object is \ul{terminal} (or \ul{final}) if it has exactly one map \emph{from} each object. An object is a \ul{zero object} if it is both initial and terminal.
+\end{defintion}  
+Show that any two initial objects are uniquely isomorphic. Same for terminal.
+\begin{proof}
+    Let \(A,A'\) be two initial objects. Then, since \(A\) is initial, \(\exists!f:A\to A'\). Similarly, since \(A'\) is initial, \(\exists!g:A'\to A\). Then \(f\circ g:A\to A\) is unique, but \(id_{A}:A\to A\) is a map \(A\to A\). So \(f\circ g=id_{A}\). Similarly, \(g\circ f:A'\to A'\) is unique, so \(g\circ f=id_{A'}\). Therefore, \(A\cong A'\) uniquely. For terminal, flip the arrows.
+\end{proof}
+\subsection*{1.2.B:} What are initial, terminal, and zero objects in \textbf{Sets}, \textbf{Rings}, \textbf{Top}?
+\begin{answer}
+\end{answer}
+\ \begin{itemize}
+    \item In \textbf{Sets}, the empty set \(\emptyset\) maps uniquely into every set \(X\), via the empty function (which acts as the inclusion \(\emptyset\hookrightarrow X\)), so it is inital. However, you can not define a function \(\phi:X\to\emptyset\) for all \(X\), so it is not a terminal object. For any singleton set \(\{a\}\), there is a unique map \(g:X\to\{a\},\ g(x)=a\) for all \(x\in X\). Therefore, each singleton set is terminal.
+    \item In \textbf{Rings}, the zero ring \(\{0\}\) is terminal, because for any ring \(R\), take \(f:R\to\{0\}\), \(f(r)=0\) for all \(r\in R\). This is a valid ring hom, and it is unique. The ring \((\Z,+,\cdot)\) is initial, because for any ring \(R\), we must have (by our conventions) \[
+            f:\Z\to R,\ f:1_{\Z}\mapsto 1_{R}
+        \] and since \(\Z\) is generated by \(1_{\Z}\), that rule determines the entire homomorphism. (Note: this map captures the Characterstic of the ring \(R\), because it is the \(n\) in \(\ker{f}=n\Z\)).
+    \item In \textbf{Top}, similar to \textbf{Sets}, the empty space \(\emptyset\) (with its corresponding toplogy) is initial via the empty function, which is trivially continuous. The terminal objects are singletons \(\{a\}\), because there is a unique map \(f:X\to\{a\}\), \(f(x)=a\), which is continuous because the preimage of \(a\) is \(X\), which is open.
+\end{itemize}
+\subsection*{1.2.C:}Show that \(A\to S^{-1}A\), \((a\mapsto \frac{a}{1})\) is injective iff \(S\) contains no zerodivisors.
+\begin{proof}
+    \((\implies):\) Let \(f:A\to S^{-1}A\), \(f:a\mapsto \frac{a}{1}\) be injective. Let \(a\neq b\), then \(f(a)\neq f(b)\implies \frac{a}{1}\neq \frac{b}{1}\). That means \[
+        \centernot\exists s\in S,\ \text{so that } s(a-b)=0
+    \]
+    So for \(x=(a-b)\in A\) nonzero, there is no \(s\in S\) so that \(s\cdot x=0\). Therefore, \(S\) contains no zerodivisors.
+    \par\null\par \((\impliedby):\) Let \(S\) be a multiplicative set with no zerodivisors. Let \(f:A\to S^{-1}A\), \(f:a\mapsto \frac{a}{1}\) be a function. Let \(f(a)=f(b)\) for some \(a,b\in A\). Then \(\frac{a}{1}=\frac{b}{1}\implies\exists s\in S\) such that \(s(a-b)=0\). Since \(s\) is not a zerodivisor, we must have \(a-b=0\implies a=b\). Therefore \(f\) is injective.
+\end{proof}
+\subsection*{1.2.D:} Verify \(A\to S^{-1}A\) satisfies the following universal property: \(S^{-1}A\) is initial among \(A\)-algebras \(B\) where every element of \(S\) is sent to an invertible element in \(B\). Translation: any map \(A\to B\) where every \(s\in S\) is sent to an invertible in \(B\) must factor uniquely through \(A\to S^{-1}A\).
+\begin{remark}
+    An \(A\)-module \(M\) is the same as a map \[
+        \rho:A\to\End_{\Z}(M)\]\[\rho: s\mapsto \mu_{s}
+        \] where \[
+        \mu_{s}:M\to M\] \[
+        \mu_{s}:m\mapsto s\cdot m
+    \]
+    And to say that a scalar \(s\) is invertible is to say that \(\mu_{s}\in\End_{\Z}(M)\) is a bijection (automorphism).
+\end{remark}
+\begin{proof}
+    Let \(f:A\to S^{-1}A\) where \(f(a)=\frac{a}{1}\). Let \(B\) be an \(A\)-algebra, with map \(\phi:A\to B\) such that \(\phi(s)\) is a unit in \(B\). We claim \(\exists!g\) such that 
+    \[
+        \begin{tikzcd}[row sep=large,column sep=large]
+            A \arrow[r, "f"] \arrow[dr, "\phi"'] & S^{-1}A \arrow[d, "!g",dashed] \\
+                                                 & B
+        \end{tikzcd}
+    \]
+    commutes. Uniqueness is shown by the following: \[
+        g\left(\frac{a}{s}\right)=g(f(a)\cdot f(s)^{-1})=g(f(a))\cdot g(f(s))^{-1}=\phi(a)\cdot\phi(s)^{-1}
+    \]
+    So what \(g\) does to \(\frac{a}{s}\in S^{-1}A\) is completely determined by \(\phi:A\to B\). To show existence we need to show that \(g\) is well-defined and that it is a ring hom.
+    \par
+    Well-defined: Let \(\frac{a'}{s'}=\frac{a}{s}\). Then we want \(g\left(\frac{a'}{s'}\right)=g\left(\frac{a}{s}\right)\). \[
+        \frac{a'}{s'}=\frac{a}{s}\implies\exists t\in S\ \text{such that } t(a's-s'a)=0
+    \]
+    This is an expression in \(A\), so apply \(\phi:A\to B\) to both sides:
+    \[
+        \phi(t)(\phi(a's)-\phi(as'))=0
+    \]
+    Since \(t\in S\), \(\phi(t)\) is a unit, so it is not a zerodivisor. Therefore \(\phi(a's)=\phi(as')\implies \phi(a')\phi(s)=\phi(a)\phi(s')\). Since \(\phi(s)\) and \(\phi(s')\) are units in \(B\), we can multiply by \(\phi(s)^{-1}\) and \(\phi(s')^{-1}\) to get: \[
+        \phi(a')\phi(s')^{-1}=\phi(a)\phi(s)^{-1}\implies g\left(\frac{a'}{s'}\right)=g\left(\frac{a}{s}\right)
+    \]
+    As required, so \(g\) is well-defined.
+    \par Ring homomorphism: We check \(g(1_{S^{-1}A})=1_{B}\): \begin{align*}
+        g\left(\frac{1}{1}\right)&=\phi(1_{A})\phi(1_{A})^{-1}\\
+                                 &=1_{B}\cdot 1_{B}\\
+                                 &=1_{B}\\
+    \end{align*}
+    \(g\) respects addition:
+    \begin{align*}
+        g\left(\frac{a}{s}+\frac{b}{t}\right)&=g\left(\frac{at+bs}{st}\right)\\
+                                             &=\phi(at+bs)\phi(st)^{-1}\\
+                                             &=\left[ \phi(a)\phi(t)+\phi(b)\phi(s) \right]\phi(s)^{-1}\phi(t)^{-1}\\
+                                             &=\phi(a)\phi(s)^{-1}+\phi(b)\phi(t)^{-1}\\
+                                             &=g\left(\frac{a}{s}\right)+g\left(\frac{b}{t}\right)
+    \end{align*}
+    \(g\) respects multiplication:
+    \begin{align*}
+        g\left(\frac{a}{s}\cdot\frac{b}{t}\right)&=g\left(\frac{ab}{st}\right)\\
+                                                 &=\phi(ab)\phi(st)^{-1}\\
+                                                 &=\phi(a)\phi(b)\phi(s)^{-1}\phi(t)^{-1}\\
+                                                 &=\phi(a)\phi(s)^{-1}\phi(b)\phi(t)^{-1}\\
+                                                 &=g\left(\frac{a}{s}\right)\cdot g\left(\frac{b}{t}\right)
+    \end{align*}
+    So \[
+        g:S^{-1}A\to B
+    \]
+    \[
+        g:\frac{a}{s}\mapsto\phi(a)\phi(s)^{-1}
+    \]
+    is a well defined, unique ring homomorphism which makes the diagram commute. Therefore, every map \(\phi:A\to B\) (every \(A\)-algebra \(B\)) factors uniquely through \(S^{-1}A\).
+\end{proof}
+\pagebreak
+\subsubsection*{Localization of modules, mini problem:}
+Let \(M\) be an \(A\)-module. Then we define \(\phi:M\to S^{-1}M\) as being initial among \(A\)-module maps \(M\to N\) such that elements of \(S\) are invertible in \(N\). Or, \(M\to S^{-1}\) is universal among \(A\)-module maps from \(M\) to modules that are actually \(S^{-1}A\)-modules. Mini problem: Define the objects and morphisms in this category to make this precise.
+\begin{answer}
+\end{answer}
+\begin{itemize}
+    \item The objects of this category are pairs \((N_{i},\psi_{i})\) where \(N_{i}\) is an \(A\)-module and \(\psi:M\to N_{i}\) is an \(A\)-module homomorphism such that the multiplication map \(s\times -:N_{i}\to N_{i}\) is an automorphism.
+    \item The morphisms of this category are: Let \((N_{1},\psi_{1}),\ (N_{2},\psi_{2})\) be two objects of the category. Then they both define maps from M:
+        \[
+            \begin{tikzcd}[row sep=large,column sep=large]
+                M \arrow[r, "\psi_{1}"] \arrow[d, "\psi_{2}"'] & N_{1} \arrow[dl, "\theta",dashed] \\
+                N_{2} & 
+            \end{tikzcd}
+        \]
+        The map \(\theta:N_{1}\to N_{2}\) of \(A\)-modules, such that the triangle commutes \((\theta\circ\psi_{1}=\psi_{2})\) is an element of \(\mor((N_{1},\psi_{1}),(N_{2},\psi_{2}))\).
+\end{itemize}
+\subsection*{1.2.E:} Show that \(\phi:M\to S^{-1}M\) exists by constructing something satisfying the universal property. Hint: define elements of \(S^{-1}M\) to be \(\frac{m}{s}\) where \(m\in M\), \(s\in S\), with equality given by \[
+    \frac{m_{1}}{s_{1}}=\frac{m_{2}}{s_{2}}\iff\exists t\in S\mid t(m_{1}s_{2}-m_{2}s_{1})=0
+\]
+Addition given by \[
+    \frac{m_{1}}{s_{1}}+\frac{m_{2}}{s_{2}}=\frac{m_{1}s_{2}+m_{2}s_{1}}{s_{1}s_{2}}
+\]
+And the \(S^{-1}A\)-module structure (and therefore the \(A\)-module structure) is given by \[
+    \frac{a}{s}\cdot \frac{m_{1}}{t}= \frac{a\cdot m_{1}}{st}
+\]
+\begin{remark}
+    The \(A\)-module structure is achieved by ``pulling back along the localization map'' like so: Given \(\psi:S^{-1}A\to\End_{\Z}(S^{-1}M)\), we take \(f:A\to S^{-1}A\) and compose to get \(\rho_{A}:A\to\End_{\Z}(S^{-1}M)\) where \(\rho_{A}=\psi\circ f\)
+\end{remark}
+\begin{proof}
+    Let \(M\) and \(S^{-1}M\) be \(A\)-modules, with \(S^{-1}M\) defined as above. Define the map of \(A\)-modules
+    \[
+        \phi:M\to S^{-1}M
+    \]
+    \[
+        \phi:m\mapsto \frac{m}{1}
+    \]
+    We want to show that this map exists and that it satisfies the universal property. The category we are working in is the (full) subcategory of the slice category \(M\), where objects are pairs \((N,\psi)\) where \(\psi:M\to N\) and every element of \(S\) maps to an invertible in \(N\). Morphisms, say between \((N_{1},\psi_{1})\) and \((N_{2},\psi_{2})\) are maps \(\theta:N_{1}\to N_{2}\) which make \[
+        \begin{tikzcd}
+            M \arrow[r, "\psi_{1}"] \arrow[d, "\psi_{2}"'] & N_{1} \arrow[dl, "\theta",dashed] \\
+            N_{2}  &
+        \end{tikzcd}
+    \]
+    commute (so \(\psi_{2}=\theta\circ\psi_{1}\)). So we want to show \(\phi:M\to S^{-1}M\) is initial in this category (or, the pair \((S^{-1}M,\phi)\) is an initial object).
+    \par So, let \((N,\psi)\) be an object of this category. We want to show there \(\exists! \theta:S^{-1}M\to N\) such that 
+    \[
+        \begin{tikzcd}
+            M \arrow[r, "\phi"] \arrow[d, "\psi"'] & S^{-1}M \arrow[dl, "\theta",dashed] \\
+            N  &
+        \end{tikzcd}
+    \]
+    commutes (\(\psi=\theta\circ\phi\)).
+    \par Uniqueness of \(\theta\) is seen by:
+    \begin{align*}
+        \theta\left(\frac{m}{s}\right)&=\theta\left(\mu_{s}^{-1}\left(\phi(m)\right)\right)\\
+                                      &=\mu_{s}^{-1}\left(\theta\left(\phi(m)\right)\right)\\
+                                      &=\mu_{s}^{-1}\left(\psi(m)\right)\\
+    \end{align*}
+    Where the second equality is due to \(\theta\left(\mu_{s}(m)\right)=\mu_{s}\left(\theta(m)\right)\), then multiply by \(\mu_{s}^{-1}\) (which exists) on both sides.
+    \par Well-defined: Let \(\frac{m}{s}=\frac{m'}{s'}\), then \(\exists t\in S\) with \(t(ms'-m's)=0\). Apply \(\psi:M\to N\) to both sides:
+    \[
+        t(\psi(m)s'-\psi(m')s)=0
+    \]
+    Since \(t\in S\) is a unit, it is not a zerodivisor, so \(s'\cdot\psi(m)=s\cdot\psi(m')\). Since \(s,s'\in S\), \(s\cdot s'\in S\) and so \(\mu_{s\cdot s'}^{-1}\) exists. Multiply by this on both sides:\[
+        \mu_{s}^{-1}\psi(m)=\mu_{s'}^{-1}\psi(m')\implies\theta\left(\frac{m}{s}\right)=\theta\left(\frac{m'}{s'}\right)
+    \]
+    \(\theta\) respects addition: \begin{align*}
+        \theta\left(\frac{m_{1}}{s_{1}}+\frac{m_{2}}{s_{2}}\right)&=\theta\left(\frac{m_{1}s_{2}+m_{2}s_{1}}{s_{1}s_{2}}\right)\\
+                                                                  &=\mu_{s_{1}s_{2}}^{-1}\left(\psi(m_{1})\mu_{s_{2}}+\psi(m_{2})\mu_{s_{1}}\right)\\
+                                                                  &=\mu_{s_{1}}^{-1}\left(\psi(m_{1})\right)+\mu_{s_{2}}^{-1}(\psi(m_{2}))\\
+                                                                  &=\theta\left(\frac{m_{1}}{s_{1}}\right)+\theta\left(\frac{m_{2}}{s_{2}}\right)
+    \end{align*}
+    \(\theta\) respects \(A\)-scalar multiplication:
+    \begin{align*}
+        \theta\left(a\cdot \frac{m}{s}\right)&=\theta\left(\frac{a\cdot m}{s}\right)\\
+                                             &=\mu_{s}^{-1}\left(\psi(a\cdot m)\right)\\
+                                             &=\mu_{s}^{-1}\left(a\cdot\psi(m)\right)\\
+                                             &=a\cdot \mu_{s}^{-1}\left(\psi(m)\right)\\
+                                             &=a\cdot\theta\left(\frac{m}{s}\right)\\
+    \end{align*}
+    Where the 4th equality is due to \(\mu_{s}^{-1}\) being the inverse of an \(A\)-linear operation, so it is \(A\)-linear.
+    \par So \(\theta\) exists and is unique, therefore \((S^{-1}M,\phi)\) is initial in this category.
+\end{proof}
+\subsection*{1.2.F:} \begin{enumerate}[label=(\alph*)]
+    \item Show that localization commutes with finite products (equivalently, with finite direct sums).
+    \item Show that localization commutes with arbitrary direct sums.
+    \item Show that localization does not necessarily commute with infinite products: the obvisou map \(S^{-1}(\prod_{i}M_{i})\to\prod_{i}S^{-1}M_{i}\) induced by the universal property is not always an isomorphism. \\(Hint: \((1,\frac{1}{2},\frac{1}{3},\dots)\in\Q\times\Q\times\Q\times\cdots\))
+\end{enumerate}
+\begin{proof}
+    \begin{enumerate}[label=(\alph*).]
+        \item We need to show there is a bijective \(A\)-module morphism
+            \[
+                f:S^{-1}(M_{1}\times\dots\times M_{n})\to S^{-1}M_{1}\times\dots\times S^{-1}M_{n}
+            \]
+            Since \(S^{-1}(M_{1}\times\dots\times M_{n})\) is a localization, the map
+            \[
+                \phi:M_{1}\times\dots\times M_{n}\to S^{-1}(M_{1}\times\dots\times M_{n})
+            \]
+            is initial among \(A\)-module maps out of \(M_{1}\times\dots\times M_{n}\) where \(s\in S\) acts invertibly. Consider the map \[
+                \psi:M_{1}\times\dots\times M_{n}\to S^{-1}M_{1}\times\dots\times S^{-1}M_{n}
+            \]
+            \[
+                \psi:(m_{1},\dots,m_{n})\mapsto\left(\psi_{1}(m_{1}),\dots,\psi_{n}(m_{n})\right)
+            \]
+            Where \(\psi_{i}:M_{i}\to S^{-1}M_{i}\) is the canonical localization map. This is an \(A\)-module homomorphism out of \(M_{1}\times\dots\times M_{n}\). And since \(\mu_{s}\in\End_{\Z}\left(S^{-1}M_{1}\times\dots\times S^{-1}M_{n}\right)\) acts componentwise, and \(s\) acts invertibly on each component \(\phi_{i}(m_{i})\), \(s\) acts invertibly on the product. So \(\mu_{s}^{-1}\in\End_{\Z}\left(S^{-1}M_{1}\times\dots\times S^{-1}M_{n}\right)\). Therefore the pair \((S^{-1}M_{1}\times\dots\times S^{-1}M_{n},\psi)\) is an object of this category. So by the universal property of localization:
+            \[
+                \begin{tikzcd}
+                    M_{1}\times\dots\times M_{n} \arrow[r, "\phi"] \arrow[d, "\psi"'] & S^{-1}(M_{1}\times\dots\times M_{n}) \arrow[dl, "f",dashed] \\
+                    S^{-1}M_{1}\times\dots\times S^{-1}M_{n}  &
+                \end{tikzcd}
+\]
+\[
+    \exists !f:S^{-1}(M_{1}\times\dots\times M_{n})\to S^{-1}M_{1}\times\dots\times S^{-1}M_{n}
+\]
+\[
+f:\frac{(m_{1},\dots,m_{n})}{s}\mapsto\left(\frac{m_{1}}{s},\dots,\frac{m_{n}}{s}\right)
+\]
+Which makes the diagram commute. We want to show \(f\) is a bijective \(A\)-module homomorphism.
+\par Surjective: Let \(\left(\frac{m_{1}}{s_{1}},\dots,\frac{m_{n}}{s_{n}}\right)\in S^{-1}M_{1}\times\dots\times S^{-1}M_{n}\). Define \(t=\prod_{i}s_{i}\), since \(S\) is multiplicative, \(t\in S\). Let \(x_{i}=\prod_{j\neq i}s_{j}\in S\), then
+\[
+    \left(\frac{m_{1}}{s_{1}},\dots,\frac{m_{n}}{s_{n}}\right)=\left(\frac{x_{1}m_{1}}{t},\dots,\frac{x_{n}m_{n}}{t}\right)=\theta\left(\frac{(x_{1}m_{1},\dots,x_{n}m_{n})}{t}\right)
+\]
+So \(\theta\) is surjective.\par Injective: Let \(\theta\left(\frac{(m_{1},\dots,m_{n})}{s}\right)=\theta\left(\frac{(m_{1}',\dots,m_{n}')}{t}\right)\). So \[
+    \left(\frac{m_{1}}{s},\dots,\frac{m_{n}}{s}\right)=\left(\frac{m_{1}'}{t},\dots,\frac{m_{n}'}{t}\right)
+\]
+Then componentwise, \(\frac{m_{i}}{s}=\frac{m_{i}'}{t}\implies \exists u_{i}\in S\) such that
+\[
+    u_{i}(m_{i}t-m_{i}'s)=0
+\]
+Then let \(u=\prod_{i}u_{i}\). Clearly \(u\in S\), and \[
+    u(m_{i}t-m_{i}'s)=0
+\]
+For all \(i\in I\) simultaneously. So \[
+    u\left[(m_{1},\dots,m_{n})t-(m_{1}',\dots,m_{n}')s\right]=0
+\]
+Therefore \[
+\frac{(m_{1},\dots,m_{n})}{s}=\frac{(m_{1}',\dots,m_{n}')}{t}
+\]
+As required.
+\par Alternatively: Let \(\theta\left(\frac{(m_{1},\dots,m_{n})}{s}\right)=0\). Then \(\frac{m_{i}}{s}=0\) for all \(i\). Therefore \[
+\frac{(m_{1},\dots,m_{n})}{s}=0
+\]
+so \(\ker(\theta)=\{0\}\), and so \(\theta\) is injective.
+    \item Let \(\theta:S^{-1}\left(\bigoplus_{i\in I}m_{i}\right)\to\bigoplus_{i\in I}S^{-1}M_{i}\) be the unique \(A\)-module homomorphism given by the universal property of localization, which maps \[
+    \theta: \frac{(m_{i})_{i\in I}}{s}\mapsto \left(\frac{m_{i}}{s}\right)_{i\in I}
+    \]
+    It remains to show that \(\theta\) is bijective.\par Surjective: Let
+    \[
+        x=(x_{i})_{i\in I}\in\bigoplus_{i\in I}S^{-1}M_{i}
+    \]
+    be an arbitrary element. Since it is an element of a direct sum, it has finite support. Let \(J\subset I\) be the (finite) subset of \(I\) such that \(x_{j}=\frac{m_{j}}{s_{j}}\neq0\) when \(j\in J\), and \(x_{i}=0\) otherwise. The collection of all such \(x_{j}\) terms defines an isomorphism into \(S^{-1}M_{1}\times\dots\times S^{-1}M_{n}\). Then, we use the argument from \((a)\) to see \(\theta\) is surjective.\par Injective: Let \[
+    \theta\left(\frac{(m_{i})_{i\in I}}{s}\right)=0
+    \]
+   Then \(\frac{m_{i}}{s}=0\) for all \(i\in I\). Let \(J\subset I\) again be the finite subset for which \(m_{j}\neq0\), and \(m_{i}=0\) otherwise. If \(j\in J\), then \[
+       m_{j}=0\implies\exists u_{j}\in S\text{ such that }u_{j}m_{j}=0
+   \]
+   Define \(u=\prod_{j\in J}u_{j}\). Then for all \(i\), \(um_{i}=0\). So we have found a \(u\in S\) such that \(um_{i}=0\) for all \(i\in I\), therefore \(\frac{(m_{i})_{i\in I}}{s}=0\), and so \(\ker\left(\theta\right)=\{0\}\) and \(\theta\) is injective.
+\item Let \(A=\Z\), \(S=\Z\setminus\{0\}\). Then \(S^{-1}\Z=\Q\). Consider the element \[
+        \left(1,\frac{1}{2},\frac{1}{3},\dots\right)\in\Q\times\Q\times\dots
+\]
+A valid preimage of this element would have to contain every positive integer (in particular every prime number) as a factor of some \(s\in S\). However that is a contradiction because no integer contains every prime as a factor. So \[
+\theta:S^{-1}\left(\prod\Z\right)\to\prod\Q
+\]
+Is not an isomorphism.
+\end{enumerate}
+\end{proof}
+\subsection*{1.2.G} Show that \[
+\Z/(10)\otimes_{\Z}\Z/(12)\cong\Z/(2)
+\]
+\begin{remark}
+    Note: Over \(\Z\), the tensor product \(M\otimes_{\Z}N=\{m\otimes n\mid m\in M,n\in N\}\) is completely determined by the pure tensor \(1\otimes 1\), because for any \(m\otimes n\in M\otimes_{\Z}N\), we have \[
+        m\otimes n=m(1\otimes n)=mn(1\otimes 1)
+    \]
+\end{remark}
+\begin{proof}
+    Let \(x\otimes y\in\Z/(10)\otimes_{\Z}\Z/(12)\). Then, \(x\otimes y=xy(1\otimes 1)\). By Bezout, since \(\gcd( 10,12 )=2\), we can write \(2=10(-1)+12(1)\) So for even integers \(2k\) we have\[
+        2k=\left[10(-1)+12(1)\right]k
+    \]
+    So \begin{align*}
+        2k(1\otimes 1)&=\left[10(-1)+12(1)\right]k(1\otimes 1)\\
+        &=-10k(1\otimes 1)+12k(1\otimes 1)\\
+        &=0+0=0\\
+    \end{align*}
+    For odd integers \(2k+1\) we have 
+    \[
+        2k+1=\left[10(-1)+12(1)\right]k+1
+    \]
+    So \[ 
+        2k+1(1\otimes 1)=2k(1\otimes 1)+1(1\otimes 1)=1\otimes 1
+    \]
+    So there are 2 cases:
+   \begin{itemize}
+       \item If \(2\mid xy\), then \(xy(1\otimes 1)=0\)
+       \item If \(2\centernot\mid xy\), then \(xy(1\otimes 1)=1\otimes 1\)
+   \end{itemize} 
+   (Furthermore, \((1\otimes 1)+(1\otimes 1)=2(1\otimes1)=0\))\\
+   Therefore, \(\Z/(10)\otimes_{Z}\Z/(12)\cong\Z/(2)\).
+\end{proof}
+\subsection*{1.2.H}
+\end{document}
