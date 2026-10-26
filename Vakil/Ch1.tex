@@ -753,5 +753,85 @@ Let \[
 f:\left(\frac{a}{s},m\right)\mapsto \frac{a\cdot m}{s}
 \]
 be a map. We need to show \(f\) is \(A\)-bilinear, so we check
+\begin{enumerate}[label=(\roman*).]
+    \item Linearity in the first term
+       \begin{align*}
+           f\left(\frac{a}{s},m\right)+f\left(\frac{a'}{s'},m\right)&=\frac{ma}{s}+\frac{ma'}{s'}\\
+                                                                    &=\frac{s'(m'a)+s(ma')}{ss'}\\
+       &=\frac{(sa'+s'a)m}{ss'}\\
+       &=f\left(\frac{a}{s}+\frac{a'}{s'},m\right)\\
+       \end{align*}
+    \item Linearity in the second term
+        \begin{align*}
+        f\left(\frac{a}{s},m+m'\right)&=\frac{a(m+m')}{s}\\
+        &=\frac{am+am'}{s}\\
+        &=\frac{am}{s}+\frac{am'}{s}\\
+        &=f\left(\frac{a}{s},m\right)+f\left(\frac{a}{s},m'\right)\\
+        \end{align*}
+    \item \(A\)-scalar multiplication
+        \begin{align*}
+        f\left(c\cdot \frac{a}{s},m\right)&=\frac{c\cdot am}{s}\\
+        &=c\cdot\frac{am}{s}\\
+        &=c\cdot f\left(\frac{a}{s},m\right)\\
+        \end{align*}
+        And
+        \begin{align*}
+        f\left(\frac{a}{s},c\cdot m\right)&=\frac{c\cdot am}{s}\\
+        &=c\cdot f\left(\frac{a}{s},m\right)\\
+        \end{align*}
+\end{enumerate}
+So \(f\) is \(A\)-bilinear, and therefore by the universal property of tensor products:
+\[
+\begin{tikzcd}[row sep=large,column sep=large]
+    (S^{-1}A)\times M \arrow[r, "\pi"] \arrow[d, "f"] & (S^{-1}A)\otimes M \arrow[dl, "\exists !\hat{f}",dashed] \\
+S^{-1}M &
+\end{tikzcd}
+\]
+There exists a unique \(\hat{f}:(S^{-1}A)\otimes M\to S^{-1}M\) such that \(f=\hat{f}\circ\pi\). Therefore \[
+    \hat{f}\left(\frac{a}{s}\otimes m\right)=\frac{am}{s}
+\]
+It remains to show that \(\hat{f}\) is an isomorphism. Define \[
+g:S^{-1}M\to (S^{-1}A)\otimes M
+\]
+\[
+g:\frac{m}{s}\mapsto \frac{1}{s}\otimes m
+\]
+We need to show that \(g\) is well defined, that it is a valid module homomorphism, and that it is the inverse of \(\hat{f}\).
+\begin{itemize}
+    \item \ul{Well defined:} Let \(\frac{m}{s}=\frac{m'}{s'}\in S^{-1}M\). Then by definition of equality of fractions, \(\exists t\in S\) so that \(t(s'm-sm')=0\) in \(M\).
+        \begin{align*}
+        g\left(\frac{m}{s}\right)-g\left(\frac{m'}{s'}\right)&=\left(\frac{1}{s}\otimes m\right)-\left(\frac{1}{s'}\otimes m'\right)\\
+        &=\frac{1}{ss'}\otimes s'm-\frac{1}{s's}\otimes sm'\\
+        &=\frac{1}{ss'}\otimes (s'm-sm')\\
+        &=\frac{1}{tss'}\otimes t(s'm-sm')
+        &=\frac{1}{tss'}\otimes 0=0
+        \end{align*}
+        So \(g\left(\frac{m}{s}\right)=g\left(\frac{m'}{s'}\right)\).
+    \item \ul{Module homomorphism:} Need to show \(g\) preserves addition and \(A\)-scalar multiplication.
+        \begin{align*}
+        g\left(\frac{m}{s}\right)+g\left(\frac{m'}{s'}\right)&=\left(\frac{1}{s}\otimes m\right)+\left(\frac{1}{s'}\otimes m'\right)\\
+        &=\frac{s'}{ss'}\otimes m+\frac{s}{s s'}\otimes m'\\
+        &=\frac{1}{s s'}\otimes s'm+\frac{1}{s s'}\otimes sm'\\
+        &=\frac{1}{s s'}\otimes s'm+sm'=g\left(\frac{m}{s}+\frac{m'}{s'}\right)
+        \end{align*}
+        and 
+        \begin{align*}
+        g\left(a\cdot \frac{m}{s}\right)&=g\left(\frac{am}{s}\right)\\
+        &=\frac{1}{s}\otimes am\\
+        &=a(\frac{1}{s}\otimes m)=a\cdot g\left(\frac{m}{s}\right)\\
+        \end{align*}
+        So \(g\) is an \(A\)-module homomorphism.
+\end{itemize}
+Finally, we need to show that \(g\) and \(\hat{f}\) are inverses, so \[
+    g\left(\hat{f}\left(\frac{a}{s}\otimes m\right)\right)=g\left(\frac{am}{s}\right)=\frac{1}{s}\otimes am=\frac{a}{s}\otimes m
+\]
+and 
+\[
+    \hat{f}\left(g\left(\frac{m}{s}\right)\right)=\hat{f}\left(\frac{1}{s}\otimes m\right)=\frac{m}{s}
+\]
+Therefore \(\hat{f}\) and \(g\) are inverses, so \(\hat{f}\) is an isomorphism
+\[
+    (S^{-1}A)\otimes_{A}M\to S^{-1}M
+\]
 \end{proof}
 \end{document}
